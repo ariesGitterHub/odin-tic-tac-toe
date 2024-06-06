@@ -1,0 +1,247 @@
+:root {
+--body-bgd: #43437f;
+--cell-bgd: #ad8f94;
+--cell-bor: #280b0b;
+--border-rem1: .5rem;
+--border-rem2: .25rem;
+--border-rad: 3rem;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 0;
+}
+
+#game-container {
+    height: 750px;
+    width: 750px;
+    background: var(--body-bgd);
+    border-radius: var(--border-rad);
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    }
+
+#game-title {
+    display: flex;
+    justify-content: center;
+    /* margin: 0; */
+}
+
+#game-title h1 {
+    font-size: 2.5rem;
+    margin: 1rem;
+}
+
+#player-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+#player1-container, #player2-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#player1-name, #player2-name {
+    background: var(--cell-bgd);
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+#human, #human-ai {
+    color: white;
+}
+
+#player1-record, #player2-record {
+    background: var(--cell-bgd);
+    /* margin: .5rem; */
+    padding: 1rem;
+}
+
+#game-status {
+    background: var(--cell-bgd);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+button {
+    height: 6rem;
+    width: 6rem;
+    background: var(--cell-bgd);
+    border: var(--border-rem1) solid var(--cell-bor);
+    border-radius: var(--border-rad);
+    color: var(--cell-bor);
+    font-size: 1.25rem;
+
+}
+
+#game-board {
+    display: grid;
+    grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(7rem, 1fr));
+    gap: 0;
+}
+
+.cell {
+    /* height: 5rem;
+    width: 5rem; */
+    background:var(--cell-bgd);
+    color: var(--cell-bor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    /* margin: 0;
+    padding: 0; */
+
+  vertical-align: middle; 
+
+
+}
+
+#cell0 {
+    border-bottom: var(--border-rem1) solid var(--cell-bor);
+    border-right: var(--border-rem1) solid var(--cell-bor);
+
+    border-left: var(--border-rem2) solid var(--cell-bor);
+    border-top: var(--border-rem2) solid var(--cell-bor);
+    border-radius: var(--border-rad) 0 0 0;
+}
+
+#cell1 {
+    border-bottom: var(--border-rem1) solid var(--cell-bor);
+    border-left: var(--border-rem1) solid var(--cell-bor);
+    border-right: var(--border-rem1) solid var(--cell-bor);
+    
+    border-top: var(--border-rem2) solid var(--cell-bor);
+}
+
+#cell2 {
+    border-bottom: var(--border-rem1) solid var(--cell-bor);
+    border-left: var(--border-rem1) solid var(--cell-bor);
+
+    border-right: var(--border-rem2) solid var(--cell-bor);
+    border-top: var(--border-rem2) solid var(--cell-bor);
+    border-radius: 0 var(--border-rad) 0 0;
+}
+
+#cell3 {
+    border-bottom: var(--border-rem1) solid var(--cell-bor);
+    border-right: var(--border-rem1) solid var(--cell-bor);
+    border-top: var(--border-rem1) solid var(--cell-bor);
+
+    border-left: var(--border-rem2) solid var(--cell-bor);
+}
+
+#cell4 {
+    border: var(--border-rem1) solid var(--cell-bor);
+}
+
+#cell5 {
+    border-bottom: var(--border-rem1) solid var(--cell-bor);
+    border-left: var(--border-rem1) solid var(--cell-bor);
+    border-top: var(--border-rem1) solid var(--cell-bor);
+
+    border-right: var(--border-rem2) solid var(--cell-bor);
+}
+
+#cell6 {
+    border-right: var(--border-rem1) solid var(--cell-bor);
+    border-top: var(--border-rem1) solid var(--cell-bor);
+
+    border-bottom: var(--border-rem2) solid var(--cell-bor);
+    border-left: var(--border-rem2) solid var(--cell-bor);
+    border-radius: 0 0 0 var(--border-rad);
+}
+
+#cell7 {
+    border-left: var(--border-rem1) solid var(--cell-bor);
+    border-right: var(--border-rem1) solid var(--cell-bor);
+    border-top: var(--border-rem1) solid var(--cell-bor);
+
+    border-bottom: var(--border-rem2) solid var(--cell-bor);
+}
+
+#cell8 {
+    border-left: var(--border-rem1) solid var(--cell-bor);
+    border-top: var(--border-rem1) solid var(--cell-bor);
+    
+    border-bottom: var(--border-rem2) solid var(--cell-bor);
+    border-right: var(--border-rem2) solid var(--cell-bor);
+    border-radius: 0 0 var(--border-rad) 0;
+}
+
+/* TOGGLE */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

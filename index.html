@@ -8,6 +8,60 @@
     <title>Odin Tic Tac Toe</title>
 </head>
 <body>
-<h1></h1>
+<div id="game-container">
+    <div id="game-title">
+        <h1>Tic-Tac-Terror</h1>
+    </div>
+    <div id="player-container">
+        <div id="player1-container">
+            <div id="player1-name">
+                <input type="text" id="player1-input" value="Player 1">
+            </div>
+            <div class="human-ai">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div id="player1-record">
+                <div id="player1-wins">Wins: 1</div>
+                <div id="player1-wins">Losses: 1</div>
+                <div id="player1-draws">Draws: 0</div>
+            </div>
+        </div>
+        <div id="player2-container">
+            <div id="player2-name">
+                <input type="text" id="player2-input" value="Player 2">
+            </div>
+            <div class="human-ai">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div id="player2-record">
+                <div id="player2-wins">Wins: 0</div>
+                <div id="player2-wins">Losses: 1</div>
+                <div id="player2-draws">Draws: 0</div>
+            </div>
+        </div>
+    </div>
+    <div id="game-status">status/win/draw</div>
+    <div id="button-container">
+        <button>START</button>
+    </div>
+    <div id="game-board">
+        <div class="cell" id="cell0"></div>
+        <div class="cell" id="cell1"></div>
+        <div class="cell" id="cell2"></div>
+        <div class="cell" id="cell3"></div>
+        <div class="cell" id="cell4"></div>
+        <div class="cell" id="cell5"></div>
+        <div class="cell" id="cell6"></div>
+        <div class="cell" id="cell7"></div>
+        <div class="cell" id="cell8"></div>
+    </div>
+</div>
+
 </body>
 </html>

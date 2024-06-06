@@ -1,106 +1,183 @@
-function Gameboard() {
-  const rows = 3;
-  const columns = 3;
-  const board = Array.from({ length: rows }, () =>
-    Array.from({ length: columns }, () => Cell())
-  );
+// const makeGameBoard = (function() {
+// console.log("gameboard test");
 
-  const getBoard = () => board;
+// const rows = 3;
+// const cols = 3;
+// const board = [];
+// const cell = "";
 
-  const addToken = (row, column, player) => {
-    if (board[row][column].getValue() === 0) {
-      board[row][column].addToken(player);
-      return true;
-    }
-    return false;
-  };
+// for (let i = 0; i < rows; i++) {
+//   board[i] = [];
+//     for (let j = 0; j < cols; j++) {
+//       board[i].push(cell);
+//     }
+// }
+//  console.log(board);
+// })()
 
-  const printBoard = () => {
-    const boardWithCellValues = board.map((row) =>
-      row.map((cell) => (cell.getValue() === 0 ? "-" : cell.getValue()))
-    );
-    console.log(boardWithCellValues);
-  };
+// const makeGameBoard = (function () {
+//   console.log("gameboard test");
 
-  return { getBoard, addToken, printBoard };
-}
+// const board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
+// // console.log(board);
+// // const display = document.querySelectorAll(".cell");
+// // const cell0 = document.querySelector("#cell0");
+// // cell0.textContent = board[0];
 
-function Cell() {
-  let value = 0;
-  const addToken = (player) => {
-    value = player;
-  };
-  const getValue = () => value;
-  return { addToken, getValue };
-}
+// // const cell1 = document.querySelector("#cell1");
+// // cell1.textContent = board[1];
 
-function GameController(
-  playerOneName = "Player One",
-  playerTwoName = "Player Two"
-) {
-  const board = Gameboard();
-  const players = [
-    { name: playerOneName, token: 1 },
-    { name: playerTwoName, token: 2 },
-  ];
-  let activePlayer = players[0];
-  let moves = 0;
+// // const cell2 = document.querySelector("#cell2");
+// // cell2.textContent = board[2];
 
-  const switchPlayerTurn = () => {
-    activePlayer = activePlayer === players[0] ? players[1] : players[0];
-  };
+// // const cell3 = document.querySelector("#cell3");
+// // cell3.textContent = board[3];
 
-  const getActivePlayer = () => activePlayer;
+// // const cell4 = document.querySelector("#cell4");
+// // cell4.textContent = board[4];
 
-  const printNewRound = () => {
-    board.printBoard();
-    console.log(`${getActivePlayer().name}'s turn.`);
-  };
+// // const cell5 = document.querySelector("#cell5");
+// // cell5.textContent = board[5];
 
-  const playRound = (row, column) => {
-    if (board.addToken(row, column, getActivePlayer().token)) {
-      moves++;
-      if (checkWin(row, column, getActivePlayer().token)) {
-        board.printBoard();
-        console.log(`${getActivePlayer().name} wins!`);
-        return;
-      } else if (moves === 9) {
-        board.printBoard();
-        console.log("It's a draw!");
-        return;
-      }
+// // const cell6 = document.querySelector("#cell6");
+// // cell6.textContent = board[6];
 
-      switchPlayerTurn();
-      printNewRound();
+// // const cell7 = document.querySelector("#cell7");
+// // cell7.textContent = board[7];
+
+// // const cell8 = document.querySelector("#cell8");
+// // cell8.textContent = board[8];
+
+//   const cells = document.querySelectorAll(".cell");
+
+//   cells.forEach((cell, index) => {
+//     cell.textContent = board[index];
+//   });
+
+// return board;
+
+// })()
+
+// const makeGameBoard = (function () {
+//   console.log("gameboard test");
+
+//   const board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
+//   console.log(board);
+//   const cells = document.querySelectorAll(".cell");
+//   cells.forEach((cell, index) => {
+//     cell.textContent = board[index];
+//   });
+
+//   return board;
+// })()
+
+// const board = [
+//   "", "", "",
+//   "", "", "",
+//   "", "", ""
+// ];
+
+
+// SET UP THE GAMEBOARD AND INDIVIDUAL CELLS
+// 3X3 GRID OF CELLS
+// LABEL CELLS?
+
+// const gameBoard = (function() {
+//   const rows = 3;
+//   const columns = 3;
+//   const board = [];
+  
+//   function Cell() {
+//     let marker = 0;
+//     return {
+//       marker
+//     }
+//   }
+//   function makeBoard() {
+//     for (let i = 0; i < rows; i++) {
+//     board[i] = [];
+//     for (let j = 0; j < columns; j++) {
+//       board[i].push(Cell());
+//     }
+//   }    
+//     return board
+//   } 
+
+//   function labelBoard() {
+//     console.log(board);
+
+//   }
+
+//   return {
+//     makeBoard,
+//     labelBoard
+//   }
+
+// })();
+
+// console.log(gameBoard.makeBoard());
+// gameBoard.labelBoard();
+
+const gameBoard = (function () {
+
+  function Cell() {
+    let marker = "";
+    return { marker };
+  }  
+  
+  const board = [Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell()];
+
+  // return board
+
+  function updateCell(index, newMarker) {
+
+    if (index >= 0 && index < 9) {
+      board[index].marker = newMarker;
+      let newBoard = board;
+      return newBoard;
     } else {
-      console.log("Invalid move, try again.");
+      console.error("Invalid index provided");
     }
-  };
+  }
 
-  const checkWin = (row, column, player) => {
-    const boardArray = board.getBoard();
-    const checkLine = (line) =>
-      line.every((cell) => cell.getValue() === player);
+  function displayCell() {
+      const cells = document.querySelectorAll(".cell");
+      cells.forEach((cell, index) => {
+        cell.textContent = board[index].marker;
+      });
+  }
 
-    if (checkLine(boardArray[row])) return true;
-    if (boardArray.every((r) => r[column].getValue() === player)) return true;
-    if (
-      row === column &&
-      boardArray.every((r, idx) => r[idx].getValue() === player)
-    )
-      return true;
-    if (
-      row + column === 2 &&
-      boardArray.every((r, idx) => r[2 - idx].getValue() === player)
-    )
-      return true;
+      return { board, updateCell, displayCell };
 
-    return false;
-  };
+})();
 
-  printNewRound();
+// gameBoard.updateCell(0, "E");
+// gameBoard.updateCell(1, "Y");
+// gameBoard.updateCell(2, "A");
+console.log(gameBoard.updateCell(0, "X"));
+console.log(gameBoard.updateCell(1, "O"));
+console.log(gameBoard.updateCell(2, "O"));
+console.log(gameBoard.updateCell(4, "X"))
+console.log(gameBoard.updateCell(8, "X"));
+gameBoard.displayCell();
 
-  return { playRound, getActivePlayer };
-}
 
-const game = GameController();
+
+// SET UP THE PLAYERS
+// PLAYER 1 WITH X
+// PLAYER 2 WITH O
+
+// SET UP THE GAMEPLAY
+// PLAYER 1 SELECTS
+// PLAYER 1 MARKER IS PLACED ON THE DESIRED CELL
+// PLAYER 2 SELECTS
+// PLAYER 2 MARKER IS PLACED ON THE DESIRED CELL
+
+// CHECK FOR WIN CONDITION AFTER TURN 3
+// USE A TURN COUNTER...
+// CHECK FOR DRAW CONDITION AFTER TURN 9
+// USE A TURN COUNTER...
+
+
+
+
