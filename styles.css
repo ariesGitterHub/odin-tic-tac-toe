@@ -1,30 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
 :root {
---body-bgd: #43437f;
---cell-bgd: #ad8f94;
---cell-bor: #280b0b;
+/* --dk-gray: #101011; */
+--dk-gray: #333333;
+/* --white: #eceef4; */
+--white: #f5f5f5;
+--glow1: #d9b46b;
+--glow2: #d98e6b;
 --border-rem1: .5rem;
 --border-rem2: .25rem;
 --border-rad: 3rem;
+--font-title: "Spicy Rice", serif;
+--font: "Patrick Hand SC", cursive;
+
+--ari: #ba1c1c;
+--tau: #115011;
+--gem: #f8b008;
+--can: #005f75;
+--leo: #a18410;
+--vir: #676711;
+--lib: #101054;
+--sco: #310d0f;
+--sag: #710f71;
+--cap: #2f494f;
+--aqu: #358d8e;
+--pis: #2b6767;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    padding: 0;
+  background: var(--dk-gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #game-container {
-    height: 750px;
-    width: 750px;
-    background: var(--body-bgd);
-    border-radius: var(--border-rad);
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    padding: 1rem;
-    }
-
+  height: auto;
+  width: 350px;
+}
 #game-title {
     display: flex;
     justify-content: center;
@@ -32,71 +47,100 @@ body {
 }
 
 #game-title h1 {
-    font-size: 2.5rem;
+    color: var(--dk-gray);
+    /* font-family: "Monoton", sans-serif; */
+    display: flex;
+    font-family: var(--font-title);
+    font-size: 3rem;
+    font-weight: 100;
     margin: 1rem;
 }
 
-#player-container {
-    display: flex;
-    justify-content: space-around;
+#game-title h1 span{ 
+    /* color: red; */
+  -webkit-animation: glow 3s ease-in-out infinite alternate;
+  -moz-animation: glow 3s ease-in-out infinite alternate;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
-#player1-container, #player2-container {
-    display: flex;
-    flex-direction: column;
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--glow1), 0 0 40px var(--glow1), 0 0 50px var(--glow1), 0 0 60px var(--glow1), 0 0 70px var(--glow1);
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px var(--glow2), 0 0 30px var(--glow2), 0 0 40px var(--glow2), 0 0 50px var(--glow2), 0 0 60px var(--glow2), 0 0 70px var(--glow2);
+  }
 }
 
-#player1-name, #player2-name {
-    background: var(--cell-bgd);
-    font-size: 1.5rem;
-    padding: 1rem;
+#modal-container {
+  font-family: var(--font);
 }
 
-#human, #human-ai {
-    color: white;
+dialog {
+  height: auto;
+  width: 300px;
+  display: flex;
+  justify-content: center;
 }
 
-#player1-record, #player2-record {
-    background: var(--cell-bgd);
-    /* margin: .5rem; */
-    padding: 1rem;
+.dialog-item1 {
+  display: flex;
+  align-items: center;
 }
 
-#game-status {
-    background: var(--cell-bgd);
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    text-align: center;
+.dialog-item2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
 }
 
-#button-container {
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
+.btn-row button {
+  height: 4rem;
+  width: 4rem;
+  background: none;
+  border: 1px solid var(--dk-gray);
+  border-radius: 4rem;
+  cursor: pointer;
+  margin: .25rem;
 }
 
-button {
-    height: 6rem;
-    width: 6rem;
-    background: var(--cell-bgd);
-    border: var(--border-rem1) solid var(--cell-bor);
-    border-radius: var(--border-rad);
-    color: var(--cell-bor);
-    font-size: 1.25rem;
+.btn-row button img{
+  height: auto;
+  width: 2rem;
+  padding: .25rem
 
+}
+
+.btn-row button:hover {
+  transform: scale(1.15);
+}
+
+.btn-row button:active {
+  background: var(--glow1);
+  border: 2px solid red;
+  transform: scale(.9);
+}
+
+.btn-row button:visited {
+  background: var(--glow1);
+  transform: scale(.9);
 }
 
 #game-board {
-    display: grid;
-    grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(7rem, 1fr));
+    display: none;
+    grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
     gap: 0;
+    margin-top: 1rem;;
 }
+
 
 .cell {
     /* height: 5rem;
     width: 5rem; */
-    background:var(--cell-bgd);
-    color: var(--cell-bor);
+    background:var(--white);
+    border: .5rem double var(--dk-gray);
+    color: var(--dk-gray);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,80 +150,8 @@ button {
 
   vertical-align: middle; 
 
-
 }
 
-#cell0 {
-    border-bottom: var(--border-rem1) solid var(--cell-bor);
-    border-right: var(--border-rem1) solid var(--cell-bor);
-
-    border-left: var(--border-rem2) solid var(--cell-bor);
-    border-top: var(--border-rem2) solid var(--cell-bor);
-    border-radius: var(--border-rad) 0 0 0;
-}
-
-#cell1 {
-    border-bottom: var(--border-rem1) solid var(--cell-bor);
-    border-left: var(--border-rem1) solid var(--cell-bor);
-    border-right: var(--border-rem1) solid var(--cell-bor);
-    
-    border-top: var(--border-rem2) solid var(--cell-bor);
-}
-
-#cell2 {
-    border-bottom: var(--border-rem1) solid var(--cell-bor);
-    border-left: var(--border-rem1) solid var(--cell-bor);
-
-    border-right: var(--border-rem2) solid var(--cell-bor);
-    border-top: var(--border-rem2) solid var(--cell-bor);
-    border-radius: 0 var(--border-rad) 0 0;
-}
-
-#cell3 {
-    border-bottom: var(--border-rem1) solid var(--cell-bor);
-    border-right: var(--border-rem1) solid var(--cell-bor);
-    border-top: var(--border-rem1) solid var(--cell-bor);
-
-    border-left: var(--border-rem2) solid var(--cell-bor);
-}
-
-#cell4 {
-    border: var(--border-rem1) solid var(--cell-bor);
-}
-
-#cell5 {
-    border-bottom: var(--border-rem1) solid var(--cell-bor);
-    border-left: var(--border-rem1) solid var(--cell-bor);
-    border-top: var(--border-rem1) solid var(--cell-bor);
-
-    border-right: var(--border-rem2) solid var(--cell-bor);
-}
-
-#cell6 {
-    border-right: var(--border-rem1) solid var(--cell-bor);
-    border-top: var(--border-rem1) solid var(--cell-bor);
-
-    border-bottom: var(--border-rem2) solid var(--cell-bor);
-    border-left: var(--border-rem2) solid var(--cell-bor);
-    border-radius: 0 0 0 var(--border-rad);
-}
-
-#cell7 {
-    border-left: var(--border-rem1) solid var(--cell-bor);
-    border-right: var(--border-rem1) solid var(--cell-bor);
-    border-top: var(--border-rem1) solid var(--cell-bor);
-
-    border-bottom: var(--border-rem2) solid var(--cell-bor);
-}
-
-#cell8 {
-    border-left: var(--border-rem1) solid var(--cell-bor);
-    border-top: var(--border-rem1) solid var(--cell-bor);
-    
-    border-bottom: var(--border-rem2) solid var(--cell-bor);
-    border-right: var(--border-rem2) solid var(--cell-bor);
-    border-radius: 0 0 var(--border-rad) 0;
-}
 
 /* TOGGLE */
 
@@ -187,12 +159,14 @@ button {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 38px;
+  height: 24px;
+  margin: .5rem;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
+
   opacity: 0;
   width: 0;
   height: 0;
@@ -206,42 +180,32 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background: lightblue;
   -webkit-transition: .4s;
   transition: .4s;
+    border-radius: 1rem;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
+  height: 22px;
+  width: 22px;
+  left: 1px;
+  top: 1px;
+  background-color: var(--dk-gray);
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 1rem;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
 
-input:focus + .slider {
+/* input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
-}
+} */
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
 }

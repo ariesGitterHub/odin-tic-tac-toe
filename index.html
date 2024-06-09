@@ -10,46 +10,51 @@
 <body>
 <div id="game-container">
     <div id="game-title">
-        <h1>Tic-Tac-Terror</h1>
+        <h1><span>Tic-Tac-Zodiac</span></h1>
     </div>
-    <div id="player-container">
-        <div id="player1-container">
-            <div id="player1-name">
-                <input type="text" id="player1-input" value="Player 1">
-            </div>
-            <div class="human-ai">
+
+    <div id="modal-container">
+        <dialog open>
+            <form method="dialog">
+                <div class="dialog-item1">
+                <h2>One Player</h2>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="" type="checkbox">
                     <span class="slider"></span>
                 </label>
-            </div>
-            <div id="player1-record">
-                <div id="player1-wins">Wins: 1</div>
-                <div id="player1-wins">Losses: 1</div>
-                <div id="player1-draws">Draws: 0</div>
-            </div>
-        </div>
-        <div id="player2-container">
-            <div id="player2-name">
-                <input type="text" id="player2-input" value="Player 2">
-            </div>
-            <div class="human-ai">
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div id="player2-record">
-                <div id="player2-wins">Wins: 0</div>
-                <div id="player2-wins">Losses: 1</div>
-                <div id="player2-draws">Draws: 0</div>
-            </div>
-        </div>
+                <h2>Two Player</h2>
+                </div>
+                <div class="dialog-item2">
+                <h2>Player One (Select Sign)</h2>
+                <div class="btn-row">
+                    <button><img src="./assets/ari-sym.svg" alt=""></button>
+                    <button><img src="./assets/tau-sym.svg" alt=""></button>
+                    <button><img src="./assets/gem-sym.svg" alt=""></button>
+                </div>
+                <div class="btn-row">
+                    <button><img src="./assets/can-sym.svg" alt=""></button>
+                    <button><img src="./assets/leo-sym.svg" alt=""></button>
+                    <button><img src="./assets/vir-sym.svg" alt=""></button>
+                </div>
+                <div class="btn-row">
+                    <button><img src="./assets/lib-sym.svg" alt=""></button>
+                    <button><img src="./assets/sco-sym.svg" alt=""></button>
+                    <button><img src="./assets/sag-sym.svg" alt=""></button>
+                </div>
+                <div class="btn-row">
+                    <button><img src="./assets/cap-sym.svg" alt=""></button>
+                    <button><img src="./assets/aqu-sym.svg" alt=""></button>
+                    <button><img src="./assets/pis-sym.svg" alt=""></button>
+                </div>
+
+                </div>
+                <button>Start Game</button>
+            </form>
+        </dialog>
+
     </div>
-    <div id="game-status">status/win/draw</div>
-    <div id="button-container">
-        <button>START</button>
-    </div>
+
+
     <div id="game-board">
         <div class="cell" id="cell0"></div>
         <div class="cell" id="cell1"></div>

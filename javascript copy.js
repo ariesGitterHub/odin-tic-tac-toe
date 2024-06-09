@@ -157,7 +157,7 @@ console.log(gameBoard.updateCell(6, "X"));
 console.log(gameBoard.updateCell(1, "O"));
 console.log(gameBoard.updateCell(2, "O"));
 console.log(gameBoard.updateCell(4, "X"))
-console.log(gameBoard.updateCell(8, "X"));
+console.log(gameBoard.updateCell(8, "P"));
 gameBoard.displayCell();
 
 
