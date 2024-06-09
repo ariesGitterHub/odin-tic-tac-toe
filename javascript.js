@@ -118,6 +118,29 @@
 // console.log(gameBoard.makeBoard());
 // gameBoard.labelBoard();
 
+function changeModalBtnImgs() {
+
+  const zodBtns = document.querySelectorAll(".zod-btn");
+
+  zodBtns.forEach((button) => {
+
+    const zodSym = button.querySelector(".zod-sym");
+    const zodImg = button.querySelector(".zod-img");
+
+    button.addEventListener("mouseenter", () => {
+      zodSym.style.display = "none";
+      zodImg.style.display = "flex";
+    });
+
+    button.addEventListener("mouseleave", () => {
+      zodSym.style.display = "flex";
+      zodImg.style.display = "none";
+    });
+  });
+}
+
+changeModalBtnImgs(); 
+
 const gameBoard = (function () {
 
   function Cell() {

@@ -91,9 +91,9 @@ body {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--glow1), 0 0 40px var(--glow1), 0 0 50px var(--glow1), 0 0 60px var(--glow1), 0 0 70px var(--glow1);
   }
-  to {
+  /* to {
     text-shadow: 0 0 10px #fff, 0 0 20px var(--glow2), 0 0 30px var(--glow2), 0 0 40px var(--glow2), 0 0 50px var(--glow2), 0 0 60px var(--glow2), 0 0 70px var(--glow2);
-  }
+  } */
 }
 
 #modal-container {
@@ -162,14 +162,14 @@ dialog h2 {
   margin: .2rem;
 }
 
-.btn-row button .zod-sym{
+.zod-sym {
   height: auto;
   width: 2rem;
   display: flex;
   /* padding: .25rem; */
 }
 
-.btn-row button .zod-img{
+.zod-img {
   height: auto;
   width: 2.5rem;
   display: none;
@@ -180,7 +180,6 @@ dialog h2 {
   background: none;
   /* border: none; */
   transform: scale(1.10);
-   */
 }
 
 /* #ari1:hover {
