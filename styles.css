@@ -7,8 +7,8 @@
 --md-gray: #808080;
 /* --white: #eceef4; */
 --white: #f5f5f5;
---glow1: #d9b46b;
---glow2: #d98e6b;
+--glow1: var(--white);
+--glow2: var(--dk-gray);
 --border-rem1: .5rem;
 --border-rem2: .25rem;
 --border-rad: 3rem;
@@ -31,20 +31,20 @@
 --ari: #ea554f;
 --tau: #62b05c;
 --gem: #d3be8f;
---can: #60a2b1;
---leo: #ad9047;
+--can: #92bcc6;
+--leo: #a28644;
 --vir: #969646;
 --lib: #99a8cc;
 --sco: #da547d;
 --sag: #be4ceb;
 --cap: #828f86;
 --aqu: #87cecc;
---pis: #708f8f;
+--pis: #79a79d;
 
---fire: #fca80c;
---earth: #5efa0a;
+--fire: #f5c56c;
+--earth: #8cf952;
 --air: #f8f160;
---water: #12d9f3;
+--water: #69dfee;
 }
 
 body {
@@ -101,7 +101,7 @@ body {
 
 dialog {
   height: auto;
-  width: 300px;
+  width: 325px;
   background: var(--white);
   border: 10px double var(--dk-gray);
   border-radius: 2rem;
@@ -137,11 +137,14 @@ dialog h2 {
 .btn-row {
   display: flex;
   justify-content: center;
+  align-items: center;
+  align-self: center;
+  margin: 0;
 }
 
 .btn-row button {
-  height: 3.5rem;
-  /* width: 4rem; */
+  height: 3.25rem;
+  width: 3.75rem;
   background: none;
   border: 3px solid var(--dk-gray);
   border-radius: 1rem;
@@ -159,7 +162,7 @@ dialog h2 {
 .btn-row button:hover, .btn-row button:focus {
   background: none;
   /* border: none; */
-  transform: scale(1.15);
+  transform: scale(1.10);
    */
 }
 
@@ -221,10 +224,15 @@ dialog h2 {
 
 
 
-.start-reset {
-  width: 7.75rem;
+.btn-row .start-reset {
+  height: 3.5rem;
+  width: 16.275rem;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
   font-family: var(--font);
-  font-size: 1.15rem;
+  font-size: 2rem;
+  
   /* margin: auto; */
 }
 
@@ -311,7 +319,4 @@ input:checked + .slider:before {
   transform: translateX(14px);
 }
 
-.sliderText {
-text-align: center;
-
-}
+input:unchecked +
