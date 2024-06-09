@@ -15,7 +15,7 @@
 --font-title: "Spicy Rice", serif;
 --font: "Patrick Hand SC", cursive;
 
---ari: #ba1c1c;
+/* --ari: #ba1c1c;
 --tau: #115011;
 --gem: #f8b008;
 --can: #005f75;
@@ -26,7 +26,25 @@
 --sag: #710f71;
 --cap: #2f494f;
 --aqu: #358d8e;
---pis: #2b6767;
+--pis: #2b6767; */
+
+--ari: #ea554f;
+--tau: #62b05c;
+--gem: #d3be8f;
+--can: #60a2b1;
+--leo: #ad9047;
+--vir: #969646;
+--lib: #99a8cc;
+--sco: #da547d;
+--sag: #be4ceb;
+--cap: #828f86;
+--aqu: #87cecc;
+--pis: #708f8f;
+
+--fire: #fca80c;
+--earth: #5efa0a;
+--air: #f8f160;
+--water: #12d9f3;
 }
 
 body {
@@ -74,6 +92,10 @@ body {
 }
 
 #modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
   font-family: var(--font);
 }
 
@@ -134,15 +156,70 @@ dialog h2 {
 
 }
 
-.btn-row button:hover {
+.btn-row button:hover, .btn-row button:focus {
+  background: none;
+  /* border: none; */
   transform: scale(1.15);
+   */
+}
+
+#ari1:hover {
+  background-color: var(--ari);
+}
+#tau1:hover {
+  background-color: var(--tau);
+}
+#gem1:hover {
+  background-color: var(--gem);
+}
+#can1:hover {
+  background-color: var(--can);
+}
+#leo1:hover {
+  background-color: var(--leo);
+}
+#vir1:hover {
+  background-color: var(--vir);
+}
+#lib1:hover {
+  background-color: var(--lib);
+}
+#sco1:hover {
+  background-color: var(--sco);
+}
+#sag1:hover {
+  background-color: var(--sag);
+}
+#cap1:hover {
+  background-color: var(--cap);
+}
+#aqu1:hover {
+  background-color: var(--aqu);
+}
+#pis1:hover {
+  background-color: var(--pis);
+}
+
+#ari2:hover, #leo2:hover, #sag2:hover {
+  background-color: var(--fire);
+}
+#tau2:hover, #vir2:hover, #cap2:hover {
+  background-color: var(--earth);
+}
+#gem2:hover, #lib2:hover, #aqu2:hover {
+  background-color: var(--air);
+}
+#can2:hover, #sco2:hover, #pis2:hover {
+  background-color: var(--water);
 }
 
 .btn-row button:active {
   background: var(--md-gray);
   /* border: 3px solid red; */
-  transform: scale(.9);
+  transform: scale(.95);
 }
+
+
 
 .start-reset {
   width: 7.75rem;
