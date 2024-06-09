@@ -28,7 +28,7 @@
 --aqu: #358d8e;
 --pis: #2b6767; */
 
---ari: #ea554f;
+/* --ari: #ea554f;
 --tau: #62b05c;
 --gem: #d3be8f;
 --can: #92bcc6;
@@ -39,12 +39,17 @@
 --sag: #be4ceb;
 --cap: #828f86;
 --aqu: #87cecc;
---pis: #79a79d;
+--pis: #79a79d; */
 
---fire: #f5c56c;
---earth: #8cf952;
---air: #f8f160;
---water: #69dfee;
+--fire1: #e07b7b;
+--earth1: #c79576;
+--air1: #deda72;
+--water1: #67d1cf;
+
+--fire2: #a960cb;
+--earth2: #5da05d;
+--air2: #7d8ab0;
+--water2: #5d96a0;
 }
 
 body {
@@ -112,6 +117,10 @@ dialog {
 
 dialog h2 {
   font-size: 1.35rem;
+  /* margin-bottom: 0; */
+}
+
+.no-bot-margin {
   margin-bottom: 0;
 }
 
@@ -127,12 +136,10 @@ dialog h2 {
   align-items: start;
 }
 
-.dialog-item3 {
+/* .dialog-item3 {
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   align-self: center;
-}
+} */
 
 .btn-row {
   display: flex;
@@ -149,14 +156,24 @@ dialog h2 {
   border: 3px solid var(--dk-gray);
   border-radius: 1rem;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: .2rem;
 }
 
-.btn-row button img{
+.btn-row button .zod-sym{
   height: auto;
   width: 2rem;
-  padding: .25rem
+  display: flex;
+  /* padding: .25rem; */
+}
 
+.btn-row button .zod-img{
+  height: auto;
+  width: 2.5rem;
+  display: none;
+  /* padding: .25rem; */
 }
 
 .btn-row button:hover, .btn-row button:focus {
@@ -166,7 +183,7 @@ dialog h2 {
    */
 }
 
-#ari1:hover {
+/* #ari1:hover {
   background-color: var(--ari);
 }
 #tau1:hover {
@@ -201,19 +218,33 @@ dialog h2 {
 }
 #pis1:hover {
   background-color: var(--pis);
+} */
+
+#ari1:hover, #leo1:hover, #sag1:hover {
+  background-color: var(--fire1);
+}
+#tau1:hover, #vir1:hover, #cap1:hover {
+  background-color: var(--earth1);
+}
+#gem1:hover, #lib1:hover, #aqu1:hover {
+  background-color: var(--air1);
+}
+#can1:hover, #sco1:hover, #pis1:hover {
+  background-color: var(--water1);
 }
 
+
 #ari2:hover, #leo2:hover, #sag2:hover {
-  background-color: var(--fire);
+  background-color: var(--fire2);
 }
 #tau2:hover, #vir2:hover, #cap2:hover {
-  background-color: var(--earth);
+  background-color: var(--earth2);
 }
 #gem2:hover, #lib2:hover, #aqu2:hover {
-  background-color: var(--air);
+  background-color: var(--air2);
 }
 #can2:hover, #sco2:hover, #pis2:hover {
-  background-color: var(--water);
+  background-color: var(--water2);
 }
 
 .btn-row button:active {
@@ -229,9 +260,9 @@ dialog h2 {
   width: 16.275rem;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   font-family: var(--font);
-  font-size: 2rem;
+  /* font-size: 2rem; */
   
   /* margin: auto; */
 }
@@ -270,7 +301,7 @@ dialog h2 {
   display: inline-block;
   width: 38px;
   height: 24px;
-  margin: 1.5rem .5rem 0 .5rem;
+  margin: 0 .5rem 0 .5rem;
 }
 
 /* Hide default HTML checkbox */
