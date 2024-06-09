@@ -52,7 +52,7 @@ body {
     /* font-family: "Monoton", sans-serif; */
     display: flex;
     font-family: var(--font-title);
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 100;
     margin: 1rem;
 }
@@ -89,7 +89,7 @@ dialog {
 }
 
 dialog h2 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   margin-bottom: 0;
 }
 
@@ -110,6 +110,11 @@ dialog h2 {
   /* justify-content: center;
   align-items: center; */
   align-self: center;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: center;
 }
 
 .btn-row button {
@@ -140,9 +145,9 @@ dialog h2 {
 }
 
 .start-reset {
-  width:8rem;
+  width: 7.75rem;
   font-family: var(--font);
-    font-size: 1.5rem;
+  font-size: 1.15rem;
   /* margin: auto; */
 }
 
