@@ -118,6 +118,41 @@
 // console.log(gameBoard.makeBoard());
 // gameBoard.labelBoard();
 
+function changeNumPlayerFont() {
+  const numPlayers = document.querySelector("#num-players");
+  const sliderText1 = document.querySelector("#slider-text1");
+  const sliderText2 = document.querySelector("#slider-text2");
+
+  if (numPlayers.checked) {
+    sliderText2.style.color = "var(--red)";
+    sliderText1.style.color = "";
+  } else {
+    sliderText1.style.color = "var(--red)";
+    sliderText2.style.color = "";
+  }
+}
+changeNumPlayerFont();
+
+
+function hidePlayer2OnModal() {
+  const numPlayers = document.querySelector("#num-players");
+  const modalPlayer2 = document.querySelector("#modal-player2");
+
+  if (numPlayers.checked) {
+    modalPlayer2.style.display = "flex";
+  } else {
+    modalPlayer2.style.display = "none";
+  }
+}
+
+const numPlayersCheckbox = document.querySelector("#num-players");
+numPlayersCheckbox.addEventListener("change", () => {
+  changeNumPlayerFont();
+  hidePlayer2OnModal();
+});
+
+
+
 function changeModalBtnImgs() {
 
   const zodBtns = document.querySelectorAll(".zod-btn");
