@@ -139,9 +139,10 @@ function hidePlayer2OnModal() {
   const modalPlayer2 = document.querySelector("#modal-player2");
 
   if (numPlayers.checked) {
-    modalPlayer2.style.display = "flex";
+    modalPlayer2.style.display = "flex"; // Show modalPlayer2
+    modalPlayer2.style.animationName = "fadeIn"; // Apply the fadeIn animation
   } else {
-    modalPlayer2.style.display = "none";
+    modalPlayer2.style.display = "none"; // Hide modalPlayer2
   }
 }
 
