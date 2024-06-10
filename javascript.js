@@ -201,7 +201,7 @@ const modalClearStartBtnModule = (function () {
   const dialog = document.querySelector("dialog");
 
   function useClearBtn() {
-    location.reload();
+    window.location.reload();
   }
 
   function useStartBtn() {
