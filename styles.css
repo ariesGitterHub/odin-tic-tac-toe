@@ -2,51 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 
 :root {
-/* --dk-gray: #101011; */
 --dk-gray: #333333;
 --md-gray: #808080;
-/* --white: #eceef4; */
-/* --red: #d11818; */
+--white: #f5f5f5;
+
 --red: #dc3545;
 --green: #28a745;
 --blue: #007bff;
 
---white: #f5f5f5;
---glow1: var(--white);
---glow2: var(--dk-gray);
---border-rem1: .5rem;
---border-rem2: .25rem;
---border-rad: 3rem;
---font-title: "Spicy Rice", serif;
---font: "Patrick Hand SC", cursive;
-
-/* --ari: #ba1c1c;
---tau: #115011;
---gem: #f8b008;
---can: #005f75;
---leo: #a18410;
---vir: #676711;
---lib: #101054;
---sco: #310d0f;
---sag: #710f71;
---cap: #2f494f;
---aqu: #358d8e;
---pis: #2b6767; */
-
-/* --ari: #ea554f;
---tau: #62b05c;
---gem: #d3be8f;
---can: #92bcc6;
---leo: #a28644;
---vir: #969646;
---lib: #99a8cc;
---sco: #da547d;
---sag: #be4ceb;
---cap: #828f86;
---aqu: #87cecc;
---pis: #79a79d; */
-
---fire1: #f76868;
+--fire1: #ed766f;
 --earth1: #e68e58;
 --air1: #f6f352;
 --water1: #3ee4f6;
@@ -55,32 +19,37 @@
 --earth2: #88ae88;
 --air2: #a4afce;
 --water2: #aed6dd;
+
+--glow1: var(--white);
+--glow2: var(--dk-gray);
+
+--border-rem1: .5rem;
+--border-rem2: .25rem;
+--border-rad: 3rem;
+--font-title: "Spicy Rice", serif;
+--font: "Patrick Hand SC", cursive;
 }
 
 body {
   background: var(--dk-gray);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #game-container {
   height: auto;
   width: 350px;
-  /* display: block;
-  justify-content: center;
-  align-items: center; */
 }
 #game-title {
     display: flex;
-    justify-content: center;
-    /* margin: 0; */
+      justify-content: center;
+
 }
 
 #game-title h1 {
     color: var(--dk-gray);
-    /* font-family: "Monoton", sans-serif; */
     display: flex;
     font-family: var(--font-title);
     font-size: 2.25rem;
@@ -89,7 +58,6 @@ body {
 }
 
 #game-title h1 span{ 
-    /* color: red; */
   -webkit-animation: glow 5s ease-in-out infinite alternate;
   -moz-animation: glow 5s ease-in-out infinite alternate;
   animation: glow 5s ease-in-out infinite alternate;
@@ -106,9 +74,9 @@ body {
 
 #modal-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
   font-family: var(--font);
 }
 
@@ -119,13 +87,12 @@ dialog {
   border: 10px double var(--dk-gray);
   border-radius: 2rem;
   display: flex;
-  justify-content: center;
+    justify-content: center;
   margin: auto;
 }
 
 dialog h2 {
   font-size: 1.35rem;
-  /* margin-bottom: 0; */
 }
 
 .no-bot-margin {
@@ -134,27 +101,22 @@ dialog h2 {
 
 .dialog-item1 {
   display: flex;
-  align-items: center;
+    align-items: center;
 }
 
 .dialog-item2 {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
 }
 
-/* .dialog-item3 {
-  display: flex;
-  align-self: center;
-} */
-
 .btn-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   align-self: center;
-  gap:.1rem;
+  display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    gap:.1rem;
   margin: 0;
 }
 
@@ -166,8 +128,8 @@ dialog h2 {
   border-radius: 1rem;
   cursor: pointer;
   display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   margin: .2rem;
 }
 
@@ -175,20 +137,17 @@ dialog h2 {
   height: auto;
   width: 2rem;
   display: flex;
-  /* padding: .25rem; */
 }
 
 .zod-img {
   height: auto;
   width: 2.5rem;
   display: none;
-  /* padding: .25rem; */
 }
 
 .btn-row button:hover, .btn-row button:focus {
   background: none;
-  /* border: none; */
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 #ari1:hover, #leo1:hover, #sag1:hover {
@@ -203,7 +162,6 @@ dialog h2 {
 #can1:hover, #sco1:hover, #pis1:hover {
   background: var(--water1);
 }
-
 
 #ari2:hover, #leo2:hover, #sag2:hover {
   background: var(--fire2);
@@ -220,14 +178,13 @@ dialog h2 {
 
 .btn-row button:active {
   background: var(--md-gray);
-  /* border: 3px solid red; */
-  transform: scale(.95);
+  transform: scale(.9);
 }
 
 #modal-player2 {
+  animation: fadeIn 1s ease forwards; /* Define the fadeIn animation */
   display: none;
-opacity: 0;
-  animation: fadeIn 0.5s ease forwards; /* Define the fadeIn animation */
+  opacity: .5;
 }
 
 @keyframes fadeIn {
@@ -245,37 +202,32 @@ opacity: 0;
   height: 3.25rem;
   width: 8rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   font-family: var(--font);
-  /* font-size: 2rem; */
-  
-  /* margin: auto; */
 }
 
 #game-board {
-    display: none;
+  display: grid;   /* change back to none? */
     grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
     gap: 0;
-    margin-top: 1rem;;
+  margin-top: 1rem;;
 }
 
 
 .cell {
-    /* height: 5rem;
-    width: 5rem; */
-    background:var(--white);
-    border: .5rem double var(--dk-gray);
-    color: var(--dk-gray);
-    display: flex;
+  /* height: 5rem;
+  width: 5rem; */
+  background:var(--white);
+  border: .5rem double var(--dk-gray);
+  color: var(--dk-gray);
+  display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 4rem;
-    /* margin: 0;
-    padding: 0; */
-
+  font-size: 4rem;
+  /* margin: 0;
+  padding: 0; */
   vertical-align: middle; 
-
 }
 
 
@@ -284,32 +236,31 @@ opacity: 0;
 /* The switch - the box around the slider */
 .switch {
   position: relative;
-  display: inline-block;
   width: 38px;
-  height: 24px;
+  height: 24px;  
+  display: inline-block;
   margin: 0 .5rem 0 .5rem;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
-
-  opacity: 0;
   width: 0;
   height: 0;
+  opacity: 0;
 }
 
 /* The slider */
 .slider {
   position: absolute;
-  cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: var(--md-gray);
-  -webkit-transition: .4s;
+  border-radius: 1rem;
+  cursor: pointer;
   transition: .4s;
-    border-radius: 1rem;
+  -webkit-transition: .4s;
 }
 
 .slider:before {
@@ -320,20 +271,17 @@ opacity: 0;
   left: 1px;
   top: 1px;
   background: var(--red);
-  -webkit-transition: .4s;
+  border-radius: 1rem;  
   transition: .4s;
-  border-radius: 1rem;
+  -webkit-transition: .4s; 
 }
-
 
 /* input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 } */
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(14px);
   -ms-transform: translateX(14px);
   transform: translateX(14px);
+  -webkit-transform: translateX(14px);
 }
-
-input:unchecked +
