@@ -10,9 +10,9 @@
 --green: #28a745;
 --blue: #007bff; */
 
---red: #7b0f1a;
---green: #0f7b31;
---blue: #3b1b9b;
+--red: #a50717;
+--green: #056a25;
+--blue: #2b0699;
 
 --fire1: #ed766f;
 --earth1: #e68e58;
@@ -96,7 +96,7 @@ dialog {
 }
 
 dialog h2 {
-  font-size: 1.45rem;
+  font-size: 1.4rem;
 }
 
 .no-bot-margin {
@@ -151,32 +151,32 @@ dialog h2 {
 
 .btn-row button:hover, .btn-row button:focus {
   background: none;
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
-#ari1:hover, #leo1:hover, #sag1:hover {
+#ari1:hover, #leo1:hover, #sag1:hover, #ari1:focus, #leo1:focus, #sag1:focus {
   background: var(--fire1);
 }
-#tau1:hover, #vir1:hover, #cap1:hover {
+#tau1:hover, #vir1:hover, #cap1:hover, #tau1:focus, #vir1:focus, #cap1:focus {
   background: var(--earth1);
 }
-#gem1:hover, #lib1:hover, #aqu1:hover {
+#gem1:hover, #lib1:hover, #aqu1:hover, #gem1:focus, #lib1:focus, #aqu1:focus {
   background: var(--air1);
 }
-#can1:hover, #sco1:hover, #pis1:hover {
+#can1:hover, #sco1:hover, #pis1:hover, #can1:focus, #sco1:focus, #pis1:focus {
   background: var(--water1);
 }
 
-#ari2:hover, #leo2:hover, #sag2:hover {
+#ari2:hover, #leo2:hover, #sag2:hover, #ari2:focus, #leo2:focus, #sag2:focus {
   background: var(--fire2);
 }
-#tau2:hover, #vir2:hover, #cap2:hover {
+#tau2:hover, #vir2:hover, #cap2:hover, #tau2:focus, #vir2:focus, #cap2:focus {
   background: var(--earth2);
 }
-#gem2:hover, #lib2:hover, #aqu2:hover {
+#gem2:hover, #lib2:hover, #aqu2:hover, #gem2:focus, #lib2:focus, #aqu2:focus{
   background: var(--air2);
 }
-#can2:hover, #sco2:hover, #pis2:hover {
+#can2:hover, #sco2:hover, #pis2:hover, #can2:focus, #sco2:focus, #pis2:focus{
   background: var(--water2);
 }
 
@@ -211,12 +211,24 @@ dialog h2 {
   font-family: var(--font);
 }
 
-.btn-row .clear-btn {
-  color: var(--blue);
+.btn-row .clear-btn:hover, .btn-row .clear-btn:focus, .btn-row .start-btn:hover, .btn-row .start-btn:focus {
+  /* background: var(--red); */
+  transform: scale(1.05);
 }
 
-.btn-row .start-btn{
-  color: var(--green);
+.btn-row .clear-btn:active, .btn-row .start-btn:active {
+  transform: scale(.9);
+}
+
+
+.btn-row .clear-btn:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn-row .start-btn:hover{
+  background: var(--green);
+  color: var(--white);
 }
 
 #game-board {
@@ -288,9 +300,9 @@ dialog h2 {
   -webkit-transition: .4s; 
 }
 
-/* input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-} */
+input:focus + .slider {
+  outline: 3px solid var(--dk-gray);
+}
 
 input:checked + .slider:before {
   -ms-transform: translateX(14px);

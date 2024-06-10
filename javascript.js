@@ -49,15 +49,30 @@ const zodBtnImgsModule = (function () {
       const zodSym = button.querySelector(".zod-sym");
       const zodImg = button.querySelector(".zod-img");
 
-      button.addEventListener("mouseenter", () => {
+      function showImg() {
         zodSym.style.display = "none";
         zodImg.style.display = "flex";
-      });
+      }
 
-      button.addEventListener("mouseleave", () => {
+      function hideImg() {
         zodSym.style.display = "flex";
         zodImg.style.display = "none";
-      });
+      }
+
+      button.addEventListener("mouseenter", showImg);
+      button.addEventListener("mouseleave", hideImg);
+      button.addEventListener("focus", showImg);
+      button.addEventListener("blur", hideImg);
+
+      // button.addEventListener("mouseenter", () => {
+      //   zodSym.style.display = "none";
+      //   zodImg.style.display = "flex";
+      // });
+
+      // button.addEventListener("mouseleave", () => {
+      //   zodSym.style.display = "flex";
+      //   zodImg.style.display = "none";
+      // });
     });
   }
 
