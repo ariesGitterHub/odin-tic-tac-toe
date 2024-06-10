@@ -154,6 +154,7 @@ dialog h2 {
   justify-content: center;
   align-items: center;
   align-self: center;
+  gap:.1rem;
   margin: 0;
 }
 
@@ -187,7 +188,7 @@ dialog h2 {
 .btn-row button:hover, .btn-row button:focus {
   background: none;
   /* border: none; */
-  transform: scale(1.10);
+  transform: scale(1.05);
 }
 
 #ari1:hover, #leo1:hover, #sag1:hover {
@@ -240,9 +241,9 @@ opacity: 0;
   }
 }
 
-.btn-row .start-reset {
-  height: 3.5rem;
-  width: 16.25rem;
+.btn-row .start-reset, .btn-row .clear {
+  height: 3.25rem;
+  width: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;
