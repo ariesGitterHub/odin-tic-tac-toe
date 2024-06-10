@@ -34,6 +34,11 @@
 --font: "Patrick Hand SC", cursive;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: var(--dk-gray);
   display: flex;
@@ -44,7 +49,7 @@ body {
 
 #game-container {
   height: auto;
-  width: 350px;
+  width: 325px;
 }
 #game-title {
     display: flex;
@@ -82,6 +87,7 @@ body {
     align-items: center;
     justify-content: start;
   font-family: var(--font);
+
 }
 
 dialog {
@@ -93,19 +99,22 @@ dialog {
   display: flex;
     justify-content: center;
   margin: auto;
+  /* padding: 1rem; */
 }
 
 dialog h2 {
   font-size: 1.4rem;
+  margin-bottom: .25rem;
 }
 
-.no-bot-margin {
+/* .no-bot-margin {
   margin-bottom: 0;
-}
+} */
 
 .dialog-item1 {
   display: flex;
     align-items: center;
+  margin: 1rem 0 1rem 0;
 }
 
 .dialog-item2 {
@@ -113,20 +122,29 @@ dialog h2 {
     flex-direction: column;
     justify-content: center;
     align-items: start;
+  margin: 0 0 1rem 0;
+}
+
+.dialog-item3 {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  margin: -1.5rem 0 1rem 0;
 }
 
 .btn-row {
   align-self: center;
   display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
-    gap:.1rem;
+    justify-content: center;
+    align-items: center;
+    gap: .25rem;
   margin: 0;
 }
 
 .btn-row button {
-  height: 3.25rem;
-  width: 3.75rem;
+  height: 3.2rem;
+  width: 3.7rem;
   background: none;
   border: 3px solid var(--dk-gray);
   border-radius: 1rem;
@@ -134,7 +152,7 @@ dialog h2 {
   display: flex;
     justify-content: center;
     align-items: center;
-  margin: .2rem;
+  margin-bottom: .25rem;
 }
 
 .zod-sym {
@@ -151,7 +169,7 @@ dialog h2 {
 
 .btn-row button:hover, .btn-row button:focus {
   background: none;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 #ari1:hover, #leo1:hover, #sag1:hover, #ari1:focus, #leo1:focus, #sag1:focus {
@@ -203,8 +221,8 @@ dialog h2 {
 }
 
 .btn-row #start-btn, .btn-row #clear-btn {
-  height: 3.25rem;
-  width: 8rem;
+  height: 3.2rem;
+  width: 7.7rem;
   display: flex;
     justify-content: center;
     align-items: center;
