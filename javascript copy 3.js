@@ -87,7 +87,6 @@ function PlayerSignSelectModule(playerId, valueChecker) {
   const zodBtns = document.querySelectorAll(".zod-btn");
   const playerSelects = document.querySelector(playerId);
   let selectedSign = "";
-  let selectedSignId = "";
 
   function selectPlayerSign() {
     zodBtns.forEach((button) => {
@@ -98,7 +97,6 @@ function PlayerSignSelectModule(playerId, valueChecker) {
 
         if (matchingText.length > 0) {
           selectedSign = matchingText.map((obj) => obj[button.id]).join("");
-          selectedSignId = button.id;
           playerSelects.textContent = selectedSign;
           playerSelects.style.color = "var(--red)";
         }
@@ -106,18 +104,13 @@ function PlayerSignSelectModule(playerId, valueChecker) {
     });
   }
 
-  function getSelectedSign() {
+  function getSelectedSign () {
     return selectedSign;
-  }
-
-  function getSelectedSignId() {
-    return selectedSignId;
   }
 
   return {
     selectPlayerSign,
-    getSelectedSign,
-    getSelectedSignId,
+    getSelectedSign
   };
 }
 
@@ -174,26 +167,12 @@ const player2SignSelect = PlayerSignSelectModule(
 player1SignSelect.selectPlayerSign();
 player2SignSelect.selectPlayerSign();
 
-document.querySelector("#start-btn").addEventListener("click", () => {
-  const playerOneSign = player1SignSelect.getSelectedSign();
-  console.log(playerOneSign);
-
-  const playerOneSignId = player1SignSelect.getSelectedSignId();
-  console.log(playerOneSignId);
-
-  const playerTwoSign = player2SignSelect.getSelectedSign();
-  console.log(playerTwoSign);
-
-  const playerTwoSignId = player2SignSelect.getSelectedSignId();
-  console.log(playerTwoSignId);
-
-  // console.log("Player 1 selected sign:", player1SignSelect.getSelectedSign());
-  // console.log("Player 1 selected sign ID:", player1SignSelect.getSelectedSignId());
-  // console.log("Player 2 selected sign:", player2SignSelect.getSelectedSign());
-  // console.log("Player 2 selected sign ID:", player2SignSelect.getSelectedSignId());
+const zodBtns = document.querySelectorAll(".zod-btn");
+zodBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log(player1SignSelect.getSelectedSign());
+  });
 });
-
-
 
 const modalClearStartBtnModule = (function () {
   const clearBtn = document.querySelector("#clear-btn");
