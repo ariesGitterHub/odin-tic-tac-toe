@@ -155,9 +155,7 @@ numPlayersCheckbox.addEventListener("change", () => {
 
 
 function changeModalBtnImgs() {
-
   const zodBtns = document.querySelectorAll(".zod-btn");
-
   zodBtns.forEach((button) => {
 
     const zodSym = button.querySelector(".zod-sym");
@@ -176,6 +174,82 @@ function changeModalBtnImgs() {
 }
 
 changeModalBtnImgs(); 
+
+function selectPlayer1() {
+  const zodBtns = document.querySelectorAll(".zod-btn");
+  const player1Selects = document.querySelector("#player1-selects");
+  const valueChecker = [
+    { ari1: "Aries" },
+    { tau1: "Taurus" },
+    { gem1: "Gemini" },
+    { can1: "Cancer" },
+    { leo1: "Leo" },
+    { vir1: "Virgo" },
+    { lib1: "Libra" },
+    { sco1: "Scorpio" },
+    { sag1: "Sagittarius" },
+    { cap1: "Capricorn" },
+    { aqu1: "Aquarius" },
+    { pis1: "Pisces" },
+  ];
+
+  zodBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Filter out the object containing the key that matches the ID of the clicked button
+      const matchingText = valueChecker.filter((text) =>
+        text.hasOwnProperty(button.id)
+      );
+
+      // If a matching text is found, set player1Selects text content
+      if (matchingText.length > 0) {
+        player1Selects.textContent = matchingText
+          .map((obj) => obj[button.id])
+          .join("");
+        player1Selects.style.color = "var(--red)";
+      }
+    });
+  });
+}
+
+selectPlayer1();
+
+function selectPlayer2() {
+  const zodBtns = document.querySelectorAll(".zod-btn");
+  const player2Selects = document.querySelector("#player2-selects");
+  const valueChecker = [
+    { ari2: "Aries" },
+    { tau2: "Taurus" },
+    { gem2: "Gemini" },
+    { can2: "Cancer" },
+    { leo2: "Leo" },
+    { vir2: "Virgo" },
+    { lib2: "Libra" },
+    { sco2: "Scorpio" },
+    { sag2: "Sagittarius" },
+    { cap2: "Capricorn" },
+    { aqu2: "Aquarius" },
+    { pis2: "Pisces" },
+  ];
+
+  zodBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Filter out the object containing the key that matches the ID of the clicked button
+      const matchingText = valueChecker.filter((text) =>
+        text.hasOwnProperty(button.id)
+      );
+
+      // If a matching text is found, set player1Selects text content
+      if (matchingText.length > 0) {
+        player2Selects.textContent = matchingText
+          .map((obj) => obj[button.id])
+          .join("");
+          player2Selects.style.color = "var(--red)";
+      }
+    });
+  });
+}
+
+selectPlayer2();
 
 const gameBoard = (function () {
 
