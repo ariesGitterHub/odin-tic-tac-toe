@@ -150,9 +150,16 @@ const valueChecker2 = [
 ];
 
 const player1SignSelect = PlayerSignSelectModule(
-  "#player1-sign-select",
+  "#player1-sign-select".key,
   valueChecker1
 );
+
+console.log(PlayerSignSelectModule());
+
+const player1 = PlayerSignSelectModule(
+  "#player1-sign-select"
+);
+
 const player2SignSelect = PlayerSignSelectModule(
   "#player2-sign-select",
   valueChecker2
@@ -160,6 +167,27 @@ const player2SignSelect = PlayerSignSelectModule(
 
 player1SignSelect.selectPlayerSign();
 player2SignSelect.selectPlayerSign();
+
+
+
+const modalClearStartBtnModule = (function () {
+  const clearBtn = document.querySelector("#clear-btn");
+  const startBtn = document.querySelector("#start-btn");
+  const dialog = document.querySelector("dialog");
+
+  function useClearBtn() {
+    location.reload();
+  }
+
+  function useStartBtn() {
+    dialog.style.display = "none";
+  }
+
+  clearBtn.addEventListener("click", useClearBtn);
+  startBtn.addEventListener("click", useStartBtn);
+
+})()
+
 
 const gameBoard = (function () {
   function Cell() {

@@ -11,8 +11,8 @@
 --blue: #007bff; */
 
 --red: #a50717;
---green: #056a25;
---blue: #2b0699;
+--green: #152019;
+--blue: #2c2447;
 
 --fire1: #ed766f;
 --earth1: #e68e58;
@@ -202,7 +202,7 @@ dialog h2 {
   }
 }
 
-.btn-row .start-btn, .btn-row .clear-btn {
+.btn-row #start-btn, .btn-row #clear-btn {
   height: 3.25rem;
   width: 8rem;
   display: flex;
@@ -211,22 +211,22 @@ dialog h2 {
   font-family: var(--font);
 }
 
-.btn-row .clear-btn:hover, .btn-row .clear-btn:focus, .btn-row .start-btn:hover, .btn-row .start-btn:focus {
+.btn-row #clear-btn:hover, .btn-row #clear-btn:focus, .btn-row #start-btn:hover, .btn-row #start-btn:focus {
   /* background: var(--red); */
   transform: scale(1.05);
 }
 
-.btn-row .clear-btn:active, .btn-row .start-btn:active {
+.btn-row #clear-btn:active, .btn-row #start-btn:active {
   transform: scale(.9);
 }
 
 
-.btn-row .clear-btn:hover {
+.btn-row #clear-btn:hover {
   background: var(--blue);
   color: var(--white);
 }
 
-.btn-row .start-btn:hover{
+.btn-row #start-btn:hover{
   background: var(--green);
   color: var(--white);
 }
