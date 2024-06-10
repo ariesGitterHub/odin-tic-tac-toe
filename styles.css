@@ -6,9 +6,13 @@
 --md-gray: #808080;
 --white: #f5f5f5;
 
---red: #dc3545;
+/* --red: #dc3545;
 --green: #28a745;
---blue: #007bff;
+--blue: #007bff; */
+
+--red: #7b0f1a;
+--green: #0f7b31;
+--blue: #3b1b9b;
 
 --fire1: #ed766f;
 --earth1: #e68e58;
@@ -92,7 +96,7 @@ dialog {
 }
 
 dialog h2 {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
 }
 
 .no-bot-margin {
@@ -198,13 +202,21 @@ dialog h2 {
   }
 }
 
-.btn-row .start-reset, .btn-row .clear {
+.btn-row .start-btn, .btn-row .clear-btn {
   height: 3.25rem;
   width: 8rem;
   display: flex;
     justify-content: center;
     align-items: center;
   font-family: var(--font);
+}
+
+.btn-row .clear-btn {
+  color: var(--blue);
+}
+
+.btn-row .start-btn{
+  color: var(--green);
 }
 
 #game-board {

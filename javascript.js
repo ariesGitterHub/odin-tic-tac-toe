@@ -1,270 +1,172 @@
-// const makeGameBoard = (function() {
-// console.log("gameboard test");
-
-// const rows = 3;
-// const cols = 3;
-// const board = [];
-// const cell = "";
-
-// for (let i = 0; i < rows; i++) {
-//   board[i] = [];
-//     for (let j = 0; j < cols; j++) {
-//       board[i].push(cell);
-//     }
-// }
-//  console.log(board);
-// })()
-
-// const makeGameBoard = (function () {
-//   console.log("gameboard test");
-
-// const board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
-// // console.log(board);
-// // const display = document.querySelectorAll(".cell");
-// // const cell0 = document.querySelector("#cell0");
-// // cell0.textContent = board[0];
-
-// // const cell1 = document.querySelector("#cell1");
-// // cell1.textContent = board[1];
-
-// // const cell2 = document.querySelector("#cell2");
-// // cell2.textContent = board[2];
-
-// // const cell3 = document.querySelector("#cell3");
-// // cell3.textContent = board[3];
-
-// // const cell4 = document.querySelector("#cell4");
-// // cell4.textContent = board[4];
-
-// // const cell5 = document.querySelector("#cell5");
-// // cell5.textContent = board[5];
-
-// // const cell6 = document.querySelector("#cell6");
-// // cell6.textContent = board[6];
-
-// // const cell7 = document.querySelector("#cell7");
-// // cell7.textContent = board[7];
-
-// // const cell8 = document.querySelector("#cell8");
-// // cell8.textContent = board[8];
-
-//   const cells = document.querySelectorAll(".cell");
-
-//   cells.forEach((cell, index) => {
-//     cell.textContent = board[index];
-//   });
-
-// return board;
-
-// })()
-
-// const makeGameBoard = (function () {
-//   console.log("gameboard test");
-
-//   const board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
-//   console.log(board);
-//   const cells = document.querySelectorAll(".cell");
-//   cells.forEach((cell, index) => {
-//     cell.textContent = board[index];
-//   });
-
-//   return board;
-// })()
-
-// const board = [
-//   "", "", "",
-//   "", "", "",
-//   "", "", ""
-// ];
-
-
-// SET UP THE GAMEBOARD AND INDIVIDUAL CELLS
-// 3X3 GRID OF CELLS
-// LABEL CELLS?
-
-// const gameBoard = (function() {
-//   const rows = 3;
-//   const columns = 3;
-//   const board = [];
-  
-//   function Cell() {
-//     let marker = 0;
-//     return {
-//       marker
-//     }
-//   }
-//   function makeBoard() {
-//     for (let i = 0; i < rows; i++) {
-//     board[i] = [];
-//     for (let j = 0; j < columns; j++) {
-//       board[i].push(Cell());
-//     }
-//   }    
-//     return board
-//   } 
-
-//   function labelBoard() {
-//     console.log(board);
-
-//   }
-
-//   return {
-//     makeBoard,
-//     labelBoard
-//   }
-
-// })();
-
-// console.log(gameBoard.makeBoard());
-// gameBoard.labelBoard();
-
-function changeNumPlayerFont() {
+// Module for changing number of players font color
+const numPlayersFontColorModule = (function () {
   const numPlayers = document.querySelector("#num-players");
   const sliderText1 = document.querySelector("#slider-text1");
   const sliderText2 = document.querySelector("#slider-text2");
 
-  if (numPlayers.checked) {
-    sliderText2.style.color = "var(--red)";
-    sliderText1.style.color = "";
-  } else {
-    sliderText1.style.color = "var(--red)";
-    sliderText2.style.color = "";
+  function changeNumPlayerFontColor() {
+    if (numPlayers.checked) {
+      sliderText2.style.color = "var(--red)";
+      sliderText1.style.color = "";
+    } else {
+      sliderText1.style.color = "var(--red)";
+      sliderText2.style.color = "";
+    }
   }
-}
-changeNumPlayerFont();
+
+  return {
+    changeNumPlayerFontColor,
+  };
+})();
 
 
-function hidePlayer2OnModal() {
+// Module for handling the player modal display
+const player2SelectModule = (function () {
   const numPlayers = document.querySelector("#num-players");
   const modalPlayer2 = document.querySelector("#modal-player2");
 
-  if (numPlayers.checked) {
-    modalPlayer2.style.display = "flex"; // Show modalPlayer2
-    modalPlayer2.style.animationName = "fadeIn"; // Apply the fadeIn animation
-  } else {
-    modalPlayer2.style.display = "none"; // Hide modalPlayer2
+  function showPlayer2Select() {
+    if (numPlayers.checked) {
+      modalPlayer2.style.display = "flex";
+      modalPlayer2.style.animationName = "fadeIn";
+    } else {
+      modalPlayer2.style.display = "none";
+    }
   }
+
+  return {
+    showPlayer2Select,
+  };
+})();
+
+
+// Module for handling the zodiac button images
+const zodBtnImgsModule = (function () {
+  const zodBtns = document.querySelectorAll(".zod-btn");
+
+  function changeZodBtnImgs() {
+    zodBtns.forEach((button) => {
+      const zodSym = button.querySelector(".zod-sym");
+      const zodImg = button.querySelector(".zod-img");
+
+      button.addEventListener("mouseenter", () => {
+        zodSym.style.display = "none";
+        zodImg.style.display = "flex";
+      });
+
+      button.addEventListener("mouseleave", () => {
+        zodSym.style.display = "flex";
+        zodImg.style.display = "none";
+      });
+    });
+  }
+
+  return {
+    changeZodBtnImgs,
+  };
+})();
+
+
+// Factory function for creating player selectors
+function PlayerSignSelectModule(playerId, valueChecker) {
+  const zodBtns = document.querySelectorAll(".zod-btn");
+  const playerSelects = document.querySelector(playerId);
+
+  function selectPlayerSign() {
+    zodBtns.forEach((button) => {
+      button.addEventListener("click", () => {
+        const matchingText = valueChecker.filter((text) =>
+          text.hasOwnProperty(button.id)
+        );
+
+        if (matchingText.length > 0) {
+          playerSelects.textContent = matchingText
+            .map((obj) => obj[button.id])
+            .join("");
+          playerSelects.style.color = "var(--red)";
+        }
+      });
+    });
+  }
+
+  return {
+    selectPlayerSign,
+  };
 }
 
+// Initialize the modules
 const numPlayersCheckbox = document.querySelector("#num-players");
 numPlayersCheckbox.addEventListener("change", () => {
-  changeNumPlayerFont();
-  hidePlayer2OnModal();
+  numPlayersFontColorModule.changeNumPlayerFontColor();
+  player2SelectModule.showPlayer2Select();
 });
 
+numPlayersFontColorModule.changeNumPlayerFontColor();
+player2SelectModule.showPlayer2Select();
+zodBtnImgsModule.changeZodBtnImgs();
 
+const valueChecker1 = [
+  { ari1: "Aries" },
+  { tau1: "Taurus" },
+  { gem1: "Gemini" },
+  { can1: "Cancer" },
+  { leo1: "Leo" },
+  { vir1: "Virgo" },
+  { lib1: "Libra" },
+  { sco1: "Scorpio" },
+  { sag1: "Sagittarius" },
+  { cap1: "Capricorn" },
+  { aqu1: "Aquarius" },
+  { pis1: "Pisces" },
+];
+const valueChecker2 = [
+  { ari2: "Aries" },
+  { tau2: "Taurus" },
+  { gem2: "Gemini" },
+  { can2: "Cancer" },
+  { leo2: "Leo" },
+  { vir2: "Virgo" },
+  { lib2: "Libra" },
+  { sco2: "Scorpio" },
+  { sag2: "Sagittarius" },
+  { cap2: "Capricorn" },
+  { aqu2: "Aquarius" },
+  { pis2: "Pisces" },
+];
 
-function changeModalBtnImgs() {
-  const zodBtns = document.querySelectorAll(".zod-btn");
-  zodBtns.forEach((button) => {
+const player1SignSelect = PlayerSignSelectModule(
+  "#player1-sign-select",
+  valueChecker1
+);
+const player2SignSelect = PlayerSignSelectModule(
+  "#player2-sign-select",
+  valueChecker2
+);
 
-    const zodSym = button.querySelector(".zod-sym");
-    const zodImg = button.querySelector(".zod-img");
-
-    button.addEventListener("mouseenter", () => {
-      zodSym.style.display = "none";
-      zodImg.style.display = "flex";
-    });
-
-    button.addEventListener("mouseleave", () => {
-      zodSym.style.display = "flex";
-      zodImg.style.display = "none";
-    });
-  });
-}
-
-changeModalBtnImgs(); 
-
-function selectPlayer1() {
-  const zodBtns = document.querySelectorAll(".zod-btn");
-  const player1Selects = document.querySelector("#player1-selects");
-  const valueChecker = [
-    { ari1: "Aries" },
-    { tau1: "Taurus" },
-    { gem1: "Gemini" },
-    { can1: "Cancer" },
-    { leo1: "Leo" },
-    { vir1: "Virgo" },
-    { lib1: "Libra" },
-    { sco1: "Scorpio" },
-    { sag1: "Sagittarius" },
-    { cap1: "Capricorn" },
-    { aqu1: "Aquarius" },
-    { pis1: "Pisces" },
-  ];
-
-  zodBtns.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Filter out the object containing the key that matches the ID of the clicked button
-      const matchingText = valueChecker.filter((text) =>
-        text.hasOwnProperty(button.id)
-      );
-
-      // If a matching text is found, set player1Selects text content
-      if (matchingText.length > 0) {
-        player1Selects.textContent = matchingText
-          .map((obj) => obj[button.id])
-          .join("");
-        player1Selects.style.color = "var(--red)";
-      }
-    });
-  });
-}
-
-selectPlayer1();
-
-function selectPlayer2() {
-  const zodBtns = document.querySelectorAll(".zod-btn");
-  const player2Selects = document.querySelector("#player2-selects");
-  const valueChecker = [
-    { ari2: "Aries" },
-    { tau2: "Taurus" },
-    { gem2: "Gemini" },
-    { can2: "Cancer" },
-    { leo2: "Leo" },
-    { vir2: "Virgo" },
-    { lib2: "Libra" },
-    { sco2: "Scorpio" },
-    { sag2: "Sagittarius" },
-    { cap2: "Capricorn" },
-    { aqu2: "Aquarius" },
-    { pis2: "Pisces" },
-  ];
-
-  zodBtns.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Filter out the object containing the key that matches the ID of the clicked button
-      const matchingText = valueChecker.filter((text) =>
-        text.hasOwnProperty(button.id)
-      );
-
-      // If a matching text is found, set player1Selects text content
-      if (matchingText.length > 0) {
-        player2Selects.textContent = matchingText
-          .map((obj) => obj[button.id])
-          .join("");
-          player2Selects.style.color = "var(--red)";
-      }
-    });
-  });
-}
-
-selectPlayer2();
+player1SignSelect.selectPlayerSign();
+player2SignSelect.selectPlayerSign();
 
 const gameBoard = (function () {
-
   function Cell() {
     let marker = "";
     return { marker };
-  }  
+  }
 
-    
-  const board = [Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell()];
+  const board = [
+    Cell(),
+    Cell(),
+    Cell(),
+    Cell(),
+    Cell(),
+    Cell(),
+    Cell(),
+    Cell(),
+    Cell(),
+  ];
 
   // return board
 
   function updateCell(index, newMarker) {
-
     if (index >= 0 && index < 9) {
       board[index].marker = newMarker;
       // let newBoard = board;
@@ -275,12 +177,12 @@ const gameBoard = (function () {
   }
 
   function displayCell() {
-      const cells = document.querySelectorAll(".cell");
-      cells.forEach((cell, index) => {
-        cell.textContent = board[index].marker;
-      });
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach((cell, index) => {
+      cell.textContent = board[index].marker;
+    });
   }
-      return { board, updateCell, displayCell };
+  return { board, updateCell, displayCell };
 })();
 
 // gameBoard.updateCell(0, "E");
@@ -289,43 +191,29 @@ const gameBoard = (function () {
 console.log(gameBoard.updateCell(6, "X"));
 console.log(gameBoard.updateCell(1, "O"));
 console.log(gameBoard.updateCell(2, "O"));
-console.log(gameBoard.updateCell(4, "X"))
+console.log(gameBoard.updateCell(4, "X"));
 console.log(gameBoard.updateCell(8, "X"));
 gameBoard.displayCell();
-
-
-
 
 // SET UP THE GAMEPLAY
 
 function gamePlayer() {
-
-// SET UP THE PLAYERS/CHOOSE PLAYERS AND TYPE OF PLAYER
-// PLAYER 1 WITH X; OPTIONAL NAME CHANGE; HUMAN OR AI, DEFAULT IS HUMAN
-// PLAYER 2 WITH O; OPTIONAL NAME CHANGE; HUMAN OR AI, DEFAULT IS AI
-// USE MODAL?
-
-// PLAYER TYPE TOGGLE
-// HUMAN1 VS AI2 -- DEFAULT
-// HUMAN1 VS HUMAN2
-// AI1 VS AI2
-// AI1 VS HUMAN2 -- rarest...
-
-// ONCE A SQUARE IS CLICKED TOGGLE AND PLAYER CHOICES ARE FROZEN, CAN NLY PICK SQUARES OR RESET GAME
-
-
-
-
-// PLAYER 1 SELECTS
-// PLAYER 1 MARKER IS PLACED ON THE DESIRED CELL
-// PLAYER 2 SELECTS
-// PLAYER 2 MARKER IS PLACED ON THE DESIRED CELL
-
-// CHECK FOR WIN CONDITION AFTER TURN 3
-// USE A TURN COUNTER...
-// CHECK FOR DRAW CONDITION AFTER TURN 9
-// USE A TURN COUNTER...
-
-
-
+  // SET UP THE PLAYERS/CHOOSE PLAYERS AND TYPE OF PLAYER
+  // PLAYER 1 WITH X; OPTIONAL NAME CHANGE; HUMAN OR AI, DEFAULT IS HUMAN
+  // PLAYER 2 WITH O; OPTIONAL NAME CHANGE; HUMAN OR AI, DEFAULT IS AI
+  // USE MODAL?
+  // PLAYER TYPE TOGGLE
+  // HUMAN1 VS AI2 -- DEFAULT
+  // HUMAN1 VS HUMAN2
+  // AI1 VS AI2
+  // AI1 VS HUMAN2 -- rarest...
+  // ONCE A SQUARE IS CLICKED TOGGLE AND PLAYER CHOICES ARE FROZEN, CAN NLY PICK SQUARES OR RESET GAME
+  // PLAYER 1 SELECTS
+  // PLAYER 1 MARKER IS PLACED ON THE DESIRED CELL
+  // PLAYER 2 SELECTS
+  // PLAYER 2 MARKER IS PLACED ON THE DESIRED CELL
+  // CHECK FOR WIN CONDITION AFTER TURN 3
+  // USE A TURN COUNTER...
+  // CHECK FOR DRAW CONDITION AFTER TURN 9
+  // USE A TURN COUNTER...
 }
