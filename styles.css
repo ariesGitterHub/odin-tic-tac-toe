@@ -12,8 +12,8 @@
 
 --red: #a50717;
 --yellow: #dfdf0d;
---green: #152019;
---blue: #2c2447;
+--green: #1f3c22;
+--blue: #221f3c;
 
 --fire1: #d17f7b;
 --earth1: #ad8f7d;
@@ -28,14 +28,15 @@
 --glow1: var(--white);
 --glow2: var(--dk-gray);
 
---border-rem1: .5rem;
+/* --border-rem1: .5rem;
 --border-rem2: .25rem;
---border-rad: 3rem;
+--border-rad: 3rem; */
 --font-title: "Spicy Rice", serif;
 --font: "Patrick Hand SC", cursive;
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -162,7 +163,8 @@ dialog h2 {
 button {
   height: 3.5rem;
   width: 3.5rem;
-  background: none;
+  /* background: none; */
+    background: var(--white);
   border: 3px solid var(--dk-gray);
   border-radius: 1rem;
   cursor: pointer;
@@ -241,6 +243,7 @@ button:active {
 .btn-row #start-btn, .btn-row .clear-btn {
   height: 3.2rem;
   width: 7.25rem;
+
   display: flex;
     justify-content: center;
     align-items: center;
@@ -269,27 +272,58 @@ button:active {
 
 
 #game-container {
-  /* width: 500px; */
+  height: auto;
+  width: 350px;
+  background: var(--red);
+    /* border: 10px double var(--dk-gray); */
+    border-radius: 2rem;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
 
 #player-board {
-      background: var(--white);
+    width: 325px;
+    /* display: flex; */
+    background: var(--white);
+    border: .5rem double var(--dk-gray);
 }
 
-#player-one-container, #player-two-container {
+#player-container {
+  display: flex;
+  justify-content: space-evenly;
+}
 
+#player-one-box, #player-two-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font);
+  padding: .5rem;
+}
+
+#player-one-marker, #player-two-marker {
+  height: 5.5rem;
+  width: 5.5rem;
+
+  /* background: none; */
+
+  border: 3px solid var(--dk-gray);
+  border-radius: 1rem;
+  text-align: center;
 }
 
 #game-btns {
 
   display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
+    margin: 1rem;
+
 
 }
 

@@ -194,7 +194,8 @@ const zodBtnImgsModule = (function () {
 // })()
 
 (function () {
-  function PlayerSignSelectModule(playerId, valueChecker) {
+  // function PlayerSignSelectModule(playerId, valueChecker) {
+  function PlayerSignSelectModule(playerId, playerKey) {
     const zodBtns = document.querySelectorAll(".zod-btn");
     const playerSelects = document.querySelector(playerId);
     let selectedSign = "";
@@ -203,12 +204,16 @@ const zodBtnImgsModule = (function () {
     function selectPlayerSign() {
       zodBtns.forEach((button) => {
         button.addEventListener("click", () => {
-          const matchingText = valueChecker.filter((text) =>
-            text.hasOwnProperty(button.id)
-          );
+          // const matchingText = valueChecker.filter((text) =>
+          //   text.hasOwnProperty(button.id)
+          // );
 
-          if (matchingText.length > 0) {
-            selectedSign = matchingText.map((obj) => obj[button.id]).join("");
+          const matchingText = valueChecker[playerKey][button.id];
+
+          // if (matchingText.length > 0) {
+          //   selectedSign = matchingText.map((obj) => obj[button.id]).join("");
+          if (matchingText) {
+            selectedSign = matchingText;
             selectedSignId = button.id;
             playerSelects.textContent = selectedSign;
             playerSelects.style.color = "var(--red)";
@@ -232,44 +237,84 @@ const zodBtnImgsModule = (function () {
     };
   }
 
-  const valueChecker1 = [
-    { ari1: "Aries" },
-    { tau1: "Taurus" },
-    { gem1: "Gemini" },
-    { can1: "Cancer" },
-    { leo1: "Leo" },
-    { vir1: "Virgo" },
-    { lib1: "Libra" },
-    { sco1: "Scorpio" },
-    { sag1: "Sagittarius" },
-    { cap1: "Capricorn" },
-    { aqu1: "Aquarius" },
-    { pis1: "Pisces" },
-  ];
+  // const valueChecker1 = [
+  //   { ari1: "Aries" },
+  //   { tau1: "Taurus" },
+  //   { gem1: "Gemini" },
+  //   { can1: "Cancer" },
+  //   { leo1: "Leo" },
+  //   { vir1: "Virgo" },
+  //   { lib1: "Libra" },
+  //   { sco1: "Scorpio" },
+  //   { sag1: "Sagittarius" },
+  //   { cap1: "Capricorn" },
+  //   { aqu1: "Aquarius" },
+  //   { pis1: "Pisces" },
+  // ];
 
-  const valueChecker2 = [
-    { ari2: "Aries" },
-    { tau2: "Taurus" },
-    { gem2: "Gemini" },
-    { can2: "Cancer" },
-    { leo2: "Leo" },
-    { vir2: "Virgo" },
-    { lib2: "Libra" },
-    { sco2: "Scorpio" },
-    { sag2: "Sagittarius" },
-    { cap2: "Capricorn" },
-    { aqu2: "Aquarius" },
-    { pis2: "Pisces" },
-  ];
+  // const valueChecker2 = [
+  //   { ari2: "Aries" },
+  //   { tau2: "Taurus" },
+  //   { gem2: "Gemini" },
+  //   { can2: "Cancer" },
+  //   { leo2: "Leo" },
+  //   { vir2: "Virgo" },
+  //   { lib2: "Libra" },
+  //   { sco2: "Scorpio" },
+  //   { sag2: "Sagittarius" },
+  //   { cap2: "Capricorn" },
+  //   { aqu2: "Aquarius" },
+  //   { pis2: "Pisces" },
+  // ];
 
-  const playerOneSignSelect = PlayerSignSelectModule(
-    "#player-one-sign-select",
-    valueChecker1
-  );
-  const playerTwoSignSelect = PlayerSignSelectModule(
-    "#player-two-sign-select",
-    valueChecker2
-  );
+const valueChecker = {
+  player1: {
+    ari1: "Aries",
+    tau1: "Taurus",
+    gem1: "Gemini",
+    can1: "Cancer",
+    leo1: "Leo",
+    vir1: "Virgo",
+    lib1: "Libra",
+    sco1: "Scorpio",
+    sag1: "Sagittarius",
+    cap1: "Capricorn",
+    aqu1: "Aquarius",
+    pis1: "Pisces",
+  },
+  player2: {
+    ari2: "Aries",
+    tau2: "Taurus",
+    gem2: "Gemini",
+    can2: "Cancer",
+    leo2: "Leo",
+    vir2: "Virgo",
+    lib2: "Libra",
+    sco2: "Scorpio",
+    sag2: "Sagittarius",
+    cap2: "Capricorn",
+    aqu2: "Aquarius",
+    pis2: "Pisces",
+  },
+};
+
+  // const playerOneSignSelect = PlayerSignSelectModule(
+  //   "#player-one-sign-select",
+  //   valueChecker1
+  // );
+  // const playerTwoSignSelect = PlayerSignSelectModule(
+  //   "#player-two-sign-select",
+  //   valueChecker2
+  // );
+
+    const playerOneSignSelect = PlayerSignSelectModule(
+      "#player-one-sign-select",
+      "player1"
+    );
+    const playerTwoSignSelect = PlayerSignSelectModule(
+      "#player-two-sign-select",
+      "player2"
+    );
 
   playerOneSignSelect.selectPlayerSign();
   playerTwoSignSelect.selectPlayerSign();
@@ -317,7 +362,9 @@ const modalStartBtnModule = (function () {
 
   function useStartBtn() {
     const playerOneSignId = window.playerOneSignSelect.getSelectedSignId();
+    const playerOneSign = window.playerOneSignSelect.getSelectedSign();
     const playerTwoSignId = window.playerTwoSignSelect.getSelectedSignId();
+    const playerTwoSign = window.playerTwoSignSelect.getSelectedSign();
 
     // One player, player one sign not selected...
     if (!numPlayers.checked && playerOneSignId === "") {
@@ -359,7 +406,7 @@ const modalStartBtnModule = (function () {
     // Close the dialog and proceed with the game...no need for an else statement.
     dialog.style.display = "none";
     gameContainer.style.display = "flex";
-    console.log("Starting game with:", { playerOneSignId, playerTwoSignId });
+    console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
   }
 
   startBtn.addEventListener("click", useStartBtn);

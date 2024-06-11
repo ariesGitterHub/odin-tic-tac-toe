@@ -90,7 +90,7 @@
                 </div>
                 <div id="modal-player-two" class="dialog-item2">
                     <h2>Player Two 
-                        (<span id="playertwo-sign-select">Select Sign</span>)
+                        (<span id="player-two-sign-select">Select Sign</span>)
                     </h2>
 
                     <div id="alert2">
@@ -169,17 +169,24 @@
     <div id="game-container">
 
         <div id="player-board">
-            <div id="player-one-container">
+            <div id="player-container">
+                <div id="player-one-box">
+                    <h2>Player One</h2>
+                    <div id="player-one-marker">Box</div>
+                    <div id="player-one-name">Sagittarius</div>
+                    <div id="player-one-type">(Human)</div>
 
+                </div>
+
+                <div id="player-two-box">
+                    <h2>Player Two</h2>
+                    <div id="player-two-marker">Box</div>
+                    <div id="player-two-name">Sagittarius</div>
+                    <div id="player-two-type">(Computer)</div>
+                </div>
             </div>
 
-            <div id="player-two-container">
 
-            </div>
-            <div id="game-btns">
-                <button class="clear-btn"><h2>Clear</h2></button>
-                <button id="reset-btn"><h2>Reset</h2></button>
-            </div>
 
         </div>
 
@@ -196,7 +203,10 @@
             <div class="cell" id="cell7"></div>
             <div class="cell" id="cell8"></div>
         </div>
-
+            <div id="game-btns">
+                <button class="clear-btn"><h2>Clear</h2></button>
+                <button id="reset-btn"><h2>Reset</h2></button>
+            </div>
     </div>
 
 </div>
