@@ -49,7 +49,7 @@ body {
 
 #game-container {
   height: auto;
-  width: 325px;
+  width: 300px;
 }
 #game-title {
     display: flex;
@@ -98,6 +98,7 @@ dialog {
   border-radius: 2rem;
   display: flex;
     justify-content: center;
+    align-items: center;
   margin: auto;
   /* padding: 1rem; */
 }
@@ -239,12 +240,12 @@ dialog h2 {
 }
 
 
-.btn-row #clear-btn:hover {
+.btn-row #clear-btn:hover, .btn-row #clear-btn:focus  {
   background: var(--blue);
   color: var(--white);
 }
 
-.btn-row #start-btn:hover{
+.btn-row #start-btn:hover, .btn-row #start-btn:focus{
   background: var(--green);
   color: var(--white);
 }
