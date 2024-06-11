@@ -201,7 +201,10 @@ const modalClearStartBtnModule = (function () {
   const dialog = document.querySelector("dialog");
 
   function useClearBtn() {
-    window.location.reload();
+    // window.location.reload();
+    // Below code is to ensure the Firefox browsers completely reload page, previously not doing so.
+    window.location.href =
+      window.location.pathname + "?cachebust=" + new Date().getTime();
   }
 
   function useStartBtn() {
