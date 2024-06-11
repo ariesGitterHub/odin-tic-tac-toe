@@ -92,7 +92,7 @@ body {
 
 dialog {
   height: auto;
-  width: 325px;
+  width: 300px;
   background: var(--white);
   border: 10px double var(--dk-gray);
   border-radius: 2rem;
