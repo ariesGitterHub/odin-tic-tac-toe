@@ -8,8 +8,8 @@
     <title>Odin Tic Tac Toe</title>
 </head>
 <body>
-<div id="game-container">
-    <div id="game-title">
+<div id="app-container">
+    <div id="app-title">
         <h1><span>Tic-Tac-Zodiac</span></h1>
     </div>
 
@@ -25,9 +25,9 @@
                 </label>
                 <h2 id="slider-text2">2</h2>
                 </div>
-                <div id="modal-player1" class="dialog-item2">
+                <div id="modal-player-one" class="dialog-item2">
                     <h2>Player One 
-                        (<span id="player1-sign-select">Select Sign</span>)
+                        (<span id="player-one-sign-select">Select Sign</span>)
                     </h2>
 
                     <div id="alert1">
@@ -88,9 +88,9 @@
                         </button>
                     </div>
                 </div>
-                <div id="modal-player2" class="dialog-item2">
+                <div id="modal-player-two" class="dialog-item2">
                     <h2>Player Two 
-                        (<span id="player2-sign-select">Select Sign</span>)
+                        (<span id="playertwo-sign-select">Select Sign</span>)
                     </h2>
 
                     <div id="alert2">
@@ -155,9 +155,9 @@
 
                 </div>
                 <br>
-                <div id="modal-start-btn" class="dialog-item3">
+                <div id="modal-btns" class="dialog-item3">
                     <div class="btn-row">
-                        <button id="clear-btn"><h2>Clear</h2></button>
+                        <button class="clear-btn"><h2>Clear</h2></button>
                         <button id="start-btn"><h2>Start</h2></button>
                     </div>
                 </div>
@@ -166,18 +166,39 @@
 
     </div>
 
+    <div id="game-container">
 
-    <div id="game-board">
-        <div class="cell" id="cell0"></div>
-        <div class="cell" id="cell1"></div>
-        <div class="cell" id="cell2"></div>
-        <div class="cell" id="cell3"></div>
-        <div class="cell" id="cell4"></div>
-        <div class="cell" id="cell5"></div>
-        <div class="cell" id="cell6"></div>
-        <div class="cell" id="cell7"></div>
-        <div class="cell" id="cell8"></div>
+        <div id="player-board">
+            <div id="player-one-container">
+
+            </div>
+
+            <div id="player-two-container">
+
+            </div>
+            <div id="game-btns">
+                <button class="clear-btn"><h2>Clear</h2></button>
+                <button id="reset-btn"><h2>Reset</h2></button>
+            </div>
+
+        </div>
+
+
+
+        <div id="game-board">
+            <div class="cell" id="cell0"></div>
+            <div class="cell" id="cell1"></div>
+            <div class="cell" id="cell2"></div>
+            <div class="cell" id="cell3"></div>
+            <div class="cell" id="cell4"></div>
+            <div class="cell" id="cell5"></div>
+            <div class="cell" id="cell6"></div>
+            <div class="cell" id="cell7"></div>
+            <div class="cell" id="cell8"></div>
+        </div>
+
     </div>
+
 </div>
 
 </body>

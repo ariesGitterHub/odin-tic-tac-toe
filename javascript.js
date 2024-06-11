@@ -21,21 +21,21 @@ const numPlayersFontColorModule = (function () {
 
 
 // Module for handling the player modal display
-const player2SelectModule = (function () {
+const playerTwoSelectModule = (function () {
   const numPlayers = document.querySelector("#num-players");
-  const modalPlayer2 = document.querySelector("#modal-player2");
+  const modalPlayerTwo = document.querySelector("#modal-player-two");
 
-  function showPlayer2Select() {
+  function showPlayerTwoSelect() {
     if (numPlayers.checked) {
-      modalPlayer2.style.display = "flex";
-      modalPlayer2.style.animationName = "fadeIn";
+      modalPlayerTwo.style.display = "flex";
+      modalPlayerTwo.style.animationName = "fadeIn";
     } else {
-      modalPlayer2.style.display = "none";
+      modalPlayerTwo.style.display = "none";
     }
   }
 
   return {
-    showPlayer2Select,
+    showPlayerTwoSelect,
   };
 })();
 
@@ -262,20 +262,20 @@ const zodBtnImgsModule = (function () {
     { pis2: "Pisces" },
   ];
 
-  const player1SignSelect = PlayerSignSelectModule(
-    "#player1-sign-select",
+  const playerOneSignSelect = PlayerSignSelectModule(
+    "#player-one-sign-select",
     valueChecker1
   );
-  const player2SignSelect = PlayerSignSelectModule(
-    "#player2-sign-select",
+  const playerTwoSignSelect = PlayerSignSelectModule(
+    "#player-two-sign-select",
     valueChecker2
   );
 
-  player1SignSelect.selectPlayerSign();
-  player2SignSelect.selectPlayerSign();
+  playerOneSignSelect.selectPlayerSign();
+  playerTwoSignSelect.selectPlayerSign();
 
-  window.player1SignSelect = player1SignSelect;
-  window.player2SignSelect = player2SignSelect;
+  window.playerOneSignSelect = playerOneSignSelect;
+  window.playerTwoSignSelect = playerTwoSignSelect;
 })();
 
 
@@ -283,16 +283,16 @@ const zodBtnImgsModule = (function () {
 const numPlayersCheckbox = document.querySelector("#num-players");
 numPlayersCheckbox.addEventListener("change", () => {
   numPlayersFontColorModule.changeNumPlayerFontColor();
-  player2SelectModule.showPlayer2Select();
+  playerTwoSelectModule.showPlayerTwoSelect();
 });
 
 numPlayersFontColorModule.changeNumPlayerFontColor();
-player2SelectModule.showPlayer2Select();
+playerTwoSelectModule.showPlayerTwoSelect();
 zodBtnImgsModule.changeZodBtnImgs();
 
 
-const modalClearBtnModule = (function () {
-  const clearBtn = document.querySelector("#clear-btn");
+const clearBtnModule = (function () {
+  const clearBtn = document.querySelectorAll(".clear-btn");
 
   function useClearBtn() {
     // window.location.reload();
@@ -301,21 +301,23 @@ const modalClearBtnModule = (function () {
       window.location.pathname + "?cachebust=" + new Date().getTime();
   }
 
-  clearBtn.addEventListener("click", useClearBtn);
+  clearBtn.forEach(button => button.addEventListener("click", useClearBtn));
+  
 })();
 
 const modalStartBtnModule = (function () {
   const startBtn = document.querySelector("#start-btn");
-  const dialog = document.querySelector("dialog");
   const numPlayers = document.querySelector("#num-players");
   const alert1 = document.querySelector("#alert1");
   const alertMsg1 = document.querySelector("#alert-msg1");
   const alert2 = document.querySelector("#alert2");
   const alertMsg2 = document.querySelector("#alert-msg2");
+  const dialog = document.querySelector("dialog");  
+  const gameContainer = document.querySelector("#game-container");
 
   function useStartBtn() {
-    const playerOneSignId = window.player1SignSelect.getSelectedSignId();
-    const playerTwoSignId = window.player2SignSelect.getSelectedSignId();
+    const playerOneSignId = window.playerOneSignSelect.getSelectedSignId();
+    const playerTwoSignId = window.playerTwoSignSelect.getSelectedSignId();
 
     // One player, player one sign not selected...
     if (!numPlayers.checked && playerOneSignId === "") {
@@ -356,6 +358,7 @@ const modalStartBtnModule = (function () {
 
     // Close the dialog and proceed with the game...no need for an else statement.
     dialog.style.display = "none";
+    gameContainer.style.display = "flex";
     console.log("Starting game with:", { playerOneSignId, playerTwoSignId });
   }
 
