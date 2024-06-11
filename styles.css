@@ -11,6 +11,7 @@
 --blue: #007bff; */
 
 --red: #a50717;
+--yellow: #dfdf0d;
 --green: #152019;
 --blue: #2c2447;
 
@@ -49,7 +50,7 @@ body {
 
 #game-container {
   height: auto;
-  width: 300px;
+  width: auto;
 }
 #game-title {
     display: flex;
@@ -61,7 +62,7 @@ body {
     color: var(--dk-gray);
     display: flex;
     font-family: var(--font-title);
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: 100;
     margin: .5rem;
 }
@@ -100,11 +101,10 @@ dialog {
     justify-content: center;
     align-items: center;
   margin: auto;
-  /* padding: 1rem; */
 }
 
 dialog h2 {
-  font-size: 1.4rem;
+  font-size: 1.33rem;
   margin-bottom: .25rem;
 }
 
@@ -134,6 +134,21 @@ dialog h2 {
   margin: -1.5rem 0 1rem 0;
 }
 
+#alert1, #alert2 {
+  width: 228.5px;
+  background-color: var(--yellow);
+  border: 3px dashed var(--dk-gray);
+  display: none;
+  margin-bottom: .5rem;
+  text-align: center;
+}
+
+#alert-msg1, #alert-msg2 {
+  color: var(--red);
+  font-size: 1rem;
+  padding: .15rem;
+}
+
 .btn-row {
   align-self: center;
   display: flex;
@@ -144,8 +159,8 @@ dialog h2 {
 }
 
 .btn-row button {
-  height: 3.2rem;
-  width: 3.7rem;
+  height: 3.5rem;
+  width: 3.5rem;
   background: none;
   border: 3px solid var(--dk-gray);
   border-radius: 1rem;
@@ -154,6 +169,7 @@ dialog h2 {
     justify-content: center;
     align-items: center;
   margin-bottom: .25rem;
+  /* padding: 1.5rem; */
 }
 
 .zod-sym {
@@ -164,7 +180,7 @@ dialog h2 {
 
 .zod-img {
   height: auto;
-  width: 2.5rem;
+  width: 2.25rem;
   display: none;
 }
 
@@ -223,11 +239,12 @@ dialog h2 {
 
 .btn-row #start-btn, .btn-row #clear-btn {
   height: 3.2rem;
-  width: 7.7rem;
+  width: 7.25rem;
   display: flex;
     justify-content: center;
     align-items: center;
   font-family: var(--font);
+
 }
 
 .btn-row #clear-btn:hover, .btn-row #clear-btn:focus, .btn-row #start-btn:hover, .btn-row #start-btn:focus {

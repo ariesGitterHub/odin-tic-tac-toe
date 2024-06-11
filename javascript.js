@@ -83,43 +83,201 @@ const zodBtnImgsModule = (function () {
 
 
 // Factory function for creating player selectors
-function PlayerSignSelectModule(playerId, valueChecker) {
-  const zodBtns = document.querySelectorAll(".zod-btn");
-  const playerSelects = document.querySelector(playerId);
-  let selectedSign = "";
-  let selectedSignId = "";
 
-  function selectPlayerSign() {
-    zodBtns.forEach((button) => {
-      button.addEventListener("click", () => {
-        const matchingText = valueChecker.filter((text) =>
-          text.hasOwnProperty(button.id)
-        );
+// (function () {
+//   function PlayerSignSelectModule(playerId, valueChecker) {
+//     const zodBtns = document.querySelectorAll(".zod-btn");
+//     const playerSelects = document.querySelector(playerId);
+//     let selectedSign = "";
+//     let selectedSignId = "";
 
-        if (matchingText.length > 0) {
-          selectedSign = matchingText.map((obj) => obj[button.id]).join("");
-          selectedSignId = button.id;
-          playerSelects.textContent = selectedSign;
-          playerSelects.style.color = "var(--red)";
-        }
+//     function selectPlayerSign() {
+//       zodBtns.forEach((button) => {
+//         button.addEventListener("click", () => {
+//           const matchingText = valueChecker.filter((text) =>
+//             text.hasOwnProperty(button.id)
+//           );
+
+//           if (matchingText.length > 0) {
+//             selectedSign = matchingText.map((obj) => obj[button.id]).join("");
+//             selectedSignId = button.id;
+//             playerSelects.textContent = selectedSign;
+//             playerSelects.style.color = "var(--red)";
+//           }
+//         });
+//       });
+//     }
+
+//     function getSelectedSign() {
+//       return selectedSign;
+//     }
+
+//     function getSelectedSignId() {
+//       return selectedSignId;
+//     }
+
+//     return {
+//       selectPlayerSign,
+//       getSelectedSign,
+//       getSelectedSignId,
+//     };
+//   }
+
+//   const valueChecker1 = [
+//     { ari1: "Aries" },
+//     { tau1: "Taurus" },
+//     { gem1: "Gemini" },
+//     { can1: "Cancer" },
+//     { leo1: "Leo" },
+//     { vir1: "Virgo" },
+//     { lib1: "Libra" },
+//     { sco1: "Scorpio" },
+//     { sag1: "Sagittarius" },
+//     { cap1: "Capricorn" },
+//     { aqu1: "Aquarius" },
+//     { pis1: "Pisces" },
+//   ];
+//   const valueChecker2 = [
+//     { ari2: "Aries" },
+//     { tau2: "Taurus" },
+//     { gem2: "Gemini" },
+//     { can2: "Cancer" },
+//     { leo2: "Leo" },
+//     { vir2: "Virgo" },
+//     { lib2: "Libra" },
+//     { sco2: "Scorpio" },
+//     { sag2: "Sagittarius" },
+//     { cap2: "Capricorn" },
+//     { aqu2: "Aquarius" },
+//     { pis2: "Pisces" },
+//   ];
+
+//   const player1SignSelect = PlayerSignSelectModule(
+//     "#player1-sign-select",
+//     valueChecker1
+//   );
+
+//   const player2SignSelect = PlayerSignSelectModule(
+//     "#player2-sign-select",
+//     valueChecker2
+//   );
+
+//   player1SignSelect.selectPlayerSign();
+//   player2SignSelect.selectPlayerSign();
+
+//   // Expose the modules globally for access in other scripts/modules...THI IS NEW FOR ME...
+//   window.player1SignSelect = player1SignSelect;
+//   window.player2SignSelect = player2SignSelect;
+
+//   // document.querySelector("#start-btn").addEventListener("click", () => {
+  
+//   function createPlayerVariables() {
+//     zodBtns.forEach((button) => {
+//         button.addEventListener("click", () => {
+//           const playerOneSign = player1SignSelect.getSelectedSign();
+//           console.log(playerOneSign);
+
+//           const playerOneSignId = player1SignSelect.getSelectedSignId();
+//           console.log(playerOneSignId);
+
+//           const playerTwoSign = player2SignSelect.getSelectedSign();
+//           console.log(playerTwoSign);
+
+//           const playerTwoSignId = player2SignSelect.getSelectedSignId();
+//           console.log(playerTwoSignId);
+//        })
+//       })
+//     };
+//     return {
+//       createPlayerVariables,
+//     };
+// })()
+
+(function () {
+  function PlayerSignSelectModule(playerId, valueChecker) {
+    const zodBtns = document.querySelectorAll(".zod-btn");
+    const playerSelects = document.querySelector(playerId);
+    let selectedSign = "";
+    let selectedSignId = "";
+
+    function selectPlayerSign() {
+      zodBtns.forEach((button) => {
+        button.addEventListener("click", () => {
+          const matchingText = valueChecker.filter((text) =>
+            text.hasOwnProperty(button.id)
+          );
+
+          if (matchingText.length > 0) {
+            selectedSign = matchingText.map((obj) => obj[button.id]).join("");
+            selectedSignId = button.id;
+            playerSelects.textContent = selectedSign;
+            playerSelects.style.color = "var(--red)";
+          }
+        });
       });
-    });
+    }
+
+    function getSelectedSign() {
+      return selectedSign;
+    }
+
+    function getSelectedSignId() {
+      return selectedSignId;
+    }
+
+    return {
+      selectPlayerSign,
+      getSelectedSign,
+      getSelectedSignId,
+    };
   }
 
-  function getSelectedSign() {
-    return selectedSign;
-  }
+  const valueChecker1 = [
+    { ari1: "Aries" },
+    { tau1: "Taurus" },
+    { gem1: "Gemini" },
+    { can1: "Cancer" },
+    { leo1: "Leo" },
+    { vir1: "Virgo" },
+    { lib1: "Libra" },
+    { sco1: "Scorpio" },
+    { sag1: "Sagittarius" },
+    { cap1: "Capricorn" },
+    { aqu1: "Aquarius" },
+    { pis1: "Pisces" },
+  ];
 
-  function getSelectedSignId() {
-    return selectedSignId;
-  }
+  const valueChecker2 = [
+    { ari2: "Aries" },
+    { tau2: "Taurus" },
+    { gem2: "Gemini" },
+    { can2: "Cancer" },
+    { leo2: "Leo" },
+    { vir2: "Virgo" },
+    { lib2: "Libra" },
+    { sco2: "Scorpio" },
+    { sag2: "Sagittarius" },
+    { cap2: "Capricorn" },
+    { aqu2: "Aquarius" },
+    { pis2: "Pisces" },
+  ];
 
-  return {
-    selectPlayerSign,
-    getSelectedSign,
-    getSelectedSignId,
-  };
-}
+  const player1SignSelect = PlayerSignSelectModule(
+    "#player1-sign-select",
+    valueChecker1
+  );
+  const player2SignSelect = PlayerSignSelectModule(
+    "#player2-sign-select",
+    valueChecker2
+  );
+
+  player1SignSelect.selectPlayerSign();
+  player2SignSelect.selectPlayerSign();
+
+  window.player1SignSelect = player1SignSelect;
+  window.player2SignSelect = player2SignSelect;
+})();
+
 
 // Initialize the modules
 const numPlayersCheckbox = document.querySelector("#num-players");
@@ -132,89 +290,115 @@ numPlayersFontColorModule.changeNumPlayerFontColor();
 player2SelectModule.showPlayer2Select();
 zodBtnImgsModule.changeZodBtnImgs();
 
-const valueChecker1 = [
-  { ari1: "Aries" },
-  { tau1: "Taurus" },
-  { gem1: "Gemini" },
-  { can1: "Cancer" },
-  { leo1: "Leo" },
-  { vir1: "Virgo" },
-  { lib1: "Libra" },
-  { sco1: "Scorpio" },
-  { sag1: "Sagittarius" },
-  { cap1: "Capricorn" },
-  { aqu1: "Aquarius" },
-  { pis1: "Pisces" },
-];
-const valueChecker2 = [
-  { ari2: "Aries" },
-  { tau2: "Taurus" },
-  { gem2: "Gemini" },
-  { can2: "Cancer" },
-  { leo2: "Leo" },
-  { vir2: "Virgo" },
-  { lib2: "Libra" },
-  { sco2: "Scorpio" },
-  { sag2: "Sagittarius" },
-  { cap2: "Capricorn" },
-  { aqu2: "Aquarius" },
-  { pis2: "Pisces" },
-];
 
-const player1SignSelect = PlayerSignSelectModule(
-  "#player1-sign-select",
-  valueChecker1
-);
-
-const player2SignSelect = PlayerSignSelectModule(
-  "#player2-sign-select",
-  valueChecker2
-);
-
-player1SignSelect.selectPlayerSign();
-player2SignSelect.selectPlayerSign();
-
-document.querySelector("#start-btn").addEventListener("click", () => {
-  const playerOneSign = player1SignSelect.getSelectedSign();
-  console.log(playerOneSign);
-
-  const playerOneSignId = player1SignSelect.getSelectedSignId();
-  console.log(playerOneSignId);
-
-  const playerTwoSign = player2SignSelect.getSelectedSign();
-  console.log(playerTwoSign);
-
-  const playerTwoSignId = player2SignSelect.getSelectedSignId();
-  console.log(playerTwoSignId);
-
-  // console.log("Player 1 selected sign:", player1SignSelect.getSelectedSign());
-  // console.log("Player 1 selected sign ID:", player1SignSelect.getSelectedSignId());
-  // console.log("Player 2 selected sign:", player2SignSelect.getSelectedSign());
-  // console.log("Player 2 selected sign ID:", player2SignSelect.getSelectedSignId());
-});
-
-
-
-const modalClearStartBtnModule = (function () {
+const modalClearBtnModule = (function () {
   const clearBtn = document.querySelector("#clear-btn");
-  const startBtn = document.querySelector("#start-btn");
-  const dialog = document.querySelector("dialog");
 
   function useClearBtn() {
     // window.location.reload();
-    // Below code is to ensure the Firefox browsers completely reload page, previously not doing so.
+    // Below code is to ensure the Firefox browsers completely reload page, previously not doing so. Tested: works.
     window.location.href =
       window.location.pathname + "?cachebust=" + new Date().getTime();
   }
 
+  clearBtn.addEventListener("click", useClearBtn);
+})();
+
+const modalStartBtnModule = (function () {
+  const startBtn = document.querySelector("#start-btn");
+  const dialog = document.querySelector("dialog");
+  const numPlayers = document.querySelector("#num-players");
+  const alert1 = document.querySelector("#alert1");
+  const alertMsg1 = document.querySelector("#alert-msg1");
+  const alert2 = document.querySelector("#alert2");
+  const alertMsg2 = document.querySelector("#alert-msg2");
+
   function useStartBtn() {
+    const playerOneSignId = window.player1SignSelect.getSelectedSignId();
+    const playerTwoSignId = window.player2SignSelect.getSelectedSignId();
+
+    // One player, player one sign not selected...
+    if (!numPlayers.checked && playerOneSignId === "") {
+      alert1.style.display = "block";
+      alertMsg1.textContent = "Please select a sign for player one.";
+      return;
+    }
+
+    // Two players, player one and player two signs not selected...
+    if (numPlayers.checked && playerOneSignId === "" && playerTwoSignId === "") {
+      alert1.style.display = "block";
+      alertMsg1.textContent = "Please select a sign for player one.";
+      alert2.style.display = "block";
+      alertMsg2.textContent = "Please select a sign for player two.";
+      return;
+    }
+
+    // Two players, player two sign not selected...
+    if (numPlayers.checked && playerTwoSignId === "") {
+      alert2.style.display = "block";
+      alertMsg2.textContent = "Please select a sign for player two.";
+      return;
+    }
+
+    // Two players, player one sign not selected...
+    if (numPlayers.checked && playerOneSignId === "") {
+      alert1.style.display = "block";
+      alertMsg1.textContent = "Please select a sign for player one.";
+      return;
+    }
+
+    // Two players, player two sign not selected...
+    if (numPlayers.checked && playerTwoSignId === "") {
+      alert2.style.display = "block";
+      alertMsg2.textContent = "Please select a sign for player two.";
+      return;
+    }
+
+    // Close the dialog and proceed with the game...no need for an else statement.
     dialog.style.display = "none";
+    console.log("Starting game with:", { playerOneSignId, playerTwoSignId });
   }
 
-  clearBtn.addEventListener("click", useClearBtn);
   startBtn.addEventListener("click", useStartBtn);
+})();
 
-})()
+
+// const modalStartBtnModule = (function () {
+//   const startBtn = document.querySelector("#start-btn");
+//   const dialog = document.querySelector("dialog");
+//   const numPlayers = document.querySelector("#num-players");
+
+//   // const playerOneSign = window.player1SignSelect.getSelectedSign();
+//   const playerOneSignId = window.player1SignSelect.createPlayerVariables();
+
+//   console.log(playerOneSignId);
+
+//   // const playerTwoSign = window.player2SignSelect.getSelectedSign();
+//   const playerTwoSignId = window.player2SignSelect.createPlayerVariables();
+
+//   console.log(playerTwoSignId);
+
+//   function useStartBtn() {
+
+//     if (!numPlayers.checked && playerOneSignId === "") {
+//       alert("Please select a sign for player one.")
+//       return
+//     } else {
+//       dialog.style.display = "none";
+//     }
+
+//     if (numPlayers.checked && (playerOneSignId === "" || playerTwoSignId === "")) {
+//       alert("Please select a sign for both players.");
+//       return
+//     } else {
+//       dialog.style.display = "none";
+//     }
+
+//   }
+
+//   startBtn.addEventListener("click", useStartBtn);
+
+// })()
 
 
 const gameBoard = (function () {
