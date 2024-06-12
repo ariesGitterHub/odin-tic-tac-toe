@@ -33,10 +33,11 @@
 --border-rad: 3rem; */
 --master-width: 325px;
 --border-width: 3px;
---zod-btn: 3.25rem;
+--zod-btn: 3rem;
+--sym-img-size: 2rem;
 --other-btn-w: calc(var(--zod-btn) * 2.08);
 --font-title: "Spicy Rice", serif;
---font-title-size: 3rem;
+--font-title-size: 2.5rem;
 --font: "Patrick Hand SC", cursive;
 --font-size: 1.25rem;
 --font-size-msg: 1rem;
@@ -74,22 +75,23 @@ body {
     font-size: var(--font-title-size);
     font-weight: 100;
     margin: .5rem;
+          text-shadow: 0 0 10px var(--white), 0 0 20px #fff, 0 0 30px var(--glow1), 0 0 40px var(--glow1), 0 0 50px var(--glow1), 0 0 60px var(--glow1), 0 0 70px var(--glow1);
 }
 
-#app-title h1 span{ 
+/* #app-title h1 span{ 
   -webkit-animation: glow 5s ease-in-out infinite alternate;
   -moz-animation: glow 5s ease-in-out infinite alternate;
   animation: glow 5s ease-in-out infinite alternate;
-}
+} */
 
-@-webkit-keyframes glow {
+/* @-webkit-keyframes glow {
   from {
     text-shadow: 0 0 10px var(--white), 0 0 20px #fff, 0 0 30px var(--glow1), 0 0 40px var(--glow1), 0 0 50px var(--glow1), 0 0 60px var(--glow1), 0 0 70px var(--glow1);
   }
   to {
     text-shadow: 0 0 10px var(--white), 0 0 20px var(--glow2), 0 0 30px var(--glow2), 0 0 40px var(--glow2), 0 0 50px var(--glow2), 0 0 60px var(--glow2), 0 0 70px var(--glow2);
   }
-}
+} */
 
 #modal-container {
   display: flex;
@@ -158,7 +160,7 @@ dialog h2 {
 #alert-msg1, #alert-msg2 {
   color: var(--red);
   font-size: var(--font-size-msg);
-  padding: .5rem;
+  padding: .25rem;
 }
 
 .btn-row {
@@ -182,18 +184,19 @@ button {
     justify-content: center;
     align-items: center;
   margin-bottom: .25rem;
+  /* padding: 1rem; */
   /* padding: 1.5rem; */
 }
 
 .zod-sym {
   height: auto;
-  width: 2rem;
+  width: var(--sym-img-size);
   display: flex;
 }
 
 .zod-img {
   height: auto;
-  width: 2.25rem;
+  width: var(--sym-img-size);
   display: none;
 }
 
@@ -291,7 +294,7 @@ button:active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: .5rem;
+  padding: .25rem;
 }
 
 #player-board {
@@ -321,18 +324,23 @@ button:active {
   justify-content: center;
   align-items: center;
   font-family: var(--font);
-  padding: .5rem;
+  padding: .25rem;
 }
 
 #player-one-marker, #player-two-marker {
-  height: 5rem;
-  width: 5rem;
+  height: 4.5rem;
+  width: 4.55rem;
   /* background: none; */
   border: var(--border-width) solid var(--dk-gray);
   border-radius: 1rem;
   text-align: center;
   padding: .25rem;
 }
+
+#player-one-name, #player-two-name, #player-one-type, #player-two-type  {
+  font-size: var(--font-size);
+}
+
 #message-board {
   width: var(--master-width);
   /* display: flex; */
@@ -341,7 +349,7 @@ button:active {
   /* border-radius: 2rem 2rem 0 0; */
   font-family: var(--font);
   font-size: var(--font-size);
-  padding: .5rem;
+  padding: .25rem;
   text-align: center;
 }
 
@@ -364,7 +372,7 @@ button:active {
   display: flex;
     justify-content: center;
     align-items: center;
-  font-size: 4rem;
+  /* font-size: 4rem; */
   /* margin: 0;
   padding: 0; */
   vertical-align: middle; 
@@ -381,7 +389,7 @@ button:active {
     align-items: center;
     gap: .25rem;
   /* margin: 1rem; */
-  padding: .5rem;
+  padding: .25rem;
 
 }
 
