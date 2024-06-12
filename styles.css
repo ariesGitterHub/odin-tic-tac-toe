@@ -31,8 +31,15 @@
 /* --border-rem1: .5rem;
 --border-rem2: .25rem;
 --border-rad: 3rem; */
+--master-width: 325px;
+--border-width: 3px;
+--zod-btn: 3.25rem;
+--other-btn-w: calc(var(--zod-btn) * 2.08);
 --font-title: "Spicy Rice", serif;
+--font-title-size: 3rem;
 --font: "Patrick Hand SC", cursive;
+--font-size: 1.25rem;
+--font-size-msg: 1rem;
 }
 
 * {
@@ -64,7 +71,7 @@ body {
     color: var(--dk-gray);
     display: flex;
     font-family: var(--font-title);
-    font-size: 2rem;
+    font-size: var(--font-title-size);
     font-weight: 100;
     margin: .5rem;
 }
@@ -95,9 +102,9 @@ body {
 
 dialog {
   height: auto;
-  width: 300px;
+  width: var(--master-width);
   background: var(--white);
-  border: 10px double var(--dk-gray);
+  border: calc(var(--border-width) * 3) double var(--dk-gray);
   border-radius: 2rem;
   display: flex;
     justify-content: center;
@@ -106,7 +113,7 @@ dialog {
 }
 
 dialog h2 {
-  font-size: 1.33rem;
+  font-size: var(--font-size);
   margin-bottom: .25rem;
 }
 
@@ -137,18 +144,21 @@ dialog h2 {
 }
 
 #alert1, #alert2 {
-  width: 228.5px;
+  align-self: center;
+  width: calc(var(--master-width) - 5);
   background-color: var(--yellow);
-  border: 3px dashed var(--dk-gray);
+  border: var(--border-width) dashed var(--dk-gray);
   display: none;
+  /* justify-content: center;
+  align-items: center; */
   margin-bottom: .5rem;
-  text-align: center;
+  /* text-align: center; */
 }
 
 #alert-msg1, #alert-msg2 {
   color: var(--red);
-  font-size: 1rem;
-  padding: .15rem;
+  font-size: var(--font-size-msg);
+  padding: .5rem;
 }
 
 .btn-row {
@@ -161,11 +171,11 @@ dialog h2 {
 }
 
 button {
-  height: 3.5rem;
-  width: 3.5rem;
+  height: var(--zod-btn);
+  width: var(--zod-btn);
   /* background: none; */
     background: var(--white);
-  border: 3px solid var(--dk-gray);
+  border: var(--border-width) solid var(--dk-gray);
   border-radius: 1rem;
   cursor: pointer;
   display: flex;
@@ -240,9 +250,9 @@ button:active {
   }
 }
 
-.btn-row #start-btn, .btn-row .clear-btn {
-  height: 3.2rem;
-  width: 7.25rem;
+.btn-row #start-btn, .btn-row .clear-btn, #game-btns .clear-btn, #game-btns #reset-btn {
+  height: var(--zod-btn);
+  width: var(--other-btn-w);
 
   display: flex;
     justify-content: center;
@@ -255,7 +265,7 @@ button:active {
   transform: scale(1.05);
 }
 
-#clear-btn:active, #start-btn:active, #reset-btn:active {
+.clear-btn:active, #start-btn:active, #reset-btn:active {
   transform: scale(.9);
 }
 
@@ -273,27 +283,36 @@ button:active {
 
 #game-container {
   height: auto;
-  width: 350px;
-  background: var(--red);
+  width: auto;
+  /* background: var(--white); */
     /* border: 10px double var(--dk-gray); */
-    border-radius: 2rem;
+  /* border-radius: 2rem; */
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: .5rem;
 }
 
 #player-board {
-    width: 325px;
-    /* display: flex; */
-    background: var(--white);
-    border: .5rem double var(--dk-gray);
+  width: var(--master-width);
+  /* display: flex; */
+  background: var(--white);
+  border: .5rem double var(--dk-gray);
+  border-radius: 2rem 2rem 0 0;
 }
 
 #player-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+#player-board {
+  width: var(--master-width);
+  /* display: flex; */
+  background: var(--white);
+  border: .5rem double var(--dk-gray);
+  border-radius: 2rem 2rem 0 0;
 }
 
 #player-one-box, #player-two-box {
@@ -311,36 +330,29 @@ button:active {
 
   /* background: none; */
 
-  border: 3px solid var(--dk-gray);
+  border: var(--border-width) solid var(--dk-gray);
   border-radius: 1rem;
   text-align: center;
 }
-
-#game-btns {
-
-  display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 1rem;
-    margin: 1rem;
-
-
-}
-
-#game-btns .clear-btn, #game-btns #reset-btn{
-  height: 3.2rem;
-  width: 7.25rem;
-
+#message-board {
+  width: var(--master-width);
+  /* display: flex; */
+  background: var(--white);
+  border: .5rem double var(--dk-gray);
+  /* border-radius: 2rem 2rem 0 0; */
   font-family: var(--font);
+  font-size: var(--font-size);
+  padding: .5rem;
+  text-align: center;
 }
 
 
 #game-board {
-  width: 325px;
+  width: var(--master-width);
   display: grid;   /* change back to none? */
     grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
     gap: 0;
-  margin-top: 1rem;;
+  /* margin-top: 1rem; */
 }
 
 
@@ -358,6 +370,27 @@ button:active {
   padding: 0; */
   vertical-align: middle; 
 }
+
+#game-btns {
+  width: var(--master-width);
+  /* display: flex; */
+  background: var(--white);
+  border: .5rem double var(--dk-gray);
+  border-radius: 0 0 2rem 2rem;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .25rem;
+  /* margin: 1rem; */
+  padding: .5rem;
+
+}
+
+#game-btns .clear-btn, #game-btns #reset-btn {
+  margin-bottom: 0;
+}
+
+
 
 
 /* TOGGLE */
