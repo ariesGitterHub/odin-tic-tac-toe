@@ -360,6 +360,8 @@ const modalStartBtnModule = (function () {
   const dialog = document.querySelector("dialog");  
   const gameContainer = document.querySelector("#game-container");
 
+  
+
   function useStartBtn() {
     const playerOneSignId = window.playerOneSignSelect.getSelectedSignId();
     const playerOneSign = window.playerOneSignSelect.getSelectedSign();
@@ -407,9 +409,29 @@ const modalStartBtnModule = (function () {
     dialog.style.display = "none";
     gameContainer.style.display = "flex";
     console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
+
+    playerBoardModule.setPlayerBoard(
+      playerOneSignId,
+      playerOneSign,
+      playerTwoSignId,
+      playerTwoSign
+    );
+
   }
 
+  // Call another function with the selected sign data
+
+  
+
   startBtn.addEventListener("click", useStartBtn);
+
+  return {
+    getPlayerOneSign: () => playerOneSign,
+    getPlayerOneSignId: () => playerOneSignId,
+    getPlayerTwoSign: () => playerTwoSign,
+    getPlayerTwoSignId: () => playerTwoSignId,
+  };
+
 })();
 
 
@@ -450,6 +472,74 @@ const modalStartBtnModule = (function () {
 
 // })()
 
+
+const playerBoardModule = (function () {
+  const playerOneMarker = document.querySelector("#player-one-marker");
+  const playerOneName = document.querySelector("#player-one-name");
+  const playerOneType = document.querySelector("#player-one-type");
+  const playerTwoMarker = document.querySelector("#player-two-marker");
+  const playerTwoName = document.querySelector("#player-two-name");
+  const playerTwoType = document.querySelector("#player-two-type");
+
+  function setPlayerBoard(
+    playerOneSignId,
+    playerOneSign,
+    playerTwoSignId,
+    playerTwoSign
+  ) {
+
+    // Keep redundant images in case I want to change these images later on.
+    const signMarkers = {
+      ari1: { markerImg: "./assets/ari-img.svg", markerBkg: "var(--fire1)" },
+      tau1: { markerImg: "./assets/tau-img.svg", markerBkg: "var(--earth1)" },
+      gem1: { markerImg: "./assets/gem-img.svg", markerBkg: "var(--air1)" },
+      can1: { markerImg: "./assets/can-img.svg", markerBkg: "var(--water1)" },
+      leo1: { markerImg: "./assets/leo-img.svg", markerBkg: "var(--fire1)" },
+      vir1: { markerImg: "./assets/vir-img.svg", markerBkg: "var(--earth1)" },
+      lib1: { markerImg: "./assets/lib-img.svg", markerBkg: "var(--air1)" },
+      sco1: { markerImg: "./assets/sco-img.svg", markerBkg: "var(--water1)" },
+      sag1: { markerImg: "./assets/sag-img.svg", markerBkg: "var(--fire1)" },
+      cap1: { markerImg: "./assets/cap-img.svg", markerBkg: "var(--earth1)" },
+      aqu1: { markerImg: "./assets/aqu-img.svg", markerBkg: "var(--air1)" },
+      pis1: { markerImg: "./assets/pis-img.svg", markerBkg: "var(--water1)" },
+      ari2: { markerImg: "./assets/ari-img.svg", markerBkg: "var(--fire2)" },
+      tau2: { markerImg: "./assets/tau-img.svg", markerBkg: "var(--earth2)" },
+      gem2: { markerImg: "./assets/gem-img.svg", markerBkg: "var(--air2)" },
+      can2: { markerImg: "./assets/can-img.svg", markerBkg: "var(--water2)" },
+      leo2: { markerImg: "./assets/leo-img.svg", markerBkg: "var(--fire2)" },
+      vir2: { markerImg: "./assets/vir-img.svg", markerBkg: "var(--earth2)" },
+      lib2: { markerImg: "./assets/lib-img.svg", markerBkg: "var(--air2)" },
+      sco2: { markerImg: "./assets/sco-img.svg", markerBkg: "var(--water2)" },
+      sag2: { markerImg: "./assets/sag-img.svg", markerBkg: "var(--fire2)" },
+      cap2: { markerImg: "./assets/cap-img.svg", markerBkg: "var(--earth2)" },
+      aqu2: { markerImg: "./assets/aqu-img.svg", markerBkg: "var(--air2)" },
+      pis2: { markerImg: "./assets/pis-img.svg", markerBkg: "var(--water2)" },
+    };
+
+    if (playerOneSignId) {
+      const playerOneMarkerInfo = signMarkers[playerOneSignId];
+      playerOneName.textContent = playerOneSign;
+      playerOneType.textContent = "(Human)";
+      playerOneMarker.src = playerOneMarkerInfo.markerImg;
+      playerOneMarker.style.backgroundColor = playerOneMarkerInfo.markerBkg;
+    }
+
+    if (playerTwoSignId) {
+      const playerTwoMarkerInfo = signMarkers[playerTwoSignId];
+      playerTwoName.textContent = playerTwoSign;
+      playerTwoType.textContent = "(Human)";
+      playerTwoMarker.src = playerTwoMarkerInfo.markerImg;
+      playerTwoMarker.style.backgroundColor = playerTwoMarkerInfo.markerBkg;
+    }
+
+  }
+
+  return {
+    setPlayerBoard,
+  };
+})();
+
+playerBoardModule.setPlayerBoard();
 
 const gameBoard = (function () {
   function Cell() {

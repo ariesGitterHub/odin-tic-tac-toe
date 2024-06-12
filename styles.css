@@ -325,14 +325,13 @@ button:active {
 }
 
 #player-one-marker, #player-two-marker {
-  height: 5.5rem;
-  width: 5.5rem;
-
+  height: 5rem;
+  width: 5rem;
   /* background: none; */
-
   border: var(--border-width) solid var(--dk-gray);
   border-radius: 1rem;
   text-align: center;
+  padding: .25rem;
 }
 #message-board {
   width: var(--master-width);
