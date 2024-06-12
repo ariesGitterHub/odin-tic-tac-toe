@@ -530,6 +530,17 @@ const playerBoardModule = (function () {
       playerTwoType.textContent = "(Human)";
       playerTwoMarker.src = playerTwoMarkerInfo.markerImg;
       playerTwoMarker.style.backgroundColor = playerTwoMarkerInfo.markerBkg;
+    } else {
+      const randomPick = Math.floor(Math.random() * 12);
+      const computerPlayerTwoIdList = ["ari2", "tau2", "gem2", "can2", "leo2", "vir2", "lib2", "sco2", "sag2", "cap2", "aqu2", "pis2"];
+      const computerPlayerTwoList = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+      const computerPlayerTwoId = computerPlayerTwoIdList[randomPick];
+      playerTwoMarkerInfo = signMarkers[computerPlayerTwoId];
+      const computerPlayerTwo = computerPlayerTwoList[randomPick];
+      playerTwoName.textContent = computerPlayerTwo;
+      playerTwoType.textContent = "(Computer)";
+      playerTwoMarker.src = playerTwoMarkerInfo.markerImg;
+      playerTwoMarker.style.backgroundColor = playerTwoMarkerInfo.markerBkg;
     }
 
   }
