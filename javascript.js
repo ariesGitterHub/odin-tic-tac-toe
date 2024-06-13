@@ -371,42 +371,46 @@ playerBoardModule.setPlayerBoard();
 
 // setPlayerMarker();
 
-function createBoardMarkers(playerOneMarker, playerTwoMarker) {
+// function createBoardMarkers(playerOneMarker, playerTwoMarker) {
  
-  const boardCells = document.querySelectorAll(".cell"); 
+//   const boardCells = document.querySelectorAll(".cell"); 
 
-  let currentPlayer = "playerOne";
-  const messageBoard = document.querySelector("#message-board");
-  messageBoard.textContent = "Player One makes the first move.";
-  let round = 0
-  // const winCondition = [[cell0, cell1, cell2], [cell3, cell4, cell5], [cell6, cell7, cell8], [cell0, cell3, cell6], [cell1, cell4, cell7], [cell2, cell5, cell8], [cell0, cell4, cell8], [cell2, cell4, cell6]];
+//   let currentPlayer = "playerOne";
+//   const messageBoard = document.querySelector("#message-board");
+//   messageBoard.textContent = "Player One makes the first move.";
+//   let round = 0
 
-  boardCells.forEach((cell) => {
-    cell.addEventListener("click", function () {
-      if (!cell.innerHTML) {
 
-        // Check if the cell is empty first...
-        if (currentPlayer === "playerOne") {
-          cell.innerHTML = `<img src="${playerOneMarker.src}" data="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
-          currentPlayer = "playerTwo";
-          round++;
-          messageBoard.textContent = "Player Two, it is your turn.";
-          console.log(round);
-        } else {
-          cell.innerHTML = `<img src="${playerTwoMarker.src}" data="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
-          currentPlayer = "playerOne";
-          round++;
-          messageBoard.textContent = "Player One, it is your turn.";
-          console.log(round);
-        }
+//   boardCells.forEach((cell) => {
+//     cell.addEventListener("click", function () {
+//       if (!cell.innerHTML) {
 
-      }
-    });
-  });
-}
+//         // Check if the cell is empty first...
+//         if (currentPlayer === "playerOne") {
+//           cell.innerHTML = `<img src="${playerOneMarker.src}" data="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+//           currentPlayer = "playerTwo";
+//           round++;
+//           messageBoard.textContent = "Player Two, it is your turn.";
+//           console.log(round);
+//         } else {
+//           cell.innerHTML = `<img src="${playerTwoMarker.src}" data="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+//           currentPlayer = "playerOne";
+//           round++;
+//           messageBoard.textContent = "Player One, it is your turn.";
+//           console.log(round);
+//         }
 
-const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
-createBoardMarkers(playerOneMarker, playerTwoMarker);
+//         if (round === 9) {
+//           messageBoard.textContent = "TIE MATCH.";
+//         }
+
+//       }
+//     });
+//   });
+// }
+
+// const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
+// createBoardMarkers(playerOneMarker, playerTwoMarker);
 
 // const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard( // It can be any two items from the 24, establishes the pattern...need to see more on this...
 //   "ari1",
@@ -414,6 +418,89 @@ createBoardMarkers(playerOneMarker, playerTwoMarker);
 //   "ari2",
 //   "Aries"
 // );
+
+//************************* */
+
+function createBoardMarkers(playerOneMarker, playerTwoMarker) {
+  const boardCells = document.querySelectorAll(".cell");
+  let currentPlayer = 1; // Player One starts with marker 1
+  const messageBoard = document.querySelector("#message-board");
+  messageBoard.textContent = "Player One makes the first move.";
+  let round = 0;
+
+  boardCells.forEach((cell, index) => {
+    cell.addEventListener("click", function () {
+      if (!cell.innerHTML) {
+        // Check if the cell is empty first...
+        if (currentPlayer === 1) {
+          cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+          round++;
+          messageBoard.textContent = "Player Two, it is your turn.";
+        } else {
+          cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+          round++;
+          messageBoard.textContent = "Player One, it is your turn.";
+        }
+
+        // Check for win condition after at least 5 rounds (earliest possible win)
+        if (round >= 5) {
+          if (checkWinCondition()) {
+            messageBoard.textContent = `PLAYER ${
+              currentPlayer === 1 ? "ONE" : "TWO"
+            } WINS!!!`;
+            // Disable further clicks or reset game
+          } else if (round === 9) {
+            messageBoard.textContent = "TIE MATCH.";
+          }
+        }
+
+        currentPlayer = currentPlayer === 1 ? 2 : 1; // Switch player turn
+      }
+    });
+  });
+
+  function checkWinCondition() {
+    const cells = document.querySelectorAll(".cell");
+    const winPatterns = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8], // Rows
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8], // Columns
+      [0, 4, 8],
+      [2, 4, 6], // Diagonals
+    ];
+
+    return winPatterns.some((pattern) => {
+      const [a, b, c] = pattern;
+      const cellA = cells[a].querySelector("img");
+      const cellB = cells[b].querySelector("img");
+      const cellC = cells[c].querySelector("img");
+
+      if (cellA && cellB && cellC) {
+        const playerA = parseInt(cellA.dataset.player);
+        const playerB = parseInt(cellB.dataset.player);
+        const playerC = parseInt(cellC.dataset.player);
+
+        if (
+          playerA &&
+          playerB &&
+          playerC &&
+          playerA === playerB &&
+          playerB === playerC
+        ) {
+          return true;
+        }
+      }
+      return false;
+    });
+  }
+}
+
+const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
+createBoardMarkers(playerOneMarker, playerTwoMarker);
+
 
 function checkWinner() {
   
