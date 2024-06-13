@@ -6,17 +6,13 @@
 --md-gray: #808080;
 --white: #f5f5f5;
 
-/* --red: #dc3545;
---green: #28a745;
---blue: #007bff; */
-
 --red: #a50717;
 --yellow: #dfdf0d;
 --green: #1f3c22;
 --blue: #221f3c;
 
---fire1: #d17f7b;
---earth1: #ad8f7d;
+--fire1: #cf6868;
+--earth1: #c99c80;
 --air1: #dfdd86;
 --water1: #7bf0e4;
 
@@ -25,17 +21,14 @@
 --air2: #bdc7da;
 --water2: #65afc4;
 
---glow1: var(--white);
---glow2: var(--dk-gray);
+/* --glow1: var(--red);
+--glow2: var(--dk-gray); */
 
-/* --border-rem1: .5rem;
---border-rem2: .25rem;
---border-rad: 3rem; */
 --master-width: 325px;
 --border-width: 3px;
---zod-btn: 3rem;
---sym-img-size: 2rem;
---other-btn-w: calc(var(--zod-btn) * 2.08);
+--zod-btn: 3.5rem;
+--sym-img-size: 2.25rem;
+--other-btn-w: calc(var(--zod-btn) * 2.067);
 --font-title: "Spicy Rice", serif;
 --font-title-size: 2.5rem;
 --font: "Patrick Hand SC", cursive;
@@ -50,6 +43,8 @@
 }
 
 body {
+  height:auto;
+  width: auto;
   background: var(--dk-gray);
   display: flex;
     flex-direction: column;
@@ -63,28 +58,30 @@ body {
 }
 
 #app-title {
-    display: flex;
-      justify-content: center;
+  display: flex;
+    justify-content: center;
 
 }
 
 #app-title h1 {
-    color: var(--dk-gray);
-    display: flex;
-    font-family: var(--font-title);
-    font-size: var(--font-title-size);
-    font-weight: 100;
-    margin: .5rem;
-          text-shadow: 0 0 10px var(--white), 0 0 20px #fff, 0 0 30px var(--glow1), 0 0 40px var(--glow1), 0 0 50px var(--glow1), 0 0 60px var(--glow1), 0 0 70px var(--glow1);
+  color: var(--dk-gray);
+  display: flex;
+  font-family: var(--font-title);
+  font-size: var(--font-title-size);
+  font-weight: 100;
+  margin: .5rem;
+  text-shadow: 0 0 10px var(--white), 0 0 15px var(--md-gray) 
 }
+
+/* Comment out but keep glow animation */
 
 /* #app-title h1 span{ 
   -webkit-animation: glow 5s ease-in-out infinite alternate;
   -moz-animation: glow 5s ease-in-out infinite alternate;
   animation: glow 5s ease-in-out infinite alternate;
-} */
+}
 
-/* @-webkit-keyframes glow {
+@-webkit-keyframes glow {
   from {
     text-shadow: 0 0 10px var(--white), 0 0 20px #fff, 0 0 30px var(--glow1), 0 0 40px var(--glow1), 0 0 50px var(--glow1), 0 0 60px var(--glow1), 0 0 70px var(--glow1);
   }
@@ -99,7 +96,6 @@ body {
     align-items: center;
     justify-content: start;
   font-family: var(--font);
-
 }
 
 dialog {
@@ -118,10 +114,6 @@ dialog h2 {
   font-size: var(--font-size);
   margin-bottom: .25rem;
 }
-
-/* .no-bot-margin {
-  margin-bottom: 0;
-} */
 
 .dialog-item1 {
   display: flex;
@@ -147,20 +139,18 @@ dialog h2 {
 
 #alert1, #alert2 {
   align-self: center;
-  width: calc(var(--master-width) - 5);
+  /* width: calc(var(--master-width) - 5); */
+  width: fit-content;
   background-color: var(--yellow);
   border: var(--border-width) dashed var(--dk-gray);
   display: none;
-  /* justify-content: center;
-  align-items: center; */
   margin-bottom: .5rem;
-  /* text-align: center; */
 }
 
 #alert-msg1, #alert-msg2 {
   color: var(--red);
   font-size: var(--font-size-msg);
-  padding: .25rem;
+  padding: .75rem;
 }
 
 .btn-row {
@@ -175,8 +165,7 @@ dialog h2 {
 button {
   height: var(--zod-btn);
   width: var(--zod-btn);
-  /* background: none; */
-    background: var(--white);
+  background: var(--white);
   border: var(--border-width) solid var(--dk-gray);
   border-radius: 1rem;
   cursor: pointer;
@@ -184,8 +173,6 @@ button {
     justify-content: center;
     align-items: center;
   margin-bottom: .25rem;
-  /* padding: 1rem; */
-  /* padding: 1.5rem; */
 }
 
 .zod-sym {
@@ -232,7 +219,6 @@ button:hover, button:focus {
 }
 
 button:active {
-  background: var(--md-gray);
   transform: scale(.9);
 }
 
@@ -256,7 +242,6 @@ button:active {
 .btn-row #start-btn, .btn-row .clear-btn, #game-btns .clear-btn, #game-btns #reset-btn {
   height: var(--zod-btn);
   width: var(--other-btn-w);
-
   display: flex;
     justify-content: center;
     align-items: center;
@@ -264,14 +249,12 @@ button:active {
 }
 
 .clear-btn:hover, .clear-btn:focus, #start-btn:hover, #start-btn:focus, #reset-btn:hover, #reset-btn:focus {
-  /* background: var(--red); */
   transform: scale(1.05);
 }
 
 .clear-btn:active, #start-btn:active, #reset-btn:active {
-  transform: scale(.9);
+  transform: scale(.95);
 }
-
 
 .clear-btn:hover, .clear-btn:focus {
   background: var(--blue);
@@ -283,23 +266,18 @@ button:active {
   color: var(--white);
 }
 
-
 #game-container {
   height: auto;
   width: auto;
-  /* background: var(--white); */
-    /* border: 10px double var(--dk-gray); */
-  /* border-radius: 2rem; */
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   padding: .25rem;
 }
 
 #player-board {
   width: var(--master-width);
-  /* display: flex; */
   background: var(--white);
   border: .5rem double var(--dk-gray);
   border-radius: 2rem 2rem 0 0;
@@ -307,15 +285,7 @@ button:active {
 
 #player-container {
   display: flex;
-  justify-content: space-evenly;
-}
-
-#player-board {
-  width: var(--master-width);
-  /* display: flex; */
-  background: var(--white);
-  border: .5rem double var(--dk-gray);
-  border-radius: 2rem 2rem 0 0;
+    justify-content: space-evenly;
 }
 
 #player-one-box, #player-two-box {
@@ -329,8 +299,7 @@ button:active {
 
 #player-one-marker, #player-two-marker {
   height: 4.5rem;
-  width: 4.55rem;
-  /* background: none; */
+  width: 4.5rem;
   border: var(--border-width) solid var(--dk-gray);
   border-radius: 1rem;
   text-align: center;
@@ -338,30 +307,29 @@ button:active {
 }
 
 #player-one-name, #player-two-name, #player-one-type, #player-two-type  {
+  color: var(--red);
   font-size: var(--font-size);
 }
 
 #message-board {
+  height: fit-content;
   width: var(--master-width);
-  /* display: flex; */
   background: var(--white);
   border: .5rem double var(--dk-gray);
-  /* border-radius: 2rem 2rem 0 0; */
   font-family: var(--font);
   font-size: var(--font-size);
   padding: .25rem;
   text-align: center;
 }
 
-
 #game-board {
+  height: auto;
   width: var(--master-width);
   display: grid;   /* change back to none? */
-    grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
+    grid-template: repeat(3, minmax(6.5rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
     gap: 0;
   /* margin-top: 1rem; */
 }
-
 
 .cell {
   /* height: 5rem;
@@ -372,10 +340,18 @@ button:active {
   display: flex;
     justify-content: center;
     align-items: center;
-  /* font-size: 4rem; */
+  font-size: 4rem;
   /* margin: 0;
   padding: 0; */
   vertical-align: middle; 
+}
+
+.cell img {
+  height: 4.5rem;
+  width: 4.5rem;
+  border: var(--border-width) solid var(--dk-gray);
+  border-radius: 1rem;
+  padding: .25rem;
 }
 
 #game-btns {
@@ -389,15 +365,12 @@ button:active {
     align-items: center;
     gap: .25rem;
   /* margin: 1rem; */
-  padding: .25rem;
-
+  padding: .5rem;
 }
 
 #game-btns .clear-btn, #game-btns #reset-btn {
   margin-bottom: 0;
 }
-
-
 
 
 /* TOGGLE */
