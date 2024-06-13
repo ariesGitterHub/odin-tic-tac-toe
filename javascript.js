@@ -361,7 +361,7 @@ playerBoardModule.setPlayerBoard();
 //     console.log(p1Bkg);
 //   }
 
-//   if (playerTwoMarker) {
+//   if (playerTwoMarker) { and use them
 //     const p2 = playerTwoMarker.src;
 //     console.log(p2);
 //     const p2Bkg = playerTwoMarker.style.backgroundColor;
@@ -376,30 +376,48 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   const boardCells = document.querySelectorAll(".cell"); 
 
   let currentPlayer = "playerOne";
+  const messageBoard = document.querySelector("#message-board");
+  messageBoard.textContent = "Player One makes the first move.";
+  let round = 0
+  // const winCondition = [[cell0, cell1, cell2], [cell3, cell4, cell5], [cell6, cell7, cell8], [cell0, cell3, cell6], [cell1, cell4, cell7], [cell2, cell5, cell8], [cell0, cell4, cell8], [cell2, cell4, cell6]];
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", function () {
       if (!cell.innerHTML) {
+
         // Check if the cell is empty first...
         if (currentPlayer === "playerOne") {
-          cell.innerHTML = `<img src="${playerOneMarker.src}" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+          cell.innerHTML = `<img src="${playerOneMarker.src}" data="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
           currentPlayer = "playerTwo";
+          round++;
+          messageBoard.textContent = "Player Two, it is your turn.";
+          console.log(round);
         } else {
-          cell.innerHTML = `<img src="${playerTwoMarker.src}" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+          cell.innerHTML = `<img src="${playerTwoMarker.src}" data="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
           currentPlayer = "playerOne";
+          round++;
+          messageBoard.textContent = "Player One, it is your turn.";
+          console.log(round);
         }
+
       }
     });
   });
 }
 
-const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard( // It can be any two items from the 24, establishes the pattern...need to see more on this...
-  "ari1",
-  "Aries",
-  "ari2",
-  "Aries"
-);
+const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
 createBoardMarkers(playerOneMarker, playerTwoMarker);
+
+// const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard( // It can be any two items from the 24, establishes the pattern...need to see more on this...
+//   "ari1",
+//   "Aries",
+//   "ari2",
+//   "Aries"
+// );
+
+function checkWinner() {
+  
+}
 
 
 const gameBoardModule = (function () {
