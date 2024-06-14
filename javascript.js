@@ -436,7 +436,7 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           boardCells.forEach((cell) => {
             cell.innerHTML = "";
             messageBoard.style.backgroundColor = "";
-            cell.style.borderColor = "";
+            cell.style.border = "";
             round = 0;
 
             if (winner === 1) {
@@ -493,9 +493,10 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           playerB === playerC
         ) {
           console.log(cells[a], cells[b], cells[c]);
-          cells[a].style.borderColor = "var(--red)";
-          cells[b].style.borderColor = "var(--red)";
-          cells[c].style.borderColor = "var(--red)";
+
+          cells[a].style.border = "var(--border-width) dashed var(--red)";
+          cells[b].style.border = "var(--border-width) dashed var(--red)";;
+          cells[c].style.border = "var(--border-width) dashed var(--red)";
 
           return true;
         }

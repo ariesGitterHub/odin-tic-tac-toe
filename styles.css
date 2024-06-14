@@ -308,11 +308,12 @@ button:active {
 
 #player-one-name, #player-two-name, #player-one-type, #player-two-type  {
   color: var(--red);
-  font-size: var(--font-size);
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 #message-board {
-  height: 5rem;
+  height: 6rem;
   width: var(--master-width);
   background: var(--white);
   border: .5rem double var(--dk-gray);
