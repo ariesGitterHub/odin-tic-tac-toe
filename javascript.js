@@ -425,8 +425,16 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   const boardCells = document.querySelectorAll(".cell");
   let currentPlayer = 1; // Player One starts with marker 1
   const messageBoard = document.querySelector("#message-board");
-  messageBoard.textContent = "Player One makes the first move.";
+  const player1Turn = `Player One makes the first move.`;
+  const player2Turn = `Player Two makes the first move.`;
+  const player1Win = `Player One wins! Click the "New Game" button for another round.`;
+  const player2Win = `Player Two wins! Click the "New Game" button for another round.`;
+  const playersDraw = `This match is a draw. Click the "New Game" button for another round.`;
+  messageBoard.textContent = player1Turn;
   let round = 0;
+  let winner = 0;
+
+
 
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
@@ -435,11 +443,11 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
         if (currentPlayer === 1) {
           cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
           round++;
-          messageBoard.textContent = "Player Two, it is your turn.";
+          messageBoard.textContent = player2Turn;
         } else {
           cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
           round++;
-          messageBoard.textContent = "Player One, it is your turn.";
+          messageBoard.textContent = player1Turn;
         }
 
         // Check for win condition after at least 5 rounds (earliest possible win)
@@ -448,20 +456,55 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
             messageBoard.textContent = `Player ${
               currentPlayer === 1 ? "One" : "Two"
             } wins! Click the "New Game" button for another round.`;
-                messageBoard.style.backgroundColor =
-                  currentPlayer === 1
-                    ? playerOneMarker.style.backgroundColor
-                    : playerTwoMarker.style.backgroundColor;
+            messageBoard.style.backgroundColor =
+              currentPlayer === 1
+                ? playerOneMarker.style.backgroundColor
+                : playerTwoMarker.style.backgroundColor;
+                if (messageBoard.textContent === player1Win) {
+                  winner = 1;
+                } else if (messageBoard.textContent === player2Win) {
+                  winner = 2;
+                } else {
+                  winner = 0;
+                }
             // Disable further clicks or reset game
           } else if (round === 9) {
-            messageBoard.textContent = `This match is a draw. Click the "New Game" button for another round.`;
+            messageBoard.textContent = playersDraw;
           }
         }
 
         currentPlayer = currentPlayer === 1 ? 2 : 1; // Switch player turn
+
+        const resetBtn = document.querySelector("#new-game-btn");
+        resetBtn.addEventListener("click", useNewGameBtn);
+
+        function useNewGameBtn() {
+          boardCells.forEach((cell) => {
+            // cell.addEventListener("click", function () {
+            cell.innerHTML = "";
+            messageBoard.style.backgroundColor = "";
+            round = 0;
+
+            if (winner === 1) {
+              currentPlayer = 2;
+              messageBoard.textContent = player2Turn;
+            } else if (winner === 2) {
+              currentPlayer = 1;
+              messageBoard.textContent = player1Turn;
+            } else {
+              currentPlayer = 1;
+              messageBoard.textContent = player1Turn;
+            }
+
+            // });
+          });
+        }
+
+
       }
     });
   });
+
 
   function checkWinCondition() {
     const cells = document.querySelectorAll(".cell");
@@ -504,11 +547,6 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
 
 const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
 createBoardMarkers(playerOneMarker, playerTwoMarker);
-
-
-function checkWinner() {
-  
-}
 
 
 const gameBoardModule = (function () {

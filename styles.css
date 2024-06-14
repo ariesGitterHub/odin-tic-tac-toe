@@ -239,7 +239,7 @@ button:active {
   }
 }
 
-.btn-row #start-btn, .btn-row .clear-btn, #game-btns .clear-btn, #game-btns #reset-btn {
+.btn-row #start-btn, .btn-row .clear-btn, #game-btns .clear-btn, #game-btns #new-game-btn {
   height: var(--zod-btn);
   width: var(--other-btn-w);
   display: flex;
@@ -248,11 +248,11 @@ button:active {
   font-family: var(--font);
 }
 
-.clear-btn:hover, .clear-btn:focus, #start-btn:hover, #start-btn:focus, #reset-btn:hover, #reset-btn:focus {
+.clear-btn:hover, .clear-btn:focus, #start-btn:hover, #start-btn:focus, #new-game-btn:hover, #new-game-btn:focus {
   transform: scale(1.05);
 }
 
-.clear-btn:active, #start-btn:active, #reset-btn:active {
+.clear-btn:active, #start-btn:active, #new-game-btn:active {
   transform: scale(.95);
 }
 
@@ -261,7 +261,7 @@ button:active {
   color: var(--white);
 }
 
-#start-btn:hover, #start-btn:focus, #reset-btn:hover, #reset-btn:focus {
+#start-btn:hover, #start-btn:focus, #new-game-btn:hover, #new-game-btn:focus {
   background: var(--green);
   color: var(--white);
 }
@@ -371,7 +371,7 @@ button:active {
   padding: .5rem;
 }
 
-#game-btns .clear-btn, #game-btns #reset-btn {
+#game-btns .clear-btn, #game-btns #new-game-btn {
   margin-bottom: 0;
 }
 
