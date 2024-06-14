@@ -360,8 +360,8 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   const messageBoard = document.querySelector("#message-board");
   const player1Turn = `Player One makes the first move.`;
   const player2Turn = `Player Two makes the first move.`;
-  const player1Win = `Player One wins! Click the "New Game" button for another round.`;
-  const player2Win = `Player Two wins! Click the "New Game" button for another round.`;
+  const player1Win = `Player One wins! Click "New Game" for another match.`;
+  const player2Win = `Player Two wins! Click "New Game" for another match.`;
   const playersDraw = `This match is a draw. Click the "New Game" button for another round.`;
   messageBoard.textContent = player1Turn;
   let round = 0;
@@ -387,7 +387,7 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           if (checkWinCondition()) {
             messageBoard.textContent = `Player ${
               currentPlayer === 1 ? "One" : "Two"
-            } wins! Click the "New Game" button for another round.`;
+            } wins! Click "New Game" for another match.`;
             messageBoard.style.backgroundColor =
               currentPlayer === 1
                 ? playerOneMarker.style.backgroundColor
@@ -436,7 +436,7 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           boardCells.forEach((cell) => {
             cell.innerHTML = "";
             messageBoard.style.backgroundColor = "";
-            cell.style.border = "";
+            cell.style.backgroundColor = "";
             round = 0;
 
             if (winner === 1) {
@@ -494,9 +494,10 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
         ) {
           console.log(cells[a], cells[b], cells[c]);
 
-          cells[a].style.border = "var(--border-width) dashed var(--red)";
-          cells[b].style.border = "var(--border-width) dashed var(--red)";;
-          cells[c].style.border = "var(--border-width) dashed var(--red)";
+          cells[a].style.backgroundColor =
+            "var(--red)";
+          cells[b].style.backgroundColor = "var(--red)";
+          cells[c].style.backgroundColor = "var(--red)";
 
           return true;
         }
