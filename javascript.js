@@ -430,14 +430,14 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
 
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
-      if (!cell.innerHTML) {
+      if (!cell.innerHTML && !checkWinCondition()) {
         // Check if the cell is empty first...
         if (currentPlayer === 1) {
-          cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+          cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background: ${playerOneMarker.style.backgroundColor};" />`;
           round++;
           messageBoard.textContent = "Player Two, it is your turn.";
         } else {
-          cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+          cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background: ${playerTwoMarker.style.backgroundColor};" />`;
           round++;
           messageBoard.textContent = "Player One, it is your turn.";
         }
@@ -445,9 +445,10 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
         // Check for win condition after at least 5 rounds (earliest possible win)
         if (round >= 5) {
           if (checkWinCondition()) {
-            messageBoard.textContent = `PLAYER ${
-              currentPlayer === 1 ? "ONE" : "TWO"
-            } WINS!!!`;
+            messageBoard.textContent = `Player ${
+              currentPlayer === 1 ? "One" : "Two"
+            } wins! Click "New Game" button for another round.`;
+            // messageBoard.style.back
             // Disable further clicks or reset game
           } else if (round === 9) {
             messageBoard.textContent = "TIE MATCH.";

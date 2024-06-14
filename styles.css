@@ -312,10 +312,13 @@ button:active {
 }
 
 #message-board {
-  height: fit-content;
+  height: 5rem;
   width: var(--master-width);
   background: var(--white);
   border: .5rem double var(--dk-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: var(--font);
   font-size: var(--font-size);
   padding: .25rem;
