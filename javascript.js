@@ -494,10 +494,9 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
         ) {
           console.log(cells[a], cells[b], cells[c]);
 
-          cells[a].style.backgroundColor =
-            "var(--red)";
-          cells[b].style.backgroundColor = "var(--red)";
-          cells[c].style.backgroundColor = "var(--red)";
+          cells[a].style.backgroundColor = "var(--dk-gray)";
+          cells[b].style.backgroundColor = "var(--dk-gray)";
+          cells[c].style.backgroundColor = "var(--dk-gray)";
 
           return true;
         }
