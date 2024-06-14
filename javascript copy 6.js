@@ -346,13 +346,80 @@ const playerBoardModule = (function () {
 
   return {
     setPlayerBoard,
-    playerTwoType,
   };
 })();
 
 playerBoardModule.setPlayerBoard();
 // playerBoardModule.setPlayerMarker();
 
+
+// function setPlayerMarker(playerOneMarker, playerTwoMarker) {
+//   if (playerOneMarker) {
+//     const p1 = playerOneMarker.src;
+//     console.log(p1);
+//     const p1Bkg = playerOneMarker.style.backgroundColor;
+//     console.log(p1Bkg);
+//   }
+
+//   if (playerTwoMarker) { and use them
+//     const p2 = playerTwoMarker.src;
+//     console.log(p2);
+//     const p2Bkg = playerTwoMarker.style.backgroundColor;
+//     console.log(p2Bkg);
+//   }
+// }
+
+// setPlayerMarker();
+
+// function createBoardMarkers(playerOneMarker, playerTwoMarker) {
+ 
+//   const boardCells = document.querySelectorAll(".cell"); 
+
+//   let currentPlayer = "playerOne";
+//   const messageBoard = document.querySelector("#message-board");
+//   messageBoard.textContent = "Player One makes the first move.";
+//   let round = 0
+
+
+//   boardCells.forEach((cell) => {
+//     cell.addEventListener("click", function () {
+//       if (!cell.innerHTML) {
+
+//         // Check if the cell is empty first...
+//         if (currentPlayer === "playerOne") {
+//           cell.innerHTML = `<img src="${playerOneMarker.src}" data="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+//           currentPlayer = "playerTwo";
+//           round++;
+//           messageBoard.textContent = "Player Two, it is your turn.";
+//           console.log(round);
+//         } else {
+//           cell.innerHTML = `<img src="${playerTwoMarker.src}" data="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+//           currentPlayer = "playerOne";
+//           round++;
+//           messageBoard.textContent = "Player One, it is your turn.";
+//           console.log(round);
+//         }
+
+//         if (round === 9) {
+//           messageBoard.textContent = "TIE MATCH.";
+//         }
+
+//       }
+//     });
+//   });
+// }
+
+// const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
+// createBoardMarkers(playerOneMarker, playerTwoMarker);
+
+// const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard( // It can be any two items from the 24, establishes the pattern...need to see more on this...
+//   "ari1",
+//   "Aries",
+//   "ari2",
+//   "Aries"
+// );
+
+//************************* */
 
 function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   const boardCells = document.querySelectorAll(".cell");
@@ -366,6 +433,7 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   messageBoard.textContent = player1Turn;
   let round = 0;
   let winner = 0;
+
 
 
   boardCells.forEach((cell, index) => {
@@ -392,18 +460,13 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
               currentPlayer === 1
                 ? playerOneMarker.style.backgroundColor
                 : playerTwoMarker.style.backgroundColor;
-            if (messageBoard.textContent === player1Win) {
-              winner = 1;
-            } else if (messageBoard.textContent === player2Win) {
-              winner = 2;
-            } else {
-              winner = 0;
-            }
-
-            console.log(checkWinCondition());
-
-
-
+                if (messageBoard.textContent === player1Win) {
+                  winner = 1;
+                } else if (messageBoard.textContent === player2Win) {
+                  winner = 2;
+                } else {
+                  winner = 0;
+                }
             // Disable further clicks or reset game
           } else if (round === 9) {
             messageBoard.textContent = playersDraw;
@@ -412,23 +475,6 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
 
         currentPlayer = currentPlayer === 1 ? 2 : 1; // Switch player turn
 
-        // // Check if Player Two is a computer
-        // const isComputerPlayer = playerTwoType.textContent === "(Computer)";
-        // if (isComputerPlayer && currentPlayer === 2) {
-        //   // Implement the logic for the computer's move
-        //   // For simplicity, let's assume the computer randomly chooses an empty cell
-        //   setTimeout(() => {
-        //     const emptyCells = Array.from(boardCells).filter(
-        //       (cell) => !cell.innerHTML
-        //     );
-        //     if (emptyCells.length > 0) {
-        //       const randomCell =
-        //         emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        //       randomCell.click();
-        //     }
-        //   }, 500); // Add a slight delay for the computer's move
-        // }
-
         const resetBtn = document.querySelector("#new-game-btn");
         resetBtn.addEventListener("click", useNewGameBtn);
 
@@ -436,7 +482,6 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           boardCells.forEach((cell) => {
             cell.innerHTML = "";
             messageBoard.style.backgroundColor = "";
-            cell.style.borderColor = "";
             round = 0;
 
             if (winner === 1) {
@@ -445,32 +490,31 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
             } else if (winner === 2) {
               currentPlayer = 1;
               messageBoard.textContent = player1Turn;
-            }
+            } 
             // else {
             //   currentPlayer = 1;
             //   messageBoard.textContent = player1Turn;
             // }
+
           });
         }
+
+
       }
-
     });
-
-    });
-
-  
+  });
 
 
   function checkWinCondition() {
     const cells = document.querySelectorAll(".cell");
     const winPatterns = [
-      [0, 1, 2], // Rows
-      [3, 4, 5], // Rows
+      [0, 1, 2],
+      [3, 4, 5],
       [6, 7, 8], // Rows
-      [0, 3, 6], // Columns
-      [1, 4, 7], // Columns
+      [0, 3, 6],
+      [1, 4, 7],
       [2, 5, 8], // Columns
-      [0, 4, 8], // Diagonals
+      [0, 4, 8],
       [2, 4, 6], // Diagonals
     ];
 
@@ -492,11 +536,6 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           playerA === playerB &&
           playerB === playerC
         ) {
-          console.log(cells[a], cells[b], cells[c]);
-          cells[a].style.borderColor = "var(--red)";
-          cells[b].style.borderColor = "var(--red)";
-          cells[c].style.borderColor = "var(--red)";
-
           return true;
         }
       }
