@@ -480,7 +480,6 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
 
         function useNewGameBtn() {
           boardCells.forEach((cell) => {
-            // cell.addEventListener("click", function () {
             cell.innerHTML = "";
             messageBoard.style.backgroundColor = "";
             round = 0;
@@ -491,12 +490,12 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
             } else if (winner === 2) {
               currentPlayer = 1;
               messageBoard.textContent = player1Turn;
-            } else {
-              currentPlayer = 1;
-              messageBoard.textContent = player1Turn;
-            }
+            } 
+            // else {
+            //   currentPlayer = 1;
+            //   messageBoard.textContent = player1Turn;
+            // }
 
-            // });
           });
         }
 
