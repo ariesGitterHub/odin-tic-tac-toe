@@ -100,8 +100,7 @@ body {
 
 dialog {
   height: auto;
-  /* width: var(--master-width); */
-  width: 98vw;
+  width: var(--master-width);
   background: var(--white);
   border: calc(var(--border-width) * 3) double var(--dk-gray);
   border-radius: 2rem;
@@ -269,7 +268,7 @@ button:active {
 
 #game-container {
   height: auto;
-  width: 98vw;
+  width: auto;
   display: none;
     flex-direction: column;
     justify-content: center;
