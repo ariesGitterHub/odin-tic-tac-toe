@@ -25,7 +25,7 @@
 --glow2: var(--dk-gray); */
 
 --master-width1: 330px;
---master-width2: 95vw;
+--master-width2: 99vw;
 --border-width1: .5rem;
 --border-width2: 3px;
 --font-title: "Spicy Rice", serif;
@@ -41,7 +41,7 @@
 --sym-img-size: 2.5rem;
 --alert-msg-ht: 1.75rem;
 --marker-img-size: 4.5rem;
---msg-board-size: 6rem;
+--msg-board-ht: 4.75rem;
 
 }
 
@@ -95,7 +95,7 @@ body {
   font-family: var(--font-title);
   font-size: var(--font-title-size);
   font-weight: 100;
-  margin: .5rem;
+  margin: .25rem;
   text-shadow: 0 0 10px var(--white), 0 0 15px var(--md-gray) 
 }
 
@@ -151,27 +151,44 @@ dialog h2 {
 }
 
 .dialog-item1 h2 {
-  margin-top: 1rem;
+  margin-top: .5rem;
 }
 
-.dialog-item2 {
+#modal-player-one, #modal-player-two {
   display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
-  margin: 0 0 1rem 0;
-}
-
-.dialog-item3 {
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-  margin: -1.5rem 0 1rem 0;
+  margin: 0 0 .5rem 0;
 }
 
 #modal-player-one {
   margin-top: .5rem;
+}
+
+#modal-player-two {
+  animation: fadeIn 1s ease forwards; /* Define the fadeIn animation */
+  display: none;
+  opacity: .5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px); /* Start slightly above and move down */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Move to original position */
+  }
+}
+
+#modal-btns {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  margin: -1rem 0 .5rem 0;
 }
 
 #alert1, #alert2 {
@@ -261,22 +278,6 @@ button:active {
   transform: scale(.9);
 }
 
-#modal-player-two {
-  animation: fadeIn 1s ease forwards; /* Define the fadeIn animation */
-  display: none;
-  opacity: .5;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-50px); /* Start slightly above and move down */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0); /* Move to original position */
-  }
-}
 
 .btn-row #start-btn, .btn-row .clear-btn, #game-btns .clear-btn, #game-btns #new-game-btn {
   height: var(--zod-btn);
@@ -334,7 +335,7 @@ button:active {
   justify-content: center;
   align-items: center;
   font-family: var(--font);
-  padding: .25rem;
+  padding: .5rem 0 .5rem 0;
 }
 
 #player-one-box h2, #player-two-box h2 {
@@ -358,7 +359,7 @@ button:active {
 }
 
 #message-board {
-  height: var(--msg-board-size);
+  height: var(--msg-board-ht);
   /* width: var(--master-width); */
   width: var(--master-width2);
   background: var(--white);
@@ -437,7 +438,7 @@ button:active {
   width: 38px;
   height: 24px;  
   display: inline-block;
-  margin: .85rem .5rem 0 .5rem;
+  margin: .5rem .5rem 0 .5rem;
 }
 
 /* Hide default HTML checkbox */
@@ -475,7 +476,7 @@ button:active {
 }
 
 input:focus + .slider {
-  outline: 3px solid var(--dk-gray);
+  outline: var(--border-width2) solid var(--dk-gray);
 }
 
 input:checked + .slider:before {
@@ -489,12 +490,12 @@ input:checked + .slider:before {
 
 /* MEDIA QUERIES */
 
-@media (min-width: 350px) {
+@media (min-width: 425px) {
   :root {
   /* Increase everything by .5 per screen size increase. */
 
   /* --master-width: 325px; */
-  --master-width: 400px;
+  --master-width1: 425px;
 
   --border-width1: .5rem;
   --border-width2: 3px;
@@ -523,8 +524,8 @@ input:checked + .slider:before {
 /* --alert-msg-ht: 1.75rem; */
   --alert-msg-ht: 2.25rem;
 
-  /* --msg-board-size: 6rem; */
-  --msg-board-size: 7rem;
+  /* --msg-board-ht: 6rem; */
+  --msg-board-ht: 7rem;
 
 
   }
@@ -563,7 +564,7 @@ input:checked + .slider:before {
    --font-title-size: 4.75rem;
    --font-size: 2.25rem;
     --font-size-alert-msg: 1.55rem;
-   --msg-board-size: 8rem;
+   --msg-board-ht: 8rem;
   }
 
   #game-board {
