@@ -24,7 +24,8 @@
 /* --glow1: var(--red);
 --glow2: var(--dk-gray); */
 
---master-width: 330px;
+--master-width1: 330px;
+--master-width2: 95vw;
 --border-width1: .5rem;
 --border-width2: 3px;
 --font-title: "Spicy Rice", serif;
@@ -118,6 +119,7 @@ body {
 #modal-container {
   /* height: auto;
   width: var(--master-width); */
+  /* width: 100vw; */
   display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,7 +129,7 @@ body {
 
 dialog {
   height: auto;
-  width: var(--master-width);
+  width: var(--master-width2);
   background: var(--white);
   border: var(--border-width1) double var(--dk-gray);
   border-radius: 2rem;
@@ -314,7 +316,8 @@ button:active {
 }
 
 #player-board {
-  width: var(--master-width);
+  /* width: var(--master-width); */
+  width: var(--master-width2);
   background: var(--white);
   border: var(--border-width1) double var(--dk-gray);
   border-radius: 2rem 2rem 0 0;
@@ -356,7 +359,8 @@ button:active {
 
 #message-board {
   height: var(--msg-board-size);
-  width: var(--master-width);
+  /* width: var(--master-width); */
+  width: var(--master-width2);
   background: var(--white);
   border: var(--border-width1) double var(--dk-gray);
   display: flex;
@@ -370,7 +374,8 @@ button:active {
 
 #game-board {
   height: auto;
-  width: var(--master-width);
+  /* width: var(--master-width); */
+  width: var(--master-width2);  
   display: grid;   /* change back to none? */
     grid-template: repeat(3, minmax(6.5rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
     gap: 0;
@@ -401,7 +406,8 @@ button:active {
 }
 
 #game-btns {
-  width: var(--master-width);
+  /* width: var(--master-width); */
+  width: var(--master-width2);
   /* display: flex; */
   background: var(--white);
   border: var(--border-width1) double var(--dk-gray);
@@ -483,7 +489,7 @@ input:checked + .slider:before {
 
 /* MEDIA QUERIES */
 
-@media (min-width: 600px) {
+@media (min-width: 350px) {
   :root {
   /* Increase everything by .5 per screen size increase. */
 
@@ -523,9 +529,25 @@ input:checked + .slider:before {
 
   }
 
-  #game-board {
-    grid-template: repeat(3, minmax(8rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
+  dialog {
+    width: var(--master-width1);
+  }
 
+  #player-board {
+    width: var(--master-width1);
+  }
+
+  #message-board {
+    width: var(--master-width1);
+  }
+
+  #game-board {
+    width: var(--master-width1);
+    grid-template: repeat(3, minmax(8rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
+  }
+
+  #game-btns {
+    width: var(--master-width1);
   }
 
 }
