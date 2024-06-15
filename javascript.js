@@ -206,37 +206,37 @@ const modalStartBtnModule = (function () {
 
     // One player, player one sign not selected...
     if (!numPlayers.checked && playerOneSignId === "") {
-      alert1.style.display = "block";
+      alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       return;
     }
 
     // Two players, player one and player two signs not selected...
     if (numPlayers.checked && playerOneSignId === "" && playerTwoSignId === "") {
-      alert1.style.display = "block";
+      alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
-      alert2.style.display = "block";
+      alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
     }
 
     // Two players, player two sign not selected...
     if (numPlayers.checked && playerTwoSignId === "") {
-      alert2.style.display = "block";
+      alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
     }
 
     // Two players, player one sign not selected...
     if (numPlayers.checked && playerOneSignId === "") {
-      alert1.style.display = "block";
+      alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       return;
     }
 
     // Two players, player two sign not selected...
     if (numPlayers.checked && playerTwoSignId === "") {
-      alert2.style.display = "block";
+      alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
     }
@@ -358,12 +358,14 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   const boardCells = document.querySelectorAll(".cell");
   let currentPlayer = 1; // Player One starts with marker 1
   const messageBoard = document.querySelector("#message-board");
-  const player1Turn = `Player One makes the first move.`;
-  const player2Turn = `Player Two makes the first move.`;
+  const player1Opening = `Player One makes the first move.`;
+  const player2Opening = `Player Two makes the first move.`;
+  const player1Turn = `Player One pick a square.`;
+  const player2Turn = `Player Two, it is your turn.`;
   const player1Win = `Player One wins! Click "New Game" for another match.`;
   const player2Win = `Player Two wins! Click "New Game" for another match.`;
   const playersDraw = `This match is a draw. Click the "New Game" button for another round.`;
-  messageBoard.textContent = player1Turn;
+  messageBoard.textContent = player1Opening;
   let round = 0;
   let winner = 0;
 
@@ -441,10 +443,10 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
 
             if (winner === 1) {
               currentPlayer = 2;
-              messageBoard.textContent = player2Turn;
+              messageBoard.textContent = player2Opening;
             } else if (winner === 2) {
               currentPlayer = 1;
-              messageBoard.textContent = player1Turn;
+              messageBoard.textContent = player1Opening;
             }
             // else {
             //   currentPlayer = 1;
