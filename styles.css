@@ -23,9 +23,9 @@
 
 /* --glow1: var(--red);
 --glow2: var(--dk-gray); */
-
+--min-width: 300px;
 --master-width1: 330px;
---master-width2: 99vw;
+--master-width2: 98vw;
 --border-width1: .5rem;
 --border-width2: 3px;
 --font-title: "Spicy Rice", serif;
@@ -158,7 +158,7 @@ dialog h2 {
   display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
   margin: 0 0 .5rem 0;
 }
 
@@ -198,6 +198,7 @@ dialog h2 {
   background-color: var(--yellow);
   border: var(--border-width2) dashed var(--dk-gray);
   display: none;
+  justify-content: center;
     align-items: center;
     /* flex-wrap: wrap; */
   margin: 0 0 .5rem 0;
@@ -378,14 +379,14 @@ button:active {
   /* width: var(--master-width); */
   width: var(--master-width2);  
   display: grid;   /* change back to none? */
-    grid-template: repeat(3, minmax(6.5rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
+    grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(6rem, 1fr));
     gap: 0;
   /* margin-top: 1rem; */
 }
 
 .cell {
-  /* height: 5rem;
-  width: 5rem; */
+  height: auto;
+  width: auto;
   background: var(--white);
   border: var(--border-width1) double var(--dk-gray);
   color: var(--dk-gray);
@@ -403,7 +404,7 @@ button:active {
   width: var(--marker-img-size);
   border: var(--border-width2) solid var(--dk-gray);
   border-radius: 1rem;
-  padding: .25rem;
+  margin: .5rem;
 }
 
 #game-btns {
@@ -490,6 +491,38 @@ input:checked + .slider:before {
 
 /* MEDIA QUERIES */
 
+@media (width < 320px) {
+
+  :root {
+
+  }
+  dialog {
+   min-width: var(--min-width);
+  }
+
+  #player-board {
+   min-width: var(--min-width);
+  }
+
+  #message-board {
+   min-width: var(--min-width);
+  }
+
+  #game-board {
+   min-width: var(--min-width);
+  }
+
+  #game-btns {
+   min-width: var(--min-width);
+  }
+
+
+ .cell {
+  background-color:red;
+   min-width: var(--min-width);
+ }
+}
+
 @media (min-width: 425px) {
   :root {
   /* Increase everything by .5 per screen size increase. */
@@ -544,7 +577,7 @@ input:checked + .slider:before {
 
   #game-board {
     width: var(--master-width1);
-    grid-template: repeat(3, minmax(8rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
+    grid-template: repeat(3, minmax(9rem, 1fr) ) / repeat(3, minmax(7rem, 1fr));
   }
 
   #game-btns {
