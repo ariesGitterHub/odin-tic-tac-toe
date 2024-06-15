@@ -24,7 +24,7 @@
 /* --glow1: var(--red);
 --glow2: var(--dk-gray); */
 
---master-width: 325px;
+--master-width: 330px;
 --border-width1: .5rem;
 --border-width2: 3px;
 --font-title: "Spicy Rice", serif;
@@ -43,6 +43,23 @@
 --msg-board-size: 6rem;
 
 }
+
+/* Stop Apple Safari defaults */
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    text-transform: none;
+}
+
 
 * {
   box-sizing: border-box;
@@ -154,6 +171,7 @@ dialog h2 {
 #alert1, #alert2 {
   align-self: center;
   height: var(--alert-msg-ht);
+  width: fit-content;
   background-color: var(--yellow);
   border: var(--border-width2) dashed var(--dk-gray);
   display: none;
