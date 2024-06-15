@@ -346,7 +346,7 @@ const playerBoardModule = (function () {
 
   return {
     setPlayerBoard,
-    playerTwoType,
+    // playerTwoType,
   };
 })();
 
@@ -368,6 +368,8 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   messageBoard.textContent = player1Opening;
   let round = 0;
   let winner = 0;
+  let gameActive = false
+  const playerTwoType = document.querySelector("#player-two-type");
 
 
   boardCells.forEach((cell, index) => {
@@ -377,10 +379,12 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
         if (currentPlayer === 1) {
           cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
           round++;
+          gameActive = true
           messageBoard.textContent = player2Turn;
         } else {
           cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
           round++;
+          gameActive = true;
           messageBoard.textContent = player1Turn;
         }
 
@@ -396,43 +400,73 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
                 : playerTwoMarker.style.backgroundColor;
             if (messageBoard.textContent === player1Win) {
               winner = 1;
+              gameActive = false;
             } else if (messageBoard.textContent === player2Win) {
               winner = 2;
-            } else {
-              winner = 0;
-            }
+              gameActive = false;
+            } 
+            // else {
+            //   winner = 0;
+            //   gameActive = false;
+            // }
 
             console.log(checkWinCondition());
 
-
-
             // Disable further clicks or reset game
           } else if (round === 9) {
+            gameActive = false;
             messageBoard.textContent = playersDraw;
           }
         }
 
         currentPlayer = currentPlayer === 1 ? 2 : 1; // Switch player turn
 
-        // // Check if Player Two is a computer
-        // const isComputerPlayer = playerTwoType.textContent === "(Computer)";
-        // if (isComputerPlayer && currentPlayer === 2) {
-        //   // Implement the logic for the computer's move
-        //   // For simplicity, let's assume the computer randomly chooses an empty cell
-        //   setTimeout(() => {
-        //     const emptyCells = Array.from(boardCells).filter(
-        //       (cell) => !cell.innerHTML
-        //     );
-        //     if (emptyCells.length > 0) {
-        //       const randomCell =
-        //         emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        //       randomCell.click();
-        //     }
-        //   }, 500); // Add a slight delay for the computer's move
-        // }
-
         const resetBtn = document.querySelector("#new-game-btn");
         resetBtn.addEventListener("click", useNewGameBtn);
+
+        // function useNewGameBtn() {
+        //   boardCells.forEach((cell) => {
+        //     cell.innerHTML = "";
+        //     messageBoard.style.backgroundColor = "";
+        //     cell.style.backgroundColor = "";
+        //     round = 0;
+
+        //     if (winner === 1) {
+        //       currentPlayer === 2;
+        //       messageBoard.textContent = player2Opening;
+        //     } else if (winner === 2) {
+        //       currentPlayer === 1;
+        //       messageBoard.textContent = player1Opening;
+        //     }
+        //     else if (useNewGameBtn() && winner === 1) {
+        //       currentPlayer = 2;
+        //       messageBoard.textContent = player2Opening;
+        //     }
+        //   });
+        // }
+
+        // Check if Player Two is a computer
+        
+        const isComputerPlayer = playerTwoType.textContent === "(Computer)";
+
+        function computerPlayer() {
+          if (isComputerPlayer && currentPlayer === 2) {
+          setTimeout(() => {
+            const emptyCells = Array.from(boardCells).filter(
+              (cell) => !cell.innerHTML
+            );
+            if (emptyCells.length > 0 && currentPlayer === 2) { // Putting currentPlayer 1 check here fixed the problem with computerPlayer hitting all the squares without player 1 input.
+
+              const randomCell =
+                emptyCells[Math.floor(Math.random() * emptyCells.length)];
+              randomCell.click();
+            }
+          }, 500); // Add a slight delay for the computer's move
+        }
+
+      }
+
+      computerPlayer()
 
         function useNewGameBtn() {
           boardCells.forEach((cell) => {
@@ -440,20 +474,25 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
             messageBoard.style.backgroundColor = "";
             cell.style.backgroundColor = "";
             round = 0;
+            gameActive = true;
 
-            if (winner === 1) {
-              currentPlayer = 2;
+            if (winner === 1 && isComputerPlayer) {
+              currentPlayer === 2;
+              messageBoard.textContent = player2Opening;
+              computerPlayer();
+            } else if (winner === 1) {
+              currentPlayer === 2;
               messageBoard.textContent = player2Opening;
             } else if (winner === 2) {
-              currentPlayer = 1;
+              currentPlayer === 1;
               messageBoard.textContent = player1Opening;
-            }
-            // else {
-            //   currentPlayer = 1;
-            //   messageBoard.textContent = player1Turn;
-            // }
+            } 
+
           });
         }
+
+        console.log(currentPlayer);
+        console.log(winner);
       }
 
     });
