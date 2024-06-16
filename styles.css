@@ -50,15 +50,15 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: none;
+    /* background: none;
     border: none;
     padding: 0;
-    margin: 0;
+    margin: 0; */
     color: inherit;
-    font: inherit;
+    /* font: inherit;
     line-height: normal;
     overflow: visible;
-    text-transform: none;
+    text-transform: none; */
 }
 
 
@@ -86,7 +86,7 @@ body {
 #app-title {
   display: flex;
     justify-content: center;
-
+    align-items: center;
 }
 
 #app-title h1 {
@@ -95,8 +95,8 @@ body {
   font-family: var(--font-title);
   font-size: var(--font-title-size);
   font-weight: 100;
-  margin: .25rem;
-  text-shadow: 0 0 10px var(--white), 0 0 15px var(--md-gray) 
+  margin: .2rem;
+  text-shadow: 0 0 20px var(--white), 0 0 25px var(--md-gray) 
 }
 
 /* Comment out but keep glow animation */
@@ -160,11 +160,11 @@ dialog h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  margin: 0 0 .5rem 0;
+  margin: 0 0 .25rem 0;
 }
 
 #modal-player-one {
-  margin-top: .5rem;
+  margin-top: .25rem;
 }
 
 #modal-player-two {
@@ -189,7 +189,7 @@ dialog h2 {
     flex-direction: column;
     justify-content: center;
     align-items: start;
-  margin: -1rem 0 .5rem 0;
+  margin: -1rem 0 .25rem 0;
 }
 
 #alert1, #alert2 {
@@ -202,7 +202,7 @@ dialog h2 {
   justify-content: center;
     align-items: center;
     /* flex-wrap: wrap; */
-  margin: 0 0 .5rem 0;
+  margin: 0 0 .25rem 0;
 }
 
 #alert-msg1, #alert-msg2 {
@@ -337,7 +337,7 @@ button:active {
   justify-content: center;
   align-items: center;
   font-family: var(--font);
-  padding: .5rem 0 .5rem 0;
+  padding: .25rem 0 .25rem 0;
 }
 
 #player-one-box h2, #player-two-box h2 {
@@ -386,17 +386,17 @@ button:active {
 }
 
 .cell {
-  height: auto;
-  width: auto;
+  /* height: auto;
+  width: auto; */
   background: var(--white);
   border: var(--border-width1) double var(--dk-gray);
-  color: var(--dk-gray);
+  /* color: var(--dk-gray); */
   display: flex;
     justify-content: center;
     align-items: center;
   /* font-size: 4rem; */
-  /* margin: 0;
-  padding: 0; */
+  margin: 0;
+  padding: 0;
   vertical-align: middle; 
 }
 
@@ -405,7 +405,7 @@ button:active {
   width: var(--marker-img-size);
   border: var(--border-width2) solid var(--dk-gray);
   border-radius: 1rem;
-  margin: .5rem;
+  padding: .25rem;
 }
 
 #game-btns {
