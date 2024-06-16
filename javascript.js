@@ -244,6 +244,7 @@ const modalStartBtnModule = (function () {
     // Close the dialog and proceed with the game...no need for an else statement.
     dialog.style.display = "none";
     gameContainer.style.display = "flex";
+    console.log(`Player ONE's starting turn.`);
     // console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
 
  // Call another function with the selected sign data
@@ -368,8 +369,19 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   messageBoard.textContent = player1Opening;
   let round = 0;
   let winner = 0;
-  let gameActive = false
+  // let gameActive = false
   const playerTwoType = document.querySelector("#player-two-type");
+
+
+    function updateMessageBoard() {
+      if (winner === 1) {
+        messageBoard.textContent = player2Opening;
+      } else if (winner === 2) {
+        messageBoard.textContent = player1Opening;
+      }
+    }
+
+    updateMessageBoard();
 
 
   boardCells.forEach((cell, index) => {
@@ -379,12 +391,12 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
         if (currentPlayer === 1) {
           cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
           round++;
-          gameActive = true
+          // gameActive = true
           messageBoard.textContent = player2Turn;
-        } else {
+        } else if (currentPlayer === 2) {
           cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
           round++;
-          gameActive = true;
+          // gameActive = true;
           messageBoard.textContent = player1Turn;
         }
 
@@ -400,10 +412,10 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
                 : playerTwoMarker.style.backgroundColor;
             if (messageBoard.textContent === player1Win) {
               winner = 1;
-              gameActive = false;
+              // gameActive = false;
             } else if (messageBoard.textContent === player2Win) {
               winner = 2;
-              gameActive = false;
+              // gameActive = false;
             } 
             // else {
             //   winner = 0;
@@ -412,7 +424,7 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
 
             // Disable further clicks or reset game
           } else if (round === 9) {
-            gameActive = false;
+            // gameActive = false;
             messageBoard.textContent = playersDraw;
           }
         }
@@ -466,32 +478,71 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
 
       computerPlayer()
 
+        // function useNewGameBtn() {
+        //   boardCells.forEach((cell) => {
+        //     cell.innerHTML = ""; 
+        //     messageBoard.style.backgroundColor = "";
+        //     cell.style.backgroundColor = "";
+        //     round = 0;
+        //     // gameActive = true;
+
+        //     if (winner === 1 && isComputerPlayer) {
+        //       currentPlayer === 2;
+        //       messageBoard.textContent = player2Opening;
+        //       computerPlayer();
+        //     } 
+        //     else if (winner === 2 && isComputerPlayer) {
+        //       currentPlayer === 1;
+        //       messageBoard.textContent = player2Opening;
+        //       computerPlayer();
+        //     } 
+        //     else if (winner === 1) {
+        //       currentPlayer === 2;
+        //       messageBoard.textContent = player2Opening;
+        //     } 
+        //     else if (winner === 2) {
+        //       currentPlayer === 1;
+        //       messageBoard.textContent = player1Opening;
+        //     } 
+
+
+        //   });
+        // }
+
         function useNewGameBtn() {
           boardCells.forEach((cell) => {
             cell.innerHTML = "";
             messageBoard.style.backgroundColor = "";
             cell.style.backgroundColor = "";
             round = 0;
-            gameActive = true;
 
-            if (winner === 1 && isComputerPlayer) {
-              currentPlayer === 2;
-              messageBoard.textContent = player2Opening;
-              computerPlayer();
-            } else if (winner === 1) {
-              currentPlayer === 2;
-              messageBoard.textContent = player2Opening;
+            if (winner === 1) {
+              currentPlayer = 2;
             } else if (winner === 2) {
-              currentPlayer === 1;
-              messageBoard.textContent = player1Opening;
-            } 
+              currentPlayer = 1;
+            }
 
+            // currentPlayer = winner; // Winner starts the new game
+            updateMessageBoard();
+            if (isComputerPlayer && currentPlayer === 2) {
+              computerPlayer();
+            }
           });
         }
 
-        console.log(`Player ${currentPlayer} turn.`);
+console.log(`Current round is ${round}...`);
+        console.log(`Player ${currentPlayer}'s turn.`);
         console.log(checkWinCondition());
-        console.log(`PLAYER ${winner}: REIGNING WINNER!`);
+
+        if (winner === 0) {
+          console.log(`No current champ.`); 
+        } else if (winner === 1) {
+          console.log(`PLAYER ONE IS THE CHAMPION OF THE WORLD.`);
+        } else if (winner === 2) {
+          console.log(`PLAYER TWO REIGNS.`);
+        } else if (winner === 3) {
+          console.log(`Three is WEIRD.`);
+        }
       }
 
     });
