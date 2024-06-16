@@ -244,7 +244,7 @@ const modalStartBtnModule = (function () {
     // Close the dialog and proceed with the game...no need for an else statement.
     dialog.style.display = "none";
     gameContainer.style.display = "flex";
-    console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
+    // console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
 
  // Call another function with the selected sign data
     playerBoardModule.setPlayerBoard(
@@ -410,8 +410,6 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
             //   gameActive = false;
             // }
 
-            console.log(checkWinCondition());
-
             // Disable further clicks or reset game
           } else if (round === 9) {
             gameActive = false;
@@ -491,8 +489,9 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           });
         }
 
-        console.log(currentPlayer);
-        console.log(winner);
+        console.log(`Player ${currentPlayer} turn.`);
+        console.log(checkWinCondition());
+        console.log(`PLAYER ${winner}: REIGNING WINNER!`);
       }
 
     });
@@ -533,7 +532,7 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
           playerA === playerB &&
           playerB === playerC
         ) {
-          console.log(cells[a], cells[b], cells[c]);
+          // console.log(cells[a], cells[b], cells[c]);
 
           cells[a].style.backgroundColor = "var(--dk-gray)";
           cells[b].style.backgroundColor = "var(--dk-gray)";
