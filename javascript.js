@@ -387,8 +387,11 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
 
   updateMessageBoard();
 
-  const audio1 = new Audio("./assets.pop1.mp3");
-  const audio2 = new Audio("./assets.pop2.mp3");
+  const audio1 = new Audio("./assets/pop1.mp3");
+  audio1.preload = "auto";
+  
+  const audio2 = new Audio("./assets/pop2.mp3");
+  audio2.preload = "auto";
 
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
