@@ -1,15 +1,71 @@
+const csModule = (function () {
+  const COLORS = {
+    air1: "var(--air1)",
+    air2: "var(--air2)",
+    dkGray: "var(--dk-Gray)",
+    earth1: "var(--earth1)",
+    earth2: "var(--earth2)",
+    fire1: "var(--fire1)",
+    fire2: "var(--fire2)",
+    red: "var(--red)",
+    water1: "var(--water1)",
+    water2: "var(--water2)",
+  };
+
+  const SELECTORS = {
+    alert1: "#alert1",
+    alertMsg1: "#alert-msg1",
+    alert2: "#alert2",
+    alertMsg2: "#alert-msg2",
+    boardCells: ".cell",
+    clearBtn: ".clear-btn",
+    dialog: "dialog",
+    gameContainer: "#game-container",
+    img: "img",
+    messageBoard: "#message-board",
+    modalPlayerTwo: "#modal-player-two",
+    newGameBtn: "#new-game-btn",
+    numPlayers: "#num-players",
+    playerOneMarker: "#player-one-marker",
+    playerOneName: "#player-one-name",
+    playerOneType: "#player-one-type",
+    playerTwoMarker: "#player-two-marker",
+    playerTwoName: "#player-two-name",
+    playerTwoType: "#player-two-type",
+    sliderText1: "#slider-text1",
+    sliderText2: "#slider-text2",
+    startBtn: "#start-btn",
+    zodBtns: ".zod-btn",
+    zodImg: ".zod-img",
+    zodSym: ".zod-sym",
+  };
+
+  function getColor(colorName) {
+    return COLORS[colorName];
+  }
+
+  function getSelector(selectorName) {
+    return SELECTORS[selectorName];
+  }
+
+  return {
+    getColor,
+    getSelector,
+  };
+})();
+
 // Module for changing toggle slider color, and selected player number font color
 const numPlayersFontColorModule = (function () {
-  const numPlayers = document.querySelector("#num-players");
-  const sliderText1 = document.querySelector("#slider-text1");
-  const sliderText2 = document.querySelector("#slider-text2");
+  const numPlayers = document.querySelector(csModule.getSelector("numPlayers"));
+  const sliderText1 = document.querySelector(csModule.getSelector("sliderText1"));
+  const sliderText2 = document.querySelector(csModule.getSelector("sliderText2"));
 
   function changeNumPlayerFontColor() {
     if (numPlayers.checked) {
-      sliderText2.style.color = "var(--red)";
+      sliderText2.style.color = csModule.getColor("red");
       sliderText1.style.color = "";
     } else {
-      sliderText1.style.color = "var(--red)";
+      sliderText1.style.color = csModule.getColor("red");
       sliderText2.style.color = "";
     }
   }
@@ -21,8 +77,8 @@ const numPlayersFontColorModule = (function () {
 
 // Module for handling player two marker options on modal/dialog display
 const playerTwoSelectModule = (function () {
-  const numPlayers = document.querySelector("#num-players");
-  const modalPlayerTwo = document.querySelector("#modal-player-two");
+  const numPlayers = document.querySelector(csModule.getSelector("numPlayers"));
+  const modalPlayerTwo = document.querySelector(csModule.getSelector("modalPlayerTwo"));
 
   function showPlayerTwoSelect() {
     if (numPlayers.checked) {
@@ -40,12 +96,12 @@ const playerTwoSelectModule = (function () {
 
 // Module for switching the zodiac symbol and image when button is hovered/focused
 const zodBtnImgsModule = (function () {
-  const zodBtns = document.querySelectorAll(".zod-btn");
+  const zodBtns = document.querySelectorAll(csModule.getSelector("zodBtns"));
 
   function changeZodBtnImgs() {
     zodBtns.forEach((button) => {
-      const zodSym = button.querySelector(".zod-sym");
-      const zodImg = button.querySelector(".zod-img");
+      const zodSym = button.querySelector(csModule.getSelector("zodSym"));
+      const zodImg = button.querySelector(csModule.getSelector("zodImg"));
 
       function showImg() {
         zodSym.style.display = "none";
@@ -72,7 +128,7 @@ const zodBtnImgsModule = (function () {
 // Factory function for creating player marker selection
 (function () {
   function PlayerSignSelectModule(playerId, playerKey) {
-    const zodBtns = document.querySelectorAll(".zod-btn");
+    const zodBtns = document.querySelectorAll(csModule.getSelector("zodBtns"));
     const playerSelects = document.querySelector(playerId);
     let selectedSign = "";
     let selectedSignId = "";
@@ -86,7 +142,7 @@ const zodBtnImgsModule = (function () {
             selectedSign = matchingText;
             selectedSignId = button.id;
             playerSelects.textContent = selectedSign;
-            playerSelects.style.color = "var(--red)";
+            playerSelects.style.color = csModule.getColor("red");
           }
         });
       });
@@ -155,7 +211,7 @@ const zodBtnImgsModule = (function () {
 })();
 
 // Initialize the modules
-const numPlayersCheckbox = document.querySelector("#num-players");
+const numPlayersCheckbox = document.querySelector(csModule.getSelector("numPlayers"));
 
 numPlayersCheckbox.addEventListener("change", () => {
   numPlayersFontColorModule.changeNumPlayerFontColor();
@@ -167,7 +223,7 @@ playerTwoSelectModule.showPlayerTwoSelect();
 zodBtnImgsModule.changeZodBtnImgs();
 
 const clearBtnModule = (function () {
-  const clearBtn = document.querySelectorAll(".clear-btn");
+  const clearBtn = document.querySelectorAll(csModule.getSelector("clearBtn"));
 
   function useClearBtn() {
     // Below code is to ensure the Firefox browsers completely reload page, previously not doing so with window.location.reload();. Tested: works.
@@ -179,14 +235,14 @@ const clearBtnModule = (function () {
 })();
 
 const modalStartBtnModule = (function () {
-  const startBtn = document.querySelector("#start-btn");
-  const numPlayers = document.querySelector("#num-players");
-  const alert1 = document.querySelector("#alert1");
-  const alertMsg1 = document.querySelector("#alert-msg1");
-  const alert2 = document.querySelector("#alert2");
-  const alertMsg2 = document.querySelector("#alert-msg2");
-  const dialog = document.querySelector("dialog");
-  const gameContainer = document.querySelector("#game-container");
+  const startBtn = document.querySelector(csModule.getSelector("startBtn"));
+  const numPlayers = document.querySelector(csModule.getSelector("numPlayers"));
+  const alert1 = document.querySelector(csModule.getSelector("alert1"));
+  const alertMsg1 = document.querySelector(csModule.getSelector("alertMsg1"));
+  const alert2 = document.querySelector(csModule.getSelector("alert2"));
+  const alertMsg2 = document.querySelector(csModule.getSelector("alertMsg2"));
+  const dialog = document.querySelector(csModule.getSelector("dialog"));
+  const gameContainer = document.querySelector(csModule.getSelector("gameContainer"));
 
   function useStartBtn() {
     const playerOneSignId = window.playerOneSignSelect.getSelectedSignId();
@@ -253,12 +309,12 @@ const modalStartBtnModule = (function () {
 })();
 
 const playerBoardModule = (function () {
-  const playerOneMarker = document.querySelector("#player-one-marker");
-  const playerOneName = document.querySelector("#player-one-name");
-  const playerOneType = document.querySelector("#player-one-type");
-  const playerTwoMarker = document.querySelector("#player-two-marker");
-  const playerTwoName = document.querySelector("#player-two-name");
-  const playerTwoType = document.querySelector("#player-two-type");
+  const playerOneMarker = document.querySelector(csModule.getSelector("playerOneMarker"));
+  const playerOneName = document.querySelector(csModule.getSelector("playerOneName"));
+  const playerOneType = document.querySelector(csModule.getSelector("playerOneType"));
+  const playerTwoMarker = document.querySelector(csModule.getSelector("playerTwoMarker"));
+  const playerTwoName = document.querySelector(csModule.getSelector("playerTwoName"));
+  const playerTwoType = document.querySelector(csModule.getSelector("playerTwoType"));
   const randomPick = Math.floor(Math.random() * 12);
 
   const computerPlayerTwoIdList = [
@@ -299,30 +355,30 @@ const playerBoardModule = (function () {
   ) {
     // Keep redundancy of images below in case I want to change these images later on.
     const signMarkers = {
-      ari1: { markerImg: "./assets/ari-img.svg", markerBkg: "var(--fire1)" },
-      tau1: { markerImg: "./assets/tau-img.svg", markerBkg: "var(--earth1)" },
-      gem1: { markerImg: "./assets/gem-img.svg", markerBkg: "var(--air1)" },
-      can1: { markerImg: "./assets/can-img.svg", markerBkg: "var(--water1)" },
-      leo1: { markerImg: "./assets/leo-img.svg", markerBkg: "var(--fire1)" },
-      vir1: { markerImg: "./assets/vir-img.svg", markerBkg: "var(--earth1)" },
-      lib1: { markerImg: "./assets/lib-img.svg", markerBkg: "var(--air1)" },
-      sco1: { markerImg: "./assets/sco-img.svg", markerBkg: "var(--water1)" },
-      sag1: { markerImg: "./assets/sag-img.svg", markerBkg: "var(--fire1)" },
-      cap1: { markerImg: "./assets/cap-img.svg", markerBkg: "var(--earth1)" },
-      aqu1: { markerImg: "./assets/aqu-img.svg", markerBkg: "var(--air1)" },
-      pis1: { markerImg: "./assets/pis-img.svg", markerBkg: "var(--water1)" },
-      ari2: { markerImg: "./assets/ari-img.svg", markerBkg: "var(--fire2)" },
-      tau2: { markerImg: "./assets/tau-img.svg", markerBkg: "var(--earth2)" },
-      gem2: { markerImg: "./assets/gem-img.svg", markerBkg: "var(--air2)" },
-      can2: { markerImg: "./assets/can-img.svg", markerBkg: "var(--water2)" },
-      leo2: { markerImg: "./assets/leo-img.svg", markerBkg: "var(--fire2)" },
-      vir2: { markerImg: "./assets/vir-img.svg", markerBkg: "var(--earth2)" },
-      lib2: { markerImg: "./assets/lib-img.svg", markerBkg: "var(--air2)" },
-      sco2: { markerImg: "./assets/sco-img.svg", markerBkg: "var(--water2)" },
-      sag2: { markerImg: "./assets/sag-img.svg", markerBkg: "var(--fire2)" },
-      cap2: { markerImg: "./assets/cap-img.svg", markerBkg: "var(--earth2)" },
-      aqu2: { markerImg: "./assets/aqu-img.svg", markerBkg: "var(--air2)" },
-      pis2: { markerImg: "./assets/pis-img.svg", markerBkg: "var(--water2)" },
+      ari1: { markerImg: "./assets/ari-img.svg", markerBkg: csModule.getColor("fire1") },
+      tau1: { markerImg: "./assets/tau-img.svg", markerBkg: csModule.getColor("earth1") },
+      gem1: { markerImg: "./assets/gem-img.svg", markerBkg: csModule.getColor("air1") },
+      can1: { markerImg: "./assets/can-img.svg", markerBkg: csModule.getColor("water1") },
+      leo1: { markerImg: "./assets/leo-img.svg", markerBkg: csModule.getColor("fire1") },
+      vir1: { markerImg: "./assets/vir-img.svg", markerBkg: csModule.getColor("earth1") },
+      lib1: { markerImg: "./assets/lib-img.svg", markerBkg: csModule.getColor("air1") },
+      sco1: { markerImg: "./assets/sco-img.svg", markerBkg: csModule.getColor("water1") },
+      sag1: { markerImg: "./assets/sag-img.svg", markerBkg: csModule.getColor("fire1") },
+      cap1: { markerImg: "./assets/cap-img.svg", markerBkg: csModule.getColor("earth1") },
+      aqu1: { markerImg: "./assets/aqu-img.svg", markerBkg: csModule.getColor("air1") },
+      pis1: { markerImg: "./assets/pis-img.svg", markerBkg: csModule.getColor("water1") },
+      ari2: { markerImg: "./assets/ari-img.svg", markerBkg: csModule.getColor("fire2") },
+      tau2: { markerImg: "./assets/tau-img.svg", markerBkg: csModule.getColor("earth2") },
+      gem2: { markerImg: "./assets/gem-img.svg", markerBkg: csModule.getColor("air2") },
+      can2: { markerImg: "./assets/can-img.svg", markerBkg: csModule.getColor("water2") },
+      leo2: { markerImg: "./assets/leo-img.svg", markerBkg: csModule.getColor("fire2") },
+      vir2: { markerImg: "./assets/vir-img.svg", markerBkg: csModule.getColor("earth2") },
+      lib2: { markerImg: "./assets/lib-img.svg", markerBkg: csModule.getColor("air2") },
+      sco2: { markerImg: "./assets/sco-img.svg", markerBkg: csModule.getColor("water2") },
+      sag2: { markerImg: "./assets/sag-img.svg", markerBkg: csModule.getColor("fire2") },
+      cap2: { markerImg: "./assets/cap-img.svg", markerBkg: csModule.getColor("earth2") },
+      aqu2: { markerImg: "./assets/aqu-img.svg", markerBkg: csModule.getColor("air2") },
+      pis2: { markerImg: "./assets/pis-img.svg", markerBkg: csModule.getColor("water2") },
     };
 
     if (playerOneSignId) {
@@ -362,9 +418,9 @@ const playerBoardModule = (function () {
 playerBoardModule.setPlayerBoard();
 
 function gamePlayerController(playerOneMarker, playerTwoMarker) {
-  const boardCells = document.querySelectorAll(".cell");
+  const boardCells = document.querySelectorAll(csModule.getSelector("boardCells"));
   let currentPlayer = 1;
-  const messageBoard = document.querySelector("#message-board");
+  const messageBoard = document.querySelector(csModule.getSelector("messageBoard"));
   const player1Opening = `Player One makes the first move.`;
   const player2Opening = `Player Two makes the first move.`;
   const player1Turn = `Player One pick a square.`;
@@ -375,7 +431,7 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
   messageBoard.textContent = player1Opening;
   let round = 0;
   let winner = 0;
-  const playerTwoType = document.querySelector("#player-two-type");
+  const playerTwoType = document.querySelector(csModule.getSelector("playerTwoType"));
 
   function updateMessageBoard() {
     if (winner === 1) {
@@ -429,10 +485,11 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
           }
         }
 
-        currentPlayer = currentPlayer === 1 ? 2 : 1; // Switch player turn
+        // Switch player turn
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
 
-        const resetBtn = document.querySelector("#new-game-btn");
-        resetBtn.addEventListener("click", useNewGameBtn);
+        const newGameBtn = document.querySelector(csModule.getSelector("newGameBtn"));
+        newGameBtn.addEventListener("click", useNewGameBtn);
 
         // Check if Player Two is a computer
         const isComputerPlayer = playerTwoType.textContent === "(Computer)";
@@ -495,7 +552,7 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
   });
 
   function checkWinCondition() {
-    const cells = document.querySelectorAll(".cell");
+    const boardCells = document.querySelectorAll(csModule.getSelector("boardCells"));
     const winPatterns = [
       [0, 1, 2], // Rows
       [3, 4, 5], // Rows
@@ -509,9 +566,9 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
 
     return winPatterns.some((pattern) => {
       const [a, b, c] = pattern;
-      const cellA = cells[a].querySelector("img");
-      const cellB = cells[b].querySelector("img");
-      const cellC = cells[c].querySelector("img");
+      const cellA = boardCells[a].querySelector(csModule.getSelector("img"));
+      const cellB = boardCells[b].querySelector(csModule.getSelector("img"));
+      const cellC = boardCells[c].querySelector(csModule.getSelector("img"));
 
       if (cellA && cellB && cellC) {
         const playerA = parseInt(cellA.dataset.player);
@@ -527,9 +584,9 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
         ) {
           // console.log(cells[a], cells[b], cells[c]);
 
-          cells[a].style.backgroundColor = "var(--dk-gray)";
-          cells[b].style.backgroundColor = "var(--dk-gray)";
-          cells[c].style.backgroundColor = "var(--dk-gray)";
+          boardCells[a].style.backgroundColor = csModule.getColor("dkGray");
+          boardCells[b].style.backgroundColor = csModule.getColor("dkGray");
+          boardCells[c].style.backgroundColor = csModule.getColor("dkGray");
 
           return true;
         }
@@ -569,8 +626,8 @@ const gameBoardModule = (function () {
   }
 
   function displayCell() {
-    const cells = document.querySelectorAll(".cell");
-    cells.forEach((cell, index) => {
+    const boardCells = document.querySelectorAll(csModule.getSelector("boardCells"));
+    boardCells.forEach((cell, index) => {
       cell.textContent = board[index].marker;
     });
   }
