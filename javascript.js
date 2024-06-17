@@ -387,26 +387,8 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
 
   updateMessageBoard();
 
-const clickSound = new Audio("./assets/thud.mp3");
-clickSound.preload = "auto";
-
-clickSound.addEventListener("canplaythrough", () => {
-  console.log("Audio is ready to play.");
-});
-
-clickSound.addEventListener("error", (e) => {
-  console.error("Error loading audio:", e);
-});
-
-function playSoundEffect() {
-  if (clickSound.readyState >= 2) {
-    clickSound.play().catch((error) => {
-      console.error("Error playing sound:", error);
-    });
-  } else {
-    console.error("Sound not ready to play.");
-  }
-}
+  const audio1 = new Audio("./assets.pop1.mp3");
+  const audio2 = new Audio("./assets.pop2.mp3");
 
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
@@ -414,12 +396,12 @@ function playSoundEffect() {
         // Check if the cell is empty first...
         if (currentPlayer === 1) {
           cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
-          playSoundEffect();
+          audio1.play();
           round++;
           messageBoard.textContent = player2Turn;
         } else if (currentPlayer === 2) {
           cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
-          playSoundEffect();
+          audio2.play();
           round++;
           messageBoard.textContent = player1Turn;
         }
