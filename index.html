@@ -15,20 +15,18 @@
     <div id="modal-container">
         <dialog open>
             <form method="dialog">
-                <div class="dialog-item1">
-                <h2>Number of Players:&nbsp </h2>
-                <h2 id="slider-text1">1</h2>
-                <label class="switch">
-                    <input id="num-players" type="checkbox">
-                    <span class="slider"></span>
-                </label>
-                <h2 id="slider-text2">2</h2>
+                <div class="flex-row">
+                    <h2>Number of Players:&nbsp </h2>
+                    <h2 id="slider-text1">1</h2>
+                    <label class="switch">
+                        <input id="num-players" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <h2 id="slider-text2">2</h2>
                 </div>
                 <div id="modal-player-one">
-                    <h2>Player One 
-                        (<span id="player-one-sign-select">Select Sign</span>)
-                    </h2>
-                    <div class="dialog-item1">
+                    <h2>Player One: <span id="player-one-sign-select">Select Sign</span></h2>
+                    <div class="flex-row">
                         <div id="alert1">
                             <span id="alert-msg1"></span>    
                         </div>
@@ -75,7 +73,8 @@
                             <img class="zod-img" src="./assets/sag-img.svg" alt="">
                         </button>
                         <button id="cap1" class="zod-btn">
-                            <img class="zod-sym" src="./assets/cap-sym.svg" alt="">                            <img class="zod-img" src="./assets/cap-img.svg" alt="">
+                            <img class="zod-sym" src="./assets/cap-sym.svg" alt="">
+                            <img class="zod-img" src="./assets/cap-img.svg" alt="">
                         </button>
                         <button id="aqu1" class="zod-btn">
                             <img class="zod-sym" src="./assets/aqu-sym.svg" alt="">
@@ -88,20 +87,15 @@
                     </div>
                 </div>
                 <div id="modal-player-two">
-                    <h2>Player Two 
-                        (<span id="player-two-sign-select">Select Sign</span>)
-                    </h2>
-                    <!-- <div id="alert2">
-                        <span id="alert-msg2"></span>    
-                    </div> -->
-                    <div class="dialog-item1">
+                    <h2>Player Two: <span id="player-two-sign-select">Select Sign</span></h2>
+                    <div class="flex-row">
                         <div id="alert2">
-                        <span id="alert-msg2"></span>  
+                            <span id="alert-msg2"></span>  
                         </div>  
                     </div> 
                     <div class="btn-row">
                         <button id="ari2" class="zod-btn">
-                            <img class="zod-sym" class="zod-sym" src="./assets/ari-sym.svg" alt="">
+                            <img class="zod-sym" src="./assets/ari-sym.svg" alt="">
                             <img class="zod-img" src="./assets/ari-img.svg" alt="">
                         </button>
                         <button id="tau2" class="zod-btn">

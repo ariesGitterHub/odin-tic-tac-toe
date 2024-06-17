@@ -1,4 +1,4 @@
-// Module for changing number of players font color
+// Module for changing toggle slider color, and selected player number font color
 const numPlayersFontColorModule = (function () {
   const numPlayers = document.querySelector("#num-players");
   const sliderText1 = document.querySelector("#slider-text1");
@@ -19,8 +19,7 @@ const numPlayersFontColorModule = (function () {
   };
 })();
 
-
-// Module for handling the player modal display
+// Module for handling player two marker options on modal/dialog display
 const playerTwoSelectModule = (function () {
   const numPlayers = document.querySelector("#num-players");
   const modalPlayerTwo = document.querySelector("#modal-player-two");
@@ -39,8 +38,7 @@ const playerTwoSelectModule = (function () {
   };
 })();
 
-
-// Module for handling the zodiac button images
+// Module for switching the zodiac symbol and image when button is hovered/focused
 const zodBtnImgsModule = (function () {
   const zodBtns = document.querySelectorAll(".zod-btn");
 
@@ -63,16 +61,6 @@ const zodBtnImgsModule = (function () {
       button.addEventListener("mouseleave", hideImg);
       button.addEventListener("focus", showImg);
       button.addEventListener("blur", hideImg);
-
-      // button.addEventListener("mouseenter", () => {
-      //   zodSym.style.display = "none";
-      //   zodImg.style.display = "flex";
-      // });
-
-      // button.addEventListener("mouseleave", () => {
-      //   zodSym.style.display = "flex";
-      //   zodImg.style.display = "none";
-      // });
     });
   }
 
@@ -83,116 +71,6 @@ const zodBtnImgsModule = (function () {
 
 
 // Factory function for creating player selectors
-
-// (function () {
-//   function PlayerSignSelectModule(playerId, valueChecker) {
-//     const zodBtns = document.querySelectorAll(".zod-btn");
-//     const playerSelects = document.querySelector(playerId);
-//     let selectedSign = "";
-//     let selectedSignId = "";
-
-//     function selectPlayerSign() {
-//       zodBtns.forEach((button) => {
-//         button.addEventListener("click", () => {
-//           const matchingText = valueChecker.filter((text) =>
-//             text.hasOwnProperty(button.id)
-//           );
-
-//           if (matchingText.length > 0) {
-//             selectedSign = matchingText.map((obj) => obj[button.id]).join("");
-//             selectedSignId = button.id;
-//             playerSelects.textContent = selectedSign;
-//             playerSelects.style.color = "var(--red)";
-//           }
-//         });
-//       });
-//     }
-
-//     function getSelectedSign() {
-//       return selectedSign;
-//     }
-
-//     function getSelectedSignId() {
-//       return selectedSignId;
-//     }
-
-//     return {
-//       selectPlayerSign,
-//       getSelectedSign,
-//       getSelectedSignId,
-//     };
-//   }
-
-//   const valueChecker1 = [
-//     { ari1: "Aries" },
-//     { tau1: "Taurus" },
-//     { gem1: "Gemini" },
-//     { can1: "Cancer" },
-//     { leo1: "Leo" },
-//     { vir1: "Virgo" },
-//     { lib1: "Libra" },
-//     { sco1: "Scorpio" },
-//     { sag1: "Sagittarius" },
-//     { cap1: "Capricorn" },
-//     { aqu1: "Aquarius" },
-//     { pis1: "Pisces" },
-//   ];
-//   const valueChecker2 = [
-//     { ari2: "Aries" },
-//     { tau2: "Taurus" },
-//     { gem2: "Gemini" },
-//     { can2: "Cancer" },
-//     { leo2: "Leo" },
-//     { vir2: "Virgo" },
-//     { lib2: "Libra" },
-//     { sco2: "Scorpio" },
-//     { sag2: "Sagittarius" },
-//     { cap2: "Capricorn" },
-//     { aqu2: "Aquarius" },
-//     { pis2: "Pisces" },
-//   ];
-
-//   const player1SignSelect = PlayerSignSelectModule(
-//     "#player1-sign-select",
-//     valueChecker1
-//   );
-
-//   const player2SignSelect = PlayerSignSelectModule(
-//     "#player2-sign-select",
-//     valueChecker2
-//   );
-
-//   player1SignSelect.selectPlayerSign();
-//   player2SignSelect.selectPlayerSign();
-
-//   // Expose the modules globally for access in other scripts/modules...THI IS NEW FOR ME...
-//   window.player1SignSelect = player1SignSelect;
-//   window.player2SignSelect = player2SignSelect;
-
-//   // document.querySelector("#start-btn").addEventListener("click", () => {
-  
-//   function createPlayerVariables() {
-//     zodBtns.forEach((button) => {
-//         button.addEventListener("click", () => {
-//           const playerOneSign = player1SignSelect.getSelectedSign();
-//           console.log(playerOneSign);
-
-//           const playerOneSignId = player1SignSelect.getSelectedSignId();
-//           console.log(playerOneSignId);
-
-//           const playerTwoSign = player2SignSelect.getSelectedSign();
-//           console.log(playerTwoSign);
-
-//           const playerTwoSignId = player2SignSelect.getSelectedSignId();
-//           console.log(playerTwoSignId);
-//        })
-//       })
-//     };
-//     return {
-//       createPlayerVariables,
-//     };
-// })()
-
 (function () {
   // function PlayerSignSelectModule(playerId, valueChecker) {
   function PlayerSignSelectModule(playerId, playerKey) {
@@ -237,36 +115,6 @@ const zodBtnImgsModule = (function () {
     };
   }
 
-  // const valueChecker1 = [
-  //   { ari1: "Aries" },
-  //   { tau1: "Taurus" },
-  //   { gem1: "Gemini" },
-  //   { can1: "Cancer" },
-  //   { leo1: "Leo" },
-  //   { vir1: "Virgo" },
-  //   { lib1: "Libra" },
-  //   { sco1: "Scorpio" },
-  //   { sag1: "Sagittarius" },
-  //   { cap1: "Capricorn" },
-  //   { aqu1: "Aquarius" },
-  //   { pis1: "Pisces" },
-  // ];
-
-  // const valueChecker2 = [
-  //   { ari2: "Aries" },
-  //   { tau2: "Taurus" },
-  //   { gem2: "Gemini" },
-  //   { can2: "Cancer" },
-  //   { leo2: "Leo" },
-  //   { vir2: "Virgo" },
-  //   { lib2: "Libra" },
-  //   { sco2: "Scorpio" },
-  //   { sag2: "Sagittarius" },
-  //   { cap2: "Capricorn" },
-  //   { aqu2: "Aquarius" },
-  //   { pis2: "Pisces" },
-  // ];
-
 const valueChecker = {
   player1: {
     ari1: "Aries",
@@ -298,15 +146,6 @@ const valueChecker = {
   },
 };
 
-  // const playerOneSignSelect = PlayerSignSelectModule(
-  //   "#player-one-sign-select",
-  //   valueChecker1
-  // );
-  // const playerTwoSignSelect = PlayerSignSelectModule(
-  //   "#player-two-sign-select",
-  //   valueChecker2
-  // );
-
     const playerOneSignSelect = PlayerSignSelectModule(
       "#player-one-sign-select",
       "player1"
@@ -335,7 +174,6 @@ numPlayersFontColorModule.changeNumPlayerFontColor();
 playerTwoSelectModule.showPlayerTwoSelect();
 zodBtnImgsModule.changeZodBtnImgs();
 
-
 const clearBtnModule = (function () {
   const clearBtn = document.querySelectorAll(".clear-btn");
 
@@ -360,8 +198,6 @@ const modalStartBtnModule = (function () {
   const dialog = document.querySelector("dialog");  
   const gameContainer = document.querySelector("#game-container");
 
-  
-
   function useStartBtn() {
     const playerOneSignId = window.playerOneSignSelect.getSelectedSignId();
     const playerOneSign = window.playerOneSignSelect.getSelectedSign();
@@ -370,37 +206,37 @@ const modalStartBtnModule = (function () {
 
     // One player, player one sign not selected...
     if (!numPlayers.checked && playerOneSignId === "") {
-      alert1.style.display = "block";
+      alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       return;
     }
 
     // Two players, player one and player two signs not selected...
     if (numPlayers.checked && playerOneSignId === "" && playerTwoSignId === "") {
-      alert1.style.display = "block";
+      alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
-      alert2.style.display = "block";
+      alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
     }
 
     // Two players, player two sign not selected...
     if (numPlayers.checked && playerTwoSignId === "") {
-      alert2.style.display = "block";
+      alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
     }
 
     // Two players, player one sign not selected...
     if (numPlayers.checked && playerOneSignId === "") {
-      alert1.style.display = "block";
+      alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       return;
     }
 
     // Two players, player two sign not selected...
     if (numPlayers.checked && playerTwoSignId === "") {
-      alert2.style.display = "block";
+      alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
     }
@@ -408,8 +244,10 @@ const modalStartBtnModule = (function () {
     // Close the dialog and proceed with the game...no need for an else statement.
     dialog.style.display = "none";
     gameContainer.style.display = "flex";
-    console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
+    console.log(`Player ONE's starting turn.`);
+    // console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
 
+ // Call another function with the selected sign data
     playerBoardModule.setPlayerBoard(
       playerOneSignId,
       playerOneSign,
@@ -418,10 +256,6 @@ const modalStartBtnModule = (function () {
     );
 
   }
-
-  // Call another function with the selected sign data
-
-  
 
   startBtn.addEventListener("click", useStartBtn);
 
@@ -435,44 +269,6 @@ const modalStartBtnModule = (function () {
 })();
 
 
-// const modalStartBtnModule = (function () {
-//   const startBtn = document.querySelector("#start-btn");
-//   const dialog = document.querySelector("dialog");
-//   const numPlayers = document.querySelector("#num-players");
-
-//   // const playerOneSign = window.player1SignSelect.getSelectedSign();
-//   const playerOneSignId = window.player1SignSelect.createPlayerVariables();
-
-//   console.log(playerOneSignId);
-
-//   // const playerTwoSign = window.player2SignSelect.getSelectedSign();
-//   const playerTwoSignId = window.player2SignSelect.createPlayerVariables();
-
-//   console.log(playerTwoSignId);
-
-//   function useStartBtn() {
-
-//     if (!numPlayers.checked && playerOneSignId === "") {
-//       alert("Please select a sign for player one.")
-//       return
-//     } else {
-//       dialog.style.display = "none";
-//     }
-
-//     if (numPlayers.checked && (playerOneSignId === "" || playerTwoSignId === "")) {
-//       alert("Please select a sign for both players.");
-//       return
-//     } else {
-//       dialog.style.display = "none";
-//     }
-
-//   }
-
-//   startBtn.addEventListener("click", useStartBtn);
-
-// })()
-
-
 const playerBoardModule = (function () {
   const playerOneMarker = document.querySelector("#player-one-marker");
   const playerOneName = document.querySelector("#player-one-name");
@@ -480,6 +276,11 @@ const playerBoardModule = (function () {
   const playerTwoMarker = document.querySelector("#player-two-marker");
   const playerTwoName = document.querySelector("#player-two-name");
   const playerTwoType = document.querySelector("#player-two-type");
+  const randomPick = Math.floor(Math.random() * 12);
+
+  const computerPlayerTwoIdList = ["ari2", "tau2", "gem2", "can2", "leo2", "vir2", "lib2", "sco2", "sag2", "cap2", "aqu2", "pis2"];
+
+  const computerPlayerTwoList = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
 
   function setPlayerBoard(
     playerOneSignId,
@@ -531,9 +332,6 @@ const playerBoardModule = (function () {
       playerTwoMarker.src = playerTwoMarkerInfo.markerImg;
       playerTwoMarker.style.backgroundColor = playerTwoMarkerInfo.markerBkg;
     } else {
-      const randomPick = Math.floor(Math.random() * 12);
-      const computerPlayerTwoIdList = ["ari2", "tau2", "gem2", "can2", "leo2", "vir2", "lib2", "sco2", "sag2", "cap2", "aqu2", "pis2"];
-      const computerPlayerTwoList = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
       const computerPlayerTwoId = computerPlayerTwoIdList[randomPick];
       playerTwoMarkerInfo = signMarkers[computerPlayerTwoId];
       const computerPlayerTwo = computerPlayerTwoList[randomPick];
@@ -542,17 +340,270 @@ const playerBoardModule = (function () {
       playerTwoMarker.src = playerTwoMarkerInfo.markerImg;
       playerTwoMarker.style.backgroundColor = playerTwoMarkerInfo.markerBkg;
     }
-
+    return {
+      playerOneMarker,
+      playerTwoMarker,
+    };
   }
 
   return {
     setPlayerBoard,
+    // playerTwoType,
   };
 })();
 
 playerBoardModule.setPlayerBoard();
+// playerBoardModule.setPlayerMarker();
 
-const gameBoard = (function () {
+
+function createBoardMarkers(playerOneMarker, playerTwoMarker) {
+  const boardCells = document.querySelectorAll(".cell");
+  let currentPlayer = 1; // Player One starts with marker 1
+  const messageBoard = document.querySelector("#message-board");
+  const player1Opening = `Player One makes the first move.`;
+  const player2Opening = `Player Two makes the first move.`;
+  const player1Turn = `Player One pick a square.`;
+  const player2Turn = `Player Two, it is your turn.`;
+  const player1Win = `Player One wins! Click "New Game" for another match.`;
+  const player2Win = `Player Two wins! Click "New Game" for another match.`;
+  const playersDraw = `This match is a draw. Click the "New Game" button for another round.`;
+  messageBoard.textContent = player1Opening;
+  let round = 0;
+  let winner = 0;
+  // let gameActive = false
+  const playerTwoType = document.querySelector("#player-two-type");
+
+    function updateMessageBoard() {
+      if (winner === 1) {
+        messageBoard.textContent = player2Opening;
+      } else if (winner === 2) {
+        messageBoard.textContent = player1Opening;
+      }
+    }
+
+    updateMessageBoard();
+
+  boardCells.forEach((cell, index) => {
+    cell.addEventListener("click", function () {
+
+
+      if (!cell.innerHTML && !checkWinCondition()) {
+        // Check if the cell is empty first...
+        if (currentPlayer === 1) {
+          cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+          round++;
+          // gameActive = true
+
+          messageBoard.textContent = player2Turn;
+        } else if (currentPlayer === 2) {
+          cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+          round++;
+          // gameActive = true;
+          messageBoard.textContent = player1Turn;
+        }
+
+        // Check for win condition after at least 5 rounds (earliest possible win)
+        if (round >= 5) {
+          if (checkWinCondition()) {
+            messageBoard.textContent = `Player ${
+              currentPlayer === 1 ? "One" : "Two"
+            } wins! Click "New Game" for another match.`;
+            messageBoard.style.backgroundColor =
+              currentPlayer === 1
+                ? playerOneMarker.style.backgroundColor
+                : playerTwoMarker.style.backgroundColor;
+            if (messageBoard.textContent === player1Win) {
+              winner = 1;
+              // gameActive = false;
+            } else if (messageBoard.textContent === player2Win) {
+              winner = 2;
+              // gameActive = false;
+            } 
+            // else {
+            //   winner = 0;
+            //   gameActive = false;
+            // }
+
+            // Disable further clicks or reset game
+          } else if (round === 9) {
+            // gameActive = false;
+            messageBoard.textContent = playersDraw;
+          }
+        }
+
+        currentPlayer = currentPlayer === 1 ? 2 : 1; // Switch player turn
+
+        const resetBtn = document.querySelector("#new-game-btn");
+        resetBtn.addEventListener("click", useNewGameBtn);
+
+        // function useNewGameBtn() {
+        //   boardCells.forEach((cell) => {
+        //     cell.innerHTML = "";
+        //     messageBoard.style.backgroundColor = "";
+        //     cell.style.backgroundColor = "";
+        //     round = 0;
+
+        //     if (winner === 1) {
+        //       currentPlayer === 2;
+        //       messageBoard.textContent = player2Opening;
+        //     } else if (winner === 2) {
+        //       currentPlayer === 1;
+        //       messageBoard.textContent = player1Opening;
+        //     }
+        //     else if (useNewGameBtn() && winner === 1) {
+        //       currentPlayer = 2;
+        //       messageBoard.textContent = player2Opening;
+        //     }
+        //   });
+        // }
+
+        // Check if Player Two is a computer
+        
+        const isComputerPlayer = playerTwoType.textContent === "(Computer)";
+
+        function computerPlayer() {
+          if (isComputerPlayer && currentPlayer === 2) {
+          setTimeout(() => {
+            const emptyCells = Array.from(boardCells).filter(
+              (cell) => !cell.innerHTML
+            );
+            if (emptyCells.length > 0 && currentPlayer === 2) { // Putting currentPlayer 1 check here fixed the problem with computerPlayer hitting all the squares without player 1 input.
+
+              const randomCell =
+                emptyCells[Math.floor(Math.random() * emptyCells.length)];
+              randomCell.click();
+            }
+          }, 500); // Add a slight delay for the computer's move
+        }
+
+      }
+
+      computerPlayer()
+
+        // function useNewGameBtn() {
+        //   boardCells.forEach((cell) => {
+        //     cell.innerHTML = ""; 
+        //     messageBoard.style.backgroundColor = "";
+        //     cell.style.backgroundColor = "";
+        //     round = 0;
+        //     // gameActive = true;
+
+        //     if (winner === 1 && isComputerPlayer) {
+        //       currentPlayer === 2;
+        //       messageBoard.textContent = player2Opening;
+        //       computerPlayer();
+        //     } 
+        //     else if (winner === 2 && isComputerPlayer) {
+        //       currentPlayer === 1;
+        //       messageBoard.textContent = player2Opening;
+        //       computerPlayer();
+        //     } 
+        //     else if (winner === 1) {
+        //       currentPlayer === 2;
+        //       messageBoard.textContent = player2Opening;
+        //     } 
+        //     else if (winner === 2) {
+        //       currentPlayer === 1;
+        //       messageBoard.textContent = player1Opening;
+        //     } 
+
+
+        //   });
+        // }
+
+        function useNewGameBtn() {
+          boardCells.forEach((cell) => {
+            cell.innerHTML = "";
+            messageBoard.style.backgroundColor = "";
+            cell.style.backgroundColor = "";
+            round = 0;
+
+            if (winner === 1) {
+              currentPlayer = 2;
+            } else if (winner === 2) {
+              currentPlayer = 1;
+            }
+
+            // currentPlayer = winner; // Winner starts the new game
+            updateMessageBoard();
+            if (isComputerPlayer && currentPlayer === 2) {
+              computerPlayer();
+            }
+          });
+        }
+
+console.log(`Current round is ${round}...`);
+        console.log(`Player ${currentPlayer}'s turn.`);
+        console.log(checkWinCondition());
+
+        if (winner === 0) {
+          console.log(`No current champ.`); 
+        } else if (winner === 1) {
+          console.log(`PLAYER ONE IS THE CHAMPION OF THE WORLD.`);
+        } else if (winner === 2) {
+          console.log(`PLAYER TWO REIGNS.`);
+        } else if (winner === 3) {
+          console.log(`Three is WEIRD.`);
+        }
+      }
+
+    });
+
+    });
+
+  
+
+
+  function checkWinCondition() {
+    const cells = document.querySelectorAll(".cell");
+    const winPatterns = [
+      [0, 1, 2], // Rows
+      [3, 4, 5], // Rows
+      [6, 7, 8], // Rows
+      [0, 3, 6], // Columns
+      [1, 4, 7], // Columns
+      [2, 5, 8], // Columns
+      [0, 4, 8], // Diagonals
+      [2, 4, 6], // Diagonals
+    ];
+
+    return winPatterns.some((pattern) => {
+      const [a, b, c] = pattern;
+      const cellA = cells[a].querySelector("img");
+      const cellB = cells[b].querySelector("img");
+      const cellC = cells[c].querySelector("img");
+
+      if (cellA && cellB && cellC) {
+        const playerA = parseInt(cellA.dataset.player);
+        const playerB = parseInt(cellB.dataset.player);
+        const playerC = parseInt(cellC.dataset.player);
+
+        if (
+          playerA &&
+          playerB &&
+          playerC &&
+          playerA === playerB &&
+          playerB === playerC
+        ) {
+          // console.log(cells[a], cells[b], cells[c]);
+
+          cells[a].style.backgroundColor = "var(--dk-gray)";
+          cells[b].style.backgroundColor = "var(--dk-gray)";
+          cells[c].style.backgroundColor = "var(--dk-gray)";
+
+          return true;
+        }
+      }
+      return false;
+    });
+  }
+}
+
+const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
+createBoardMarkers(playerOneMarker, playerTwoMarker);
+
+
+const gameBoardModule = (function () {
   function Cell() {
     let marker = "";
     return { marker };
@@ -571,7 +622,6 @@ const gameBoard = (function () {
   ];
 
   // return board
-
   function updateCell(index, newMarker) {
     if (index >= 0 && index < 9) {
       board[index].marker = newMarker;
@@ -591,15 +641,15 @@ const gameBoard = (function () {
   return { board, updateCell, displayCell };
 })();
 
-// gameBoard.updateCell(0, "E");
-// gameBoard.updateCell(1, "Y");
-// gameBoard.updateCell(2, "A");
-console.log(gameBoard.updateCell(6, "X"));
-console.log(gameBoard.updateCell(1, "O"));
-console.log(gameBoard.updateCell(2, "O"));
-console.log(gameBoard.updateCell(4, "X"));
-console.log(gameBoard.updateCell(8, "X"));
-gameBoard.displayCell();
+// gameBoardModule.updateCell(0, "E");
+// gameBoardModule.updateCell(1, "Y");
+// gameBoardModule.updateCell(2, "A");
+// console.log(gameBoardModule.updateCell(6, "X"));
+// console.log(gameBoardModule.updateCell(1, "O"));
+// console.log(gameBoardModule.updateCell(2, "X"));
+// console.log(gameBoardModule.updateCell(4, "X"));
+// console.log(gameBoardModule.updateCell(8, "O"));
+gameBoardModule.displayCell();
 
 // SET UP THE GAMEPLAY
 

@@ -1,66 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 
+/* ******** CSS TABLE OF CONTENTS ******** */
+/* ROOT                                    */
+/* RESETS/ALL(*)                           */
+/* BODY AND MAIN SECTIONS                  */
+/* --> Modal/Dialog*                       */
+/* --> Game Section                        */
+/* BUTTONS                                 */
+/* TOGGLE                                  */
+/* MEDIA QUERIES                           */
+/* ******** CSS TABLE OF CONTENTS ******** */
+
+
+/* ROOT                                    */
 :root {
 --dk-gray: #333333;
 --md-gray: #808080;
 --white: #f5f5f5;
-
 --red: #a50717;
 --yellow: #dfdf0d;
 --green: #1f3c22;
 --blue: #221f3c;
-
 --fire1: #cf6868;
 --earth1: #c99c80;
 --air1: #dfdd86;
 --water1: #7bf0e4;
-
 --fire2: #a694ae;
 --earth2: #88ae88;
 --air2: #bdc7da;
 --water2: #65afc4;
-
-/* --glow1: var(--red);
---glow2: var(--dk-gray); */
---min-width: 300px;
---master-width1: 330px;
---master-width2: 98vw;
 --border-width1: .5rem;
 --border-width2: 3px;
+--font-alert-msg-size: 1rem;
+--font-main: "Patrick Hand SC", cursive;
+--font-main-size: 1.25rem;
 --font-title: "Spicy Rice", serif;
 --font-title-size: 2.5rem;
---font: "Patrick Hand SC", cursive;
---font-size: 1.25rem;
-/* --font-size-name-type: 1rem; */
---font-size-alert-msg: 1rem;
-
---zod-btn: 3.5rem;
-
---other-btn-w: calc(var(--zod-btn) * 2.067);
---sym-img-size: 2.5rem;
---alert-msg-ht: 1.75rem;
+--master-alert-height: 1.75rem;
+--master-msg-board-height: 4.75rem;
+--master-width1: 330px;
+--master-width2: 98vw;
+--min-width: 300px;
+--other-btn-size: calc(var(--zod-btn-size) * 2.067);
+--zod-btn-size: 3.5rem;
 --marker-img-size: 4.5rem;
---msg-board-ht: 4.75rem;
-
+--sym-img-size: 2.5rem;
 }
 
-/* Stop Apple Safari defaults */
+
+/* RESETS/ALL(*)                           */
+
+/* Stops Apple Safari defaults seen on an older iPhone model*/
 button {
     -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
-    /* background: none;
-    border: none;
-    padding: 0;
-    margin: 0; */
     color: inherit;
-    /* font: inherit;
-    line-height: normal;
-    overflow: visible;
-    text-transform: none; */
 }
-
 
 * {
   box-sizing: border-box;
@@ -68,19 +64,17 @@ button {
   padding: 0;
 }
 
+
+/* BODY AND MAIN SECTIONS                  */
+
 body {
-  height:auto;
-  width: auto;
+  /* height:auto;
+  width: auto; */
   background: var(--dk-gray);
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 #app-container {
-  height: auto;
-  width: auto;
+  margin: 0;
 }
 
 #app-title {
@@ -96,35 +90,18 @@ body {
   font-size: var(--font-title-size);
   font-weight: 100;
   margin: .2rem;
-  text-shadow: 0 0 20px var(--white), 0 0 25px var(--md-gray) 
+  text-shadow: 0 0 30px var(--white), 0 0 50px var(--md-gray) 
 }
 
-/* Comment out but keep glow animation */
 
-/* #app-title h1 span{ 
-  -webkit-animation: glow 5s ease-in-out infinite alternate;
-  -moz-animation: glow 5s ease-in-out infinite alternate;
-  animation: glow 5s ease-in-out infinite alternate;
-}
-
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 10px var(--white), 0 0 20px #fff, 0 0 30px var(--glow1), 0 0 40px var(--glow1), 0 0 50px var(--glow1), 0 0 60px var(--glow1), 0 0 70px var(--glow1);
-  }
-  to {
-    text-shadow: 0 0 10px var(--white), 0 0 20px var(--glow2), 0 0 30px var(--glow2), 0 0 40px var(--glow2), 0 0 50px var(--glow2), 0 0 60px var(--glow2), 0 0 70px var(--glow2);
-  }
-} */
+/* --> Modal/Dialog*                       */
 
 #modal-container {
-  /* height: auto;
-  width: var(--master-width); */
-  /* width: 100vw; */
   display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-  font-family: var(--font);
+  font-family: var(--font-main);
 }
 
 dialog {
@@ -140,18 +117,18 @@ dialog {
 }
 
 dialog h2 {
-  font-size: var(--font-size);
+  font-size: var(--font-main-size);
   margin-bottom: .2rem;
 }
 
-.dialog-item1 {
+.flex-row {
   display: flex;
   justify-content: center;
     align-items: center;
-  margin: 0 0 0 0;
+  /* margin: 0 0 0 0; */
 }
 
-.dialog-item1 h2 {
+.flex-row h2 {
   margin-top: .5rem;
 }
 
@@ -173,6 +150,7 @@ dialog h2 {
   opacity: .5;
 }
 
+/* Slides down player two options */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -194,20 +172,19 @@ dialog h2 {
 
 #alert1, #alert2 {
   align-self: center;
-  height: var(--alert-msg-ht);
+  height: var(--master-alert-height);
   width: fit-content;
   background-color: var(--yellow);
   border: var(--border-width2) dashed var(--dk-gray);
   display: none;
   justify-content: center;
     align-items: center;
-    /* flex-wrap: wrap; */
   margin: 0 0 .25rem 0;
 }
 
 #alert-msg1, #alert-msg2 {
   color: var(--red);
-  font-size: var(--font-size-alert-msg);
+  font-size: var(--font-alert-msg-size);
   padding: .75rem;
 }
 
@@ -220,19 +197,6 @@ dialog h2 {
   margin: 0;
 }
 
-button {
-  height: var(--zod-btn);
-  width: var(--zod-btn);
-  background: var(--white);
-  border: var(--border-width2) solid var(--dk-gray);
-  border-radius: 1rem;
-  cursor: pointer;
-  display: flex;
-    justify-content: center;
-    align-items: center;
-  margin-bottom: .25rem;
-}
-
 .zod-sym {
   height: auto;
   width: var(--sym-img-size);
@@ -243,6 +207,135 @@ button {
   height: auto;
   width: var(--sym-img-size);
   display: none;
+}
+
+
+/* --> Game Section                        */
+
+#game-container {
+  height: auto;
+  width: auto;
+  display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  padding: .25rem;
+}
+
+#player-board {
+  width: var(--master-width2);
+  background: var(--white);
+  border: var(--border-width1) double var(--dk-gray);
+  border-radius: 2rem 2rem 0 0;
+}
+
+#player-container {
+  display: flex;
+    justify-content: space-evenly;
+}
+
+#player-one-box, #player-two-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-main);
+  padding: .25rem 0 .25rem 0;
+}
+
+#player-one-box h2, #player-two-box h2 {
+  font-size: var(--font-main-size);
+}
+
+#player-one-marker, #player-two-marker {
+  height: auto;
+  width: var(--marker-img-size);
+  border: var(--border-width2) solid var(--dk-gray);
+  border-radius: 1rem;
+  text-align: center;
+  padding: .25rem;
+}
+
+#player-one-name, #player-two-name, #player-one-type, #player-two-type  {
+  color: var(--red);
+  font-size: var(--font-main-size);
+  font-weight: 800;
+}
+
+#message-board {
+  height: var(--master-msg-board-height);
+  width: var(--master-width2);
+  background: var(--white);
+  border: var(--border-width1) double var(--dk-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-main);
+  font-size: var(--font-main-size);
+  padding: .25rem;
+  text-align: center;
+}
+
+#game-board {
+  height: auto;
+  width: var(--master-width2);  
+  display: grid;
+    grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(6rem, 1fr));
+    gap: 0;
+}
+
+.cell {
+  background: var(--white);
+  border: var(--border-width1) double var(--dk-gray);
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle; 
+}
+
+.cell img {
+  height: auto;
+  width: var(--marker-img-size);
+  border: var(--border-width2) solid var(--dk-gray);
+  border-radius: 1rem;
+  padding: .25rem;
+}
+
+#game-btns {
+  width: var(--master-width2);
+  background: var(--white);
+  border: var(--border-width1) double var(--dk-gray);
+  border-radius: 0 0 2rem 2rem;
+  display: flex;
+    justify-content: space-evenly;
+    align-items: center;    
+  padding: .5rem;
+}
+
+#game-btns h2 {
+  font-size: var(--font-main-size);
+}
+
+#game-btns .clear-btn, #game-btns #new-game-btn {
+  margin-bottom: 0;
+}
+
+
+/* BUTTONS                                 */
+
+button {
+  height: var(--zod-btn-size);
+  width: var(--zod-btn-size);
+  background: var(--white);
+  border: var(--border-width2) solid var(--dk-gray);
+  border-radius: 1rem;
+  cursor: pointer;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  margin-bottom: .5rem;
 }
 
 button:hover, button:focus {
@@ -280,14 +373,13 @@ button:active {
   transform: scale(.9);
 }
 
-
 .btn-row #start-btn, .btn-row .clear-btn, #game-btns .clear-btn, #game-btns #new-game-btn {
-  height: var(--zod-btn);
-  width: var(--other-btn-w);
+  height: var(--zod-btn-size);
+  width: var(--other-btn-size);
   display: flex;
     justify-content: center;
     align-items: center;
-  font-family: var(--font);
+  font-family: var(--font-main);
 }
 
 .clear-btn:hover, .clear-btn:focus, #start-btn:hover, #start-btn:focus, #new-game-btn:hover, #new-game-btn:focus {
@@ -308,133 +400,10 @@ button:active {
   color: var(--white);
 }
 
-#game-container {
-  height: auto;
-  width: auto;
-  display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  padding: .25rem;
-}
-
-#player-board {
-  /* width: var(--master-width); */
-  width: var(--master-width2);
-  background: var(--white);
-  border: var(--border-width1) double var(--dk-gray);
-  border-radius: 2rem 2rem 0 0;
-}
-
-#player-container {
-  display: flex;
-    justify-content: space-evenly;
-}
-
-#player-one-box, #player-two-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--font);
-  padding: .25rem 0 .25rem 0;
-}
-
-#player-one-box h2, #player-two-box h2 {
-  font-size: var(--font-size);
-}
-
-#player-one-marker, #player-two-marker {
-  height: auto;
-  width: var(--marker-img-size);
-  border: var(--border-width2) solid var(--dk-gray);
-  border-radius: 1rem;
-  text-align: center;
-  padding: .25rem;
-}
-
-
-#player-one-name, #player-two-name, #player-one-type, #player-two-type  {
-  color: var(--red);
-  font-size: var(--font-size);
-  font-weight: 800;
-}
-
-#message-board {
-  height: var(--msg-board-ht);
-  /* width: var(--master-width); */
-  width: var(--master-width2);
-  background: var(--white);
-  border: var(--border-width1) double var(--dk-gray);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--font);
-  font-size: var(--font-size);
-  padding: .25rem;
-  text-align: center;
-}
-
-#game-board {
-  height: auto;
-  /* width: var(--master-width); */
-  width: var(--master-width2);  
-  display: grid;   /* change back to none? */
-    grid-template: repeat(3, minmax(7rem, 1fr) ) / repeat(3, minmax(6rem, 1fr));
-    gap: 0;
-  /* margin-top: 1rem; */
-}
-
-.cell {
-  /* height: auto;
-  width: auto; */
-  background: var(--white);
-  border: var(--border-width1) double var(--dk-gray);
-  /* color: var(--dk-gray); */
-  display: flex;
-    justify-content: center;
-    align-items: center;
-  /* font-size: 4rem; */
-  margin: 0;
-  padding: 0;
-  vertical-align: middle; 
-}
-
-.cell img {
-  height: auto;
-  width: var(--marker-img-size);
-  border: var(--border-width2) solid var(--dk-gray);
-  border-radius: 1rem;
-  padding: .25rem;
-}
-
-#game-btns {
-  /* width: var(--master-width); */
-  width: var(--master-width2);
-  /* display: flex; */
-  background: var(--white);
-  border: var(--border-width1) double var(--dk-gray);
-  border-radius: 0 0 2rem 2rem;
-  display: flex;
-    justify-content: space-evenly;
-    align-items: center;    
-    /* gap: .25rem; */
-  /* margin: 1rem; */
-  padding: .5rem;
-}
-
-#game-btns h2 {
-  font-size: var(--font-size);
-}
-
-#game-btns .clear-btn, #game-btns #new-game-btn {
-  margin-bottom: 0;
-}
-
 
 /* TOGGLE */
 
-/* The switch - the box around the slider */
+/* Switch - the box around the slider */
 .switch {
   position: relative;
   width: 38px;
@@ -450,7 +419,7 @@ button:active {
   opacity: 0;
 }
 
-/* The slider */
+/* Slider */
 .slider {
   position: absolute;
   top: 0;
@@ -488,15 +457,9 @@ input:checked + .slider:before {
 }
 
 
-
-
-/* MEDIA QUERIES */
+/* MEDIA QUERIES                           */
 
 @media (width < 320px) {
-
-  :root {
-
-  }
   dialog {
    min-width: var(--min-width);
   }
@@ -517,51 +480,42 @@ input:checked + .slider:before {
    min-width: var(--min-width);
   }
 
-
  .cell {
-  background-color:red;
-   min-width: var(--min-width);
- }
+  background-color: var(--red);
+  min-width: var(--min-width);
+  }
 }
 
 @media (min-width: 425px) {
+
+  /* Main values from above are commented out, keep as a reference point for future tweaks */
   :root {
-  /* Increase everything by .5 per screen size increase. */
+    /* --border-width1: .5rem; */
+    --border-width1: .5rem;
+    /* --border-width2: 3px; */
+    --border-width2: 3px;
+    /* --font-alert-msg-size: 1rem; */
+    --font-alert-msg-size: 1.2rem;
+    /* --font-main-size: 1.25rem; */
+    --font-main-size: 1.75rem;
+    /* --font-title-size: 2.5rem; */
+    --font-title-size: 3rem;
+    /* --master-alert-height: 1.75rem; */
+    --master-alert-height: 2.25rem;
+    /* --master-msg-board-height: 4.75rem; */
+    --master-msg-board-height: 7rem;
+    /* --master-width1: 330px; */
+    --master-width1: 425px;
+    /* --zod-btn-size: 3.5rem; */
+    --zod-btn-size: 4.1rem;
+    /* --marker-img-size: 4.5rem; */
+    --marker-img-size: 5.25rem;
+    /* --sym-img-size: 2.5rem; */
+    --sym-img-size: 2.75rem;
+  }
 
-  /* --master-width: 325px; */
-  --master-width1: 425px;
-
-  --border-width1: .5rem;
-  --border-width2: 3px;
-
-  /* --zod-btn: 3.5rem; */
-  --zod-btn: 4.1rem;
-
-  /* --sym-img-size: 2.25rem; */
-  --sym-img-size: 2.75rem;
-
-  /* --marker-img-size: 4.5rem; */
-  --marker-img-size: 5.25rem;
-
-  /* --other-btn-w: calc(var(--zod-btn) * 2.067); */
-
-  /* --font-title-size: 2.5rem; */
-  --font-title-size: 3rem;
-
-  /* --font-size: 1.25rem; */
-  --font-size: 1.75rem;
-
-
-  /* --font-size-alert-msg: 1rem; */
-  --font-size-alert-msg: 1.2rem;
-
-/* --alert-msg-ht: 1.75rem; */
-  --alert-msg-ht: 2.25rem;
-
-  /* --msg-board-ht: 6rem; */
-  --msg-board-ht: 7rem;
-
-
+  #app-container {
+    margin: 2.5rem;
   }
 
   dialog {
@@ -584,25 +538,5 @@ input:checked + .slider:before {
   #game-btns {
     width: var(--master-width1);
   }
-
 }
-
-/* @media (min-width: 768px) {
-  :root {
-  --master-width: 568px;
-  --border-width1: .5rem;
-  --border-width2: 3px;
-    --zod-btn: 5.25rem;
-    --sym-img-size: 3.25rem;
-    --marker-img-size: 7.5rem;  
-   --font-title-size: 4.75rem;
-   --font-size: 2.25rem;
-    --font-size-alert-msg: 1.55rem;
-   --msg-board-ht: 8rem;
-  }
-
-  #game-board {
-    grid-template: repeat(3, minmax(11.5rem, 1fr) ) / repeat(3, minmax(5rem, 1fr));
-  }
-} */
 

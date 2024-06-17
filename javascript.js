@@ -1,4 +1,4 @@
-// Module for changing number of players font color
+// Module for changing toggle slider color, and selected player number font color
 const numPlayersFontColorModule = (function () {
   const numPlayers = document.querySelector("#num-players");
   const sliderText1 = document.querySelector("#slider-text1");
@@ -19,7 +19,7 @@ const numPlayersFontColorModule = (function () {
   };
 })();
 
-// Module for handling the player modal display
+// Module for handling player two marker options on modal/dialog display
 const playerTwoSelectModule = (function () {
   const numPlayers = document.querySelector("#num-players");
   const modalPlayerTwo = document.querySelector("#modal-player-two");
@@ -38,7 +38,7 @@ const playerTwoSelectModule = (function () {
   };
 })();
 
-// Module for handling the zodiac button images
+// Module for switching the zodiac symbol and image when button is hovered/focused
 const zodBtnImgsModule = (function () {
   const zodBtns = document.querySelectorAll(".zod-btn");
 
@@ -70,9 +70,8 @@ const zodBtnImgsModule = (function () {
 })();
 
 
-// Factory function for creating player selectors
+// Factory function for creating player marker selection
 (function () {
-  // function PlayerSignSelectModule(playerId, valueChecker) {
   function PlayerSignSelectModule(playerId, playerKey) {
     const zodBtns = document.querySelectorAll(".zod-btn");
     const playerSelects = document.querySelector(playerId);
@@ -82,14 +81,8 @@ const zodBtnImgsModule = (function () {
     function selectPlayerSign() {
       zodBtns.forEach((button) => {
         button.addEventListener("click", () => {
-          // const matchingText = valueChecker.filter((text) =>
-          //   text.hasOwnProperty(button.id)
-          // );
-
           const matchingText = valueChecker[playerKey][button.id];
 
-          // if (matchingText.length > 0) {
-          //   selectedSign = matchingText.map((obj) => obj[button.id]).join("");
           if (matchingText) {
             selectedSign = matchingText;
             selectedSignId = button.id;
@@ -115,45 +108,45 @@ const zodBtnImgsModule = (function () {
     };
   }
 
-const valueChecker = {
-  player1: {
-    ari1: "Aries",
-    tau1: "Taurus",
-    gem1: "Gemini",
-    can1: "Cancer",
-    leo1: "Leo",
-    vir1: "Virgo",
-    lib1: "Libra",
-    sco1: "Scorpio",
-    sag1: "Sagittarius",
-    cap1: "Capricorn",
-    aqu1: "Aquarius",
-    pis1: "Pisces",
-  },
-  player2: {
-    ari2: "Aries",
-    tau2: "Taurus",
-    gem2: "Gemini",
-    can2: "Cancer",
-    leo2: "Leo",
-    vir2: "Virgo",
-    lib2: "Libra",
-    sco2: "Scorpio",
-    sag2: "Sagittarius",
-    cap2: "Capricorn",
-    aqu2: "Aquarius",
-    pis2: "Pisces",
-  },
-};
+  const valueChecker = {
+    player1: {
+      ari1: "Aries",
+      tau1: "Taurus",
+      gem1: "Gemini",
+      can1: "Cancer",
+      leo1: "Leo",
+      vir1: "Virgo",
+      lib1: "Libra",
+      sco1: "Scorpio",
+      sag1: "Sagittarius",
+      cap1: "Capricorn",
+      aqu1: "Aquarius",
+      pis1: "Pisces",
+    },
+    player2: {
+      ari2: "Aries",
+      tau2: "Taurus",
+      gem2: "Gemini",
+      can2: "Cancer",
+      leo2: "Leo",
+      vir2: "Virgo",
+      lib2: "Libra",
+      sco2: "Scorpio",
+      sag2: "Sagittarius",
+      cap2: "Capricorn",
+      aqu2: "Aquarius",
+      pis2: "Pisces",
+    },
+  };
 
-    const playerOneSignSelect = PlayerSignSelectModule(
-      "#player-one-sign-select",
-      "player1"
-    );
-    const playerTwoSignSelect = PlayerSignSelectModule(
-      "#player-two-sign-select",
-      "player2"
-    );
+  const playerOneSignSelect = PlayerSignSelectModule(
+    "#player-one-sign-select",
+    "player1"
+  );
+  const playerTwoSignSelect = PlayerSignSelectModule(
+    "#player-two-sign-select",
+    "player2"
+  );
 
   playerOneSignSelect.selectPlayerSign();
   playerTwoSignSelect.selectPlayerSign();
@@ -162,9 +155,9 @@ const valueChecker = {
   window.playerTwoSignSelect = playerTwoSignSelect;
 })();
 
-
 // Initialize the modules
 const numPlayersCheckbox = document.querySelector("#num-players");
+
 numPlayersCheckbox.addEventListener("change", () => {
   numPlayersFontColorModule.changeNumPlayerFontColor();
   playerTwoSelectModule.showPlayerTwoSelect();
@@ -178,14 +171,12 @@ const clearBtnModule = (function () {
   const clearBtn = document.querySelectorAll(".clear-btn");
 
   function useClearBtn() {
-    // window.location.reload();
-    // Below code is to ensure the Firefox browsers completely reload page, previously not doing so. Tested: works.
+    // Below code is to ensure the Firefox browsers completely reload page, previously not doing so with window.location.reload();. Tested: works.
     window.location.href =
       window.location.pathname + "?cachebust=" + new Date().getTime();
   }
 
   clearBtn.forEach(button => button.addEventListener("click", useClearBtn));
-  
 })();
 
 const modalStartBtnModule = (function () {
@@ -204,24 +195,17 @@ const modalStartBtnModule = (function () {
     const playerTwoSignId = window.playerTwoSignSelect.getSelectedSignId();
     const playerTwoSign = window.playerTwoSignSelect.getSelectedSign();
 
-    // One player, player one sign not selected...
+    // One player: if player one sign not selected...
     if (!numPlayers.checked && playerOneSignId === "") {
       alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       return;
     }
 
-    // Two players, player one and player two signs not selected...
+    // Two players: if player one and player two signs not selected...
     if (numPlayers.checked && playerOneSignId === "" && playerTwoSignId === "") {
       alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
-      alert2.style.display = "flex";
-      alertMsg2.textContent = "Please select a sign for player two.";
-      return;
-    }
-
-    // Two players, player two sign not selected...
-    if (numPlayers.checked && playerTwoSignId === "") {
       alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
@@ -245,9 +229,8 @@ const modalStartBtnModule = (function () {
     dialog.style.display = "none";
     gameContainer.style.display = "flex";
     console.log(`Player ONE's starting turn.`);
-    // console.log("Starting game with:", { playerOneSignId, playerOneSign, playerTwoSignId, playerTwoSign });
 
- // Call another function with the selected sign data
+    // Call another function with the selected sign data
     playerBoardModule.setPlayerBoard(
       playerOneSignId,
       playerOneSign,
@@ -265,8 +248,8 @@ const modalStartBtnModule = (function () {
     getPlayerTwoSign: () => playerTwoSign,
     getPlayerTwoSignId: () => playerTwoSignId,
   };
-
 })();
+
 
 const playerBoardModule = (function () {
   const playerOneMarker = document.querySelector("#player-one-marker");
@@ -288,7 +271,7 @@ const playerBoardModule = (function () {
     playerTwoSign
   ) {
 
-    // Keep redundant images in case I want to change these images later on.
+    // Keep redundancy of images below in case I want to change these images later on.
     const signMarkers = {
       ari1: { markerImg: "./assets/ari-img.svg", markerBkg: "var(--fire1)" },
       tau1: { markerImg: "./assets/tau-img.svg", markerBkg: "var(--earth1)" },
@@ -347,17 +330,14 @@ const playerBoardModule = (function () {
 
   return {
     setPlayerBoard,
-    // playerTwoType,
   };
 })();
 
 playerBoardModule.setPlayerBoard();
-// playerBoardModule.setPlayerMarker();
 
-
-function createBoardMarkers(playerOneMarker, playerTwoMarker) {
+function gamePlayerController(playerOneMarker, playerTwoMarker) {
   const boardCells = document.querySelectorAll(".cell");
-  let currentPlayer = 1; // Player One starts with marker 1
+  let currentPlayer = 1;
   const messageBoard = document.querySelector("#message-board");
   const player1Opening = `Player One makes the first move.`;
   const player2Opening = `Player Two makes the first move.`;
@@ -369,63 +349,47 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
   messageBoard.textContent = player1Opening;
   let round = 0;
   let winner = 0;
-  // let gameActive = false
   const playerTwoType = document.querySelector("#player-two-type");
 
-
-    function updateMessageBoard() {
-      if (winner === 1) {
-        messageBoard.textContent = player2Opening;
-      } else if (winner === 2) {
-        messageBoard.textContent = player1Opening;
-      }
+  function updateMessageBoard() {
+    if (winner === 1) {
+    messageBoard.textContent = player2Opening;
+    } else if (winner === 2) {
+    messageBoard.textContent = player1Opening;
     }
+  }
 
-    updateMessageBoard();
-
+  updateMessageBoard();
 
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
+
+
       if (!cell.innerHTML && !checkWinCondition()) {
+
         // Check if the cell is empty first...
         if (currentPlayer === 1) {
-          cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
-          round++;
-          // gameActive = true
-          messageBoard.textContent = player2Turn;
+        cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+        round++;
+        messageBoard.textContent = player2Turn;
         } else if (currentPlayer === 2) {
-          cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
-          round++;
-          // gameActive = true;
-          messageBoard.textContent = player1Turn;
+        cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+        round++;
+        messageBoard.textContent = player1Turn;
         }
 
         // Check for win condition after at least 5 rounds (earliest possible win)
         if (round >= 5) {
           if (checkWinCondition()) {
-            messageBoard.textContent = `Player ${
-              currentPlayer === 1 ? "One" : "Two"
-            } wins! Click "New Game" for another match.`;
-            messageBoard.style.backgroundColor =
-              currentPlayer === 1
-                ? playerOneMarker.style.backgroundColor
-                : playerTwoMarker.style.backgroundColor;
-            if (messageBoard.textContent === player1Win) {
+            messageBoard.textContent = `Player ${currentPlayer === 1 ? "One" : "Two"} wins! Click "New Game" for another match.`;
+            messageBoard.style.backgroundColor = currentPlayer === 1 ? playerOneMarker.style.backgroundColor : playerTwoMarker.style.backgroundColor;
+              if (messageBoard.textContent === player1Win) {
               winner = 1;
-              // gameActive = false;
-            } else if (messageBoard.textContent === player2Win) {
+              } else if (messageBoard.textContent === player2Win) {
               winner = 2;
-              // gameActive = false;
             } 
-            // else {
-            //   winner = 0;
-            //   gameActive = false;
-            // }
-
-            // Disable further clicks or reset game
           } else if (round === 9) {
-            // gameActive = false;
-            messageBoard.textContent = playersDraw;
+          messageBoard.textContent = playersDraw;
           }
         }
 
@@ -434,80 +398,27 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
         const resetBtn = document.querySelector("#new-game-btn");
         resetBtn.addEventListener("click", useNewGameBtn);
 
-        // function useNewGameBtn() {
-        //   boardCells.forEach((cell) => {
-        //     cell.innerHTML = "";
-        //     messageBoard.style.backgroundColor = "";
-        //     cell.style.backgroundColor = "";
-        //     round = 0;
-
-        //     if (winner === 1) {
-        //       currentPlayer === 2;
-        //       messageBoard.textContent = player2Opening;
-        //     } else if (winner === 2) {
-        //       currentPlayer === 1;
-        //       messageBoard.textContent = player1Opening;
-        //     }
-        //     else if (useNewGameBtn() && winner === 1) {
-        //       currentPlayer = 2;
-        //       messageBoard.textContent = player2Opening;
-        //     }
-        //   });
-        // }
-
         // Check if Player Two is a computer
-        
         const isComputerPlayer = playerTwoType.textContent === "(Computer)";
 
         function computerPlayer() {
           if (isComputerPlayer && currentPlayer === 2) {
-          setTimeout(() => {
-            const emptyCells = Array.from(boardCells).filter(
+            setTimeout(() => {
+              const emptyCells = Array.from(boardCells).filter(
               (cell) => !cell.innerHTML
-            );
-            if (emptyCells.length > 0 && currentPlayer === 2) { // Putting currentPlayer 1 check here fixed the problem with computerPlayer hitting all the squares without player 1 input.
-
+              );
+              
+              // Putting currentPlayer 1 check here fixed the problem with computerPlayer hitting all the squares without player 1 input.
+              if (emptyCells.length > 0 && currentPlayer === 2) { 
               const randomCell =
-                emptyCells[Math.floor(Math.random() * emptyCells.length)];
+              emptyCells[Math.floor(Math.random() * emptyCells.length)];
               randomCell.click();
-            }
-          }, 500); // Add a slight delay for the computer's move
+              }
+            }, 500); // Adds a slight delay for the computer's move
+          }
         }
 
-      }
-
       computerPlayer()
-
-        // function useNewGameBtn() {
-        //   boardCells.forEach((cell) => {
-        //     cell.innerHTML = ""; 
-        //     messageBoard.style.backgroundColor = "";
-        //     cell.style.backgroundColor = "";
-        //     round = 0;
-        //     // gameActive = true;
-
-        //     if (winner === 1 && isComputerPlayer) {
-        //       currentPlayer === 2;
-        //       messageBoard.textContent = player2Opening;
-        //       computerPlayer();
-        //     } 
-        //     else if (winner === 2 && isComputerPlayer) {
-        //       currentPlayer === 1;
-        //       messageBoard.textContent = player2Opening;
-        //       computerPlayer();
-        //     } 
-        //     else if (winner === 1) {
-        //       currentPlayer === 2;
-        //       messageBoard.textContent = player2Opening;
-        //     } 
-        //     else if (winner === 2) {
-        //       currentPlayer === 1;
-        //       messageBoard.textContent = player1Opening;
-        //     } 
-
-
-        //   });
-        // }
 
         function useNewGameBtn() {
           boardCells.forEach((cell) => {
@@ -517,40 +428,35 @@ function createBoardMarkers(playerOneMarker, playerTwoMarker) {
             round = 0;
 
             if (winner === 1) {
-              currentPlayer = 2;
+            currentPlayer = 2;
             } else if (winner === 2) {
-              currentPlayer = 1;
+            currentPlayer = 1;
             }
 
             // currentPlayer = winner; // Winner starts the new game
             updateMessageBoard();
+            
             if (isComputerPlayer && currentPlayer === 2) {
-              computerPlayer();
+            computerPlayer();
             }
           });
         }
 
-console.log(`Current round is ${round}...`);
-        console.log(`Player ${currentPlayer}'s turn.`);
-        console.log(checkWinCondition());
+        // Log checks...
+        console.log(`Current round is ${round}...`);
+        console.log(`It is player ${currentPlayer}'s turn.`);
+        console.log(`Winner condtion is: ${checkWinCondition()}`);
 
         if (winner === 0) {
-          console.log(`No current champ.`); 
+        console.log(`No current player is a champion.`); 
         } else if (winner === 1) {
-          console.log(`PLAYER ONE IS THE CHAMPION OF THE WORLD.`);
+        console.log(`PLAYER ONE IS THE CHAMPION OF THE WORLD.`);
         } else if (winner === 2) {
-          console.log(`PLAYER TWO REIGNS.`);
-        } else if (winner === 3) {
-          console.log(`Three is WEIRD.`);
+        console.log(`PLAYER TWO REIGNS AS CHAMP NOW.`);
         }
       }
-
     });
-
-    });
-
-  
-
+  });
 
   function checkWinCondition() {
     const cells = document.querySelectorAll(".cell");
@@ -598,8 +504,7 @@ console.log(`Current round is ${round}...`);
 }
 
 const { playerOneMarker, playerTwoMarker } = playerBoardModule.setPlayerBoard();
-createBoardMarkers(playerOneMarker, playerTwoMarker);
-
+gamePlayerController(playerOneMarker, playerTwoMarker);
 
 const gameBoardModule = (function () {
   function Cell() {
@@ -619,12 +524,9 @@ const gameBoardModule = (function () {
     Cell(),
   ];
 
-  // return board
   function updateCell(index, newMarker) {
     if (index >= 0 && index < 9) {
       board[index].marker = newMarker;
-      // let newBoard = board;
-      // return newBoard;
     } else {
       console.error("Invalid index provided");
     }
@@ -639,35 +541,10 @@ const gameBoardModule = (function () {
   return { board, updateCell, displayCell };
 })();
 
-// gameBoardModule.updateCell(0, "E");
-// gameBoardModule.updateCell(1, "Y");
-// gameBoardModule.updateCell(2, "A");
+// Initial marker in cell tests
+// gameBoardModule.updateCell(0, "X");
+// gameBoardModule.updateCell(1, "O");
 // console.log(gameBoardModule.updateCell(6, "X"));
-// console.log(gameBoardModule.updateCell(1, "O"));
-// console.log(gameBoardModule.updateCell(2, "X"));
-// console.log(gameBoardModule.updateCell(4, "X"));
 // console.log(gameBoardModule.updateCell(8, "O"));
+
 gameBoardModule.displayCell();
-
-// SET UP THE GAMEPLAY
-
-function gamePlayer() {
-  // SET UP THE PLAYERS/CHOOSE PLAYERS AND TYPE OF PLAYER
-  // PLAYER 1 WITH X; OPTIONAL NAME CHANGE; HUMAN OR AI, DEFAULT IS HUMAN
-  // PLAYER 2 WITH O; OPTIONAL NAME CHANGE; HUMAN OR AI, DEFAULT IS AI
-  // USE MODAL?
-  // PLAYER TYPE TOGGLE
-  // HUMAN1 VS AI2 -- DEFAULT
-  // HUMAN1 VS HUMAN2
-  // AI1 VS AI2
-  // AI1 VS HUMAN2 -- rarest...
-  // ONCE A SQUARE IS CLICKED TOGGLE AND PLAYER CHOICES ARE FROZEN, CAN NLY PICK SQUARES OR RESET GAME
-  // PLAYER 1 SELECTS
-  // PLAYER 1 MARKER IS PLACED ON THE DESIRED CELL
-  // PLAYER 2 SELECTS
-  // PLAYER 2 MARKER IS PLACED ON THE DESIRED CELL
-  // CHECK FOR WIN CONDITION AFTER TURN 3
-  // USE A TURN COUNTER...
-  // CHECK FOR DRAW CONDITION AFTER TURN 9
-  // USE A TURN COUNTER...
-}
