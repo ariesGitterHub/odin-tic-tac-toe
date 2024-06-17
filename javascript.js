@@ -69,7 +69,6 @@ const zodBtnImgsModule = (function () {
   };
 })();
 
-
 // Factory function for creating player marker selection
 (function () {
   function PlayerSignSelectModule(playerId, playerKey) {
@@ -176,7 +175,7 @@ const clearBtnModule = (function () {
       window.location.pathname + "?cachebust=" + new Date().getTime();
   }
 
-  clearBtn.forEach(button => button.addEventListener("click", useClearBtn));
+  clearBtn.forEach((button) => button.addEventListener("click", useClearBtn));
 })();
 
 const modalStartBtnModule = (function () {
@@ -186,7 +185,7 @@ const modalStartBtnModule = (function () {
   const alertMsg1 = document.querySelector("#alert-msg1");
   const alert2 = document.querySelector("#alert2");
   const alertMsg2 = document.querySelector("#alert-msg2");
-  const dialog = document.querySelector("dialog");  
+  const dialog = document.querySelector("dialog");
   const gameContainer = document.querySelector("#game-container");
 
   function useStartBtn() {
@@ -203,7 +202,11 @@ const modalStartBtnModule = (function () {
     }
 
     // Two players: if player one and player two signs not selected...
-    if (numPlayers.checked && playerOneSignId === "" && playerTwoSignId === "") {
+    if (
+      numPlayers.checked &&
+      playerOneSignId === "" &&
+      playerTwoSignId === ""
+    ) {
       alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       alert2.style.display = "flex";
@@ -237,7 +240,6 @@ const modalStartBtnModule = (function () {
       playerTwoSignId,
       playerTwoSign
     );
-
   }
 
   startBtn.addEventListener("click", useStartBtn);
@@ -250,7 +252,6 @@ const modalStartBtnModule = (function () {
   };
 })();
 
-
 const playerBoardModule = (function () {
   const playerOneMarker = document.querySelector("#player-one-marker");
   const playerOneName = document.querySelector("#player-one-name");
@@ -260,9 +261,35 @@ const playerBoardModule = (function () {
   const playerTwoType = document.querySelector("#player-two-type");
   const randomPick = Math.floor(Math.random() * 12);
 
-  const computerPlayerTwoIdList = ["ari2", "tau2", "gem2", "can2", "leo2", "vir2", "lib2", "sco2", "sag2", "cap2", "aqu2", "pis2"];
+  const computerPlayerTwoIdList = [
+    "ari2",
+    "tau2",
+    "gem2",
+    "can2",
+    "leo2",
+    "vir2",
+    "lib2",
+    "sco2",
+    "sag2",
+    "cap2",
+    "aqu2",
+    "pis2",
+  ];
 
-  const computerPlayerTwoList = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+  const computerPlayerTwoList = [
+    "Aries",
+    "Taurus",
+    "Gemini",
+    "Cancer",
+    "Leo",
+    "Virgo",
+    "Libra",
+    "Scorpio",
+    "Sagittarius",
+    "Capricorn",
+    "Aquarius",
+    "Pisces",
+  ];
 
   function setPlayerBoard(
     playerOneSignId,
@@ -270,7 +297,6 @@ const playerBoardModule = (function () {
     playerTwoSignId,
     playerTwoSign
   ) {
-
     // Keep redundancy of images below in case I want to change these images later on.
     const signMarkers = {
       ari1: { markerImg: "./assets/ari-img.svg", markerBkg: "var(--fire1)" },
@@ -353,43 +379,68 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
 
   function updateMessageBoard() {
     if (winner === 1) {
-    messageBoard.textContent = player2Opening;
+      messageBoard.textContent = player2Opening;
     } else if (winner === 2) {
-    messageBoard.textContent = player1Opening;
+      messageBoard.textContent = player1Opening;
     }
   }
 
   updateMessageBoard();
 
+const clickSound = new Audio("./assets/thud.mp3");
+clickSound.preload = "auto";
+
+clickSound.addEventListener("canplaythrough", () => {
+  console.log("Audio is ready to play.");
+});
+
+clickSound.addEventListener("error", (e) => {
+  console.error("Error loading audio:", e);
+});
+
+function playSoundEffect() {
+  if (clickSound.readyState >= 2) {
+    clickSound.play().catch((error) => {
+      console.error("Error playing sound:", error);
+    });
+  } else {
+    console.error("Sound not ready to play.");
+  }
+}
+
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
-
-
       if (!cell.innerHTML && !checkWinCondition()) {
-
         // Check if the cell is empty first...
         if (currentPlayer === 1) {
-        cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
-        round++;
-        messageBoard.textContent = player2Turn;
+          cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
+          playSoundEffect();
+          round++;
+          messageBoard.textContent = player2Turn;
         } else if (currentPlayer === 2) {
-        cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
-        round++;
-        messageBoard.textContent = player1Turn;
+          cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
+          playSoundEffect();
+          round++;
+          messageBoard.textContent = player1Turn;
         }
 
         // Check for win condition after at least 5 rounds (earliest possible win)
         if (round >= 5) {
           if (checkWinCondition()) {
-            messageBoard.textContent = `Player ${currentPlayer === 1 ? "One" : "Two"} wins! Click "New Game" for another match.`;
-            messageBoard.style.backgroundColor = currentPlayer === 1 ? playerOneMarker.style.backgroundColor : playerTwoMarker.style.backgroundColor;
-              if (messageBoard.textContent === player1Win) {
+            messageBoard.textContent = `Player ${
+              currentPlayer === 1 ? "One" : "Two"
+            } wins! Click "New Game" for another match.`;
+            messageBoard.style.backgroundColor =
+              currentPlayer === 1
+                ? playerOneMarker.style.backgroundColor
+                : playerTwoMarker.style.backgroundColor;
+            if (messageBoard.textContent === player1Win) {
               winner = 1;
-              } else if (messageBoard.textContent === player2Win) {
+            } else if (messageBoard.textContent === player2Win) {
               winner = 2;
-            } 
+            }
           } else if (round === 9) {
-          messageBoard.textContent = playersDraw;
+            messageBoard.textContent = playersDraw;
           }
         }
 
@@ -405,20 +456,20 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
           if (isComputerPlayer && currentPlayer === 2) {
             setTimeout(() => {
               const emptyCells = Array.from(boardCells).filter(
-              (cell) => !cell.innerHTML
+                (cell) => !cell.innerHTML
               );
-              
+
               // Putting currentPlayer 1 check here fixed the problem with computerPlayer hitting all the squares without player 1 input.
-              if (emptyCells.length > 0 && currentPlayer === 2) { 
-              const randomCell =
-              emptyCells[Math.floor(Math.random() * emptyCells.length)];
-              randomCell.click();
+              if (emptyCells.length > 0 && currentPlayer === 2) {
+                const randomCell =
+                  emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                randomCell.click();
               }
             }, 500); // Adds a slight delay for the computer's move
           }
         }
 
-      computerPlayer()
+        computerPlayer();
 
         function useNewGameBtn() {
           boardCells.forEach((cell) => {
@@ -428,16 +479,16 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
             round = 0;
 
             if (winner === 1) {
-            currentPlayer = 2;
+              currentPlayer = 2;
             } else if (winner === 2) {
-            currentPlayer = 1;
+              currentPlayer = 1;
             }
 
             // currentPlayer = winner; // Winner starts the new game
             updateMessageBoard();
-            
+
             if (isComputerPlayer && currentPlayer === 2) {
-            computerPlayer();
+              computerPlayer();
             }
           });
         }
@@ -448,11 +499,11 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
         console.log(`Winner condtion is: ${checkWinCondition()}`);
 
         if (winner === 0) {
-        console.log(`No current player is a champion.`); 
+          console.log(`No current player is a champion.`);
         } else if (winner === 1) {
-        console.log(`PLAYER ONE IS THE CHAMPION OF THE WORLD.`);
+          console.log(`PLAYER ONE IS THE CHAMPION OF THE WORLD.`);
         } else if (winner === 2) {
-        console.log(`PLAYER TWO REIGNS AS CHAMP NOW.`);
+          console.log(`PLAYER TWO REIGNS AS CHAMP NOW.`);
         }
       }
     });
