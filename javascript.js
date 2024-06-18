@@ -133,11 +133,15 @@ const zodBtnImgsModule = (function () {
     let selectedSign = "";
     let selectedSignId = "";
 
+    
+  const thudSound = new Audio("./assets/thud.mp3");
+  thudSound.preload = "auto";
+
     function selectPlayerSign() {
       zodBtns.forEach((button) => {
         button.addEventListener("click", () => {
           const matchingText = valueChecker[playerKey][button.id];
-
+          thudSound.play();
           if (matchingText) {
             selectedSign = matchingText;
             selectedSignId = button.id;
@@ -443,11 +447,11 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
 
   updateMessageBoard();
 
-  const audio1 = new Audio("./assets/pop1.mp3");
-  audio1.preload = "auto";
+  const popSound1 = new Audio("./assets/pop1.mp3");
+  popSound1.preload = "auto";
   
-  const audio2 = new Audio("./assets/pop2.mp3");
-  audio2.preload = "auto";
+  const popSound2 = new Audio("./assets/pop2.mp3");
+  popSound2.preload = "auto";
 
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
@@ -455,12 +459,12 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
         // Check if the cell is empty first...
         if (currentPlayer === 1) {
           cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
-          audio1.play();
+          popSound1.play();
           round++;
           messageBoard.textContent = player2Turn;
         } else if (currentPlayer === 2) {
           cell.innerHTML = `<img src="${playerTwoMarker.src}" data-player="2" style="background-color: ${playerTwoMarker.style.backgroundColor};" />`;
-          audio2.play();
+          popSound2.play();
           round++;
           messageBoard.textContent = player1Turn;
         }
