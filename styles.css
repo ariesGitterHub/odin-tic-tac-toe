@@ -93,8 +93,9 @@ body {
 }
 
 #MMM {
-  color: var(--white);
-  font-size: .75rem;
+  color: var(--md-gray);
+  font-family: var(--font-main);
+  font-size: .95rem;
   text-align: center;
   margin-bottom: .1rem;
 }
