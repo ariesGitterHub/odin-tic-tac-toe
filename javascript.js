@@ -55,10 +55,15 @@ const csModule = (function () {
 })();
 
 // Module for changing toggle slider color, and selected player number font color
+
 const numPlayersFontColorModule = (function () {
   const numPlayers = document.querySelector(csModule.getSelector("numPlayers"));
-  const sliderText1 = document.querySelector(csModule.getSelector("sliderText1"));
-  const sliderText2 = document.querySelector(csModule.getSelector("sliderText2"));
+  const sliderText1 = document.querySelector(
+    csModule.getSelector("sliderText1")
+  );
+  const sliderText2 = document.querySelector(
+    csModule.getSelector("sliderText2")
+  );
 
   function changeNumPlayerFontColor() {
     if (numPlayers.checked) {
@@ -76,9 +81,12 @@ const numPlayersFontColorModule = (function () {
 })();
 
 // Module for handling player two marker options on modal/dialog display
+
 const playerTwoSelectModule = (function () {
   const numPlayers = document.querySelector(csModule.getSelector("numPlayers"));
-  const modalPlayerTwo = document.querySelector(csModule.getSelector("modalPlayerTwo"));
+  const modalPlayerTwo = document.querySelector(
+    csModule.getSelector("modalPlayerTwo")
+  );
 
   function showPlayerTwoSelect() {
     if (numPlayers.checked) {
@@ -95,6 +103,7 @@ const playerTwoSelectModule = (function () {
 })();
 
 // Module for switching the zodiac symbol and image when button is hovered/focused
+
 const zodBtnImgsModule = (function () {
   const zodBtns = document.querySelectorAll(csModule.getSelector("zodBtns"));
 
@@ -126,6 +135,7 @@ const zodBtnImgsModule = (function () {
 })();
 
 // Factory function for creating player marker selection
+
 (function () {
   function PlayerSignSelectModule(playerId, playerKey) {
     const zodBtns = document.querySelectorAll(csModule.getSelector("zodBtns"));
@@ -133,9 +143,8 @@ const zodBtnImgsModule = (function () {
     let selectedSign = "";
     let selectedSignId = "";
 
-    
-  const thudSound = new Audio("./assets/thud.mp3");
-  thudSound.preload = "auto";
+    const thudSound = new Audio("./assets/thud.mp3");
+    thudSound.preload = "auto";
 
     function selectPlayerSign() {
       zodBtns.forEach((button) => {
@@ -215,7 +224,10 @@ const zodBtnImgsModule = (function () {
 })();
 
 // Initialize the modules
-const numPlayersCheckbox = document.querySelector(csModule.getSelector("numPlayers"));
+
+const numPlayersCheckbox = document.querySelector(
+  csModule.getSelector("numPlayers")
+);
 
 numPlayersCheckbox.addEventListener("change", () => {
   numPlayersFontColorModule.changeNumPlayerFontColor();
@@ -230,7 +242,9 @@ const clearBtnModule = (function () {
   const clearBtn = document.querySelectorAll(csModule.getSelector("clearBtn"));
 
   function useClearBtn() {
-    // Below code is to ensure the Firefox browsers completely reload page, previously not doing so with window.location.reload();. Tested: works.
+
+    // Below code is to ensure the Firefox browsers completely reload page, previously not doing so with window.location.reload(); tested: it works
+
     window.location.href =
       window.location.pathname + "?cachebust=" + new Date().getTime();
   }
@@ -246,7 +260,9 @@ const modalStartBtnModule = (function () {
   const alert2 = document.querySelector(csModule.getSelector("alert2"));
   const alertMsg2 = document.querySelector(csModule.getSelector("alertMsg2"));
   const dialog = document.querySelector(csModule.getSelector("dialog"));
-  const gameContainer = document.querySelector(csModule.getSelector("gameContainer"));
+  const gameContainer = document.querySelector(
+    csModule.getSelector("gameContainer")
+  );
 
   function useStartBtn() {
     const playerOneSignId = window.playerOneSignSelect.getSelectedSignId();
@@ -254,14 +270,16 @@ const modalStartBtnModule = (function () {
     const playerTwoSignId = window.playerTwoSignSelect.getSelectedSignId();
     const playerTwoSign = window.playerTwoSignSelect.getSelectedSign();
 
-    // One player: if player one sign not selected...
+    // One player: alert msg if player one sign not selected
+
     if (!numPlayers.checked && playerOneSignId === "") {
       alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       return;
     }
 
-    // Two players: if player one and player two signs not selected...
+    // Two players: alert msg if player one and player two signs not selected
+
     if (
       numPlayers.checked &&
       playerOneSignId === "" &&
@@ -274,26 +292,30 @@ const modalStartBtnModule = (function () {
       return;
     }
 
-    // Two players, player one sign not selected...
+    // Two players: alert msg if player one sign not selected
+
     if (numPlayers.checked && playerOneSignId === "") {
       alert1.style.display = "flex";
       alertMsg1.textContent = "Please select a sign for player one.";
       return;
     }
 
-    // Two players, player two sign not selected...
+    // Two players: alert msg if player two sign not selected
+
     if (numPlayers.checked && playerTwoSignId === "") {
       alert2.style.display = "flex";
       alertMsg2.textContent = "Please select a sign for player two.";
       return;
     }
 
-    // Close the dialog and proceed with the game...no need for an else statement.
+    // Close the dialog and proceed with the game...no need for an else statement
+
     dialog.style.display = "none";
     gameContainer.style.display = "flex";
     console.log(`Player ONE's starting turn.`);
 
     // Call another function with the selected sign data
+
     playerBoardModule.setPlayerBoard(
       playerOneSignId,
       playerOneSign,
@@ -313,12 +335,24 @@ const modalStartBtnModule = (function () {
 })();
 
 const playerBoardModule = (function () {
-  const playerOneMarker = document.querySelector(csModule.getSelector("playerOneMarker"));
-  const playerOneName = document.querySelector(csModule.getSelector("playerOneName"));
-  const playerOneType = document.querySelector(csModule.getSelector("playerOneType"));
-  const playerTwoMarker = document.querySelector(csModule.getSelector("playerTwoMarker"));
-  const playerTwoName = document.querySelector(csModule.getSelector("playerTwoName"));
-  const playerTwoType = document.querySelector(csModule.getSelector("playerTwoType"));
+  const playerOneMarker = document.querySelector(
+    csModule.getSelector("playerOneMarker")
+  );
+  const playerOneName = document.querySelector(
+    csModule.getSelector("playerOneName")
+  );
+  const playerOneType = document.querySelector(
+    csModule.getSelector("playerOneType")
+  );
+  const playerTwoMarker = document.querySelector(
+    csModule.getSelector("playerTwoMarker")
+  );
+  const playerTwoName = document.querySelector(
+    csModule.getSelector("playerTwoName")
+  );
+  const playerTwoType = document.querySelector(
+    csModule.getSelector("playerTwoType")
+  );
   const randomPick = Math.floor(Math.random() * 12);
 
   const computerPlayerTwoIdList = [
@@ -357,32 +391,106 @@ const playerBoardModule = (function () {
     playerTwoSignId,
     playerTwoSign
   ) {
-    // Keep redundancy of images below in case I want to change these images later on.
+
+    // Keep redundancy of images below in case I want to change these images later on
+
     const signMarkers = {
-      ari1: { markerImg: "./assets/ari-img.svg", markerBkg: csModule.getColor("fire1") },
-      tau1: { markerImg: "./assets/tau-img.svg", markerBkg: csModule.getColor("earth1") },
-      gem1: { markerImg: "./assets/gem-img.svg", markerBkg: csModule.getColor("air1") },
-      can1: { markerImg: "./assets/can-img.svg", markerBkg: csModule.getColor("water1") },
-      leo1: { markerImg: "./assets/leo-img.svg", markerBkg: csModule.getColor("fire1") },
-      vir1: { markerImg: "./assets/vir-img.svg", markerBkg: csModule.getColor("earth1") },
-      lib1: { markerImg: "./assets/lib-img.svg", markerBkg: csModule.getColor("air1") },
-      sco1: { markerImg: "./assets/sco-img.svg", markerBkg: csModule.getColor("water1") },
-      sag1: { markerImg: "./assets/sag-img.svg", markerBkg: csModule.getColor("fire1") },
-      cap1: { markerImg: "./assets/cap-img.svg", markerBkg: csModule.getColor("earth1") },
-      aqu1: { markerImg: "./assets/aqu-img.svg", markerBkg: csModule.getColor("air1") },
-      pis1: { markerImg: "./assets/pis-img.svg", markerBkg: csModule.getColor("water1") },
-      ari2: { markerImg: "./assets/ari-img.svg", markerBkg: csModule.getColor("fire2") },
-      tau2: { markerImg: "./assets/tau-img.svg", markerBkg: csModule.getColor("earth2") },
-      gem2: { markerImg: "./assets/gem-img.svg", markerBkg: csModule.getColor("air2") },
-      can2: { markerImg: "./assets/can-img.svg", markerBkg: csModule.getColor("water2") },
-      leo2: { markerImg: "./assets/leo-img.svg", markerBkg: csModule.getColor("fire2") },
-      vir2: { markerImg: "./assets/vir-img.svg", markerBkg: csModule.getColor("earth2") },
-      lib2: { markerImg: "./assets/lib-img.svg", markerBkg: csModule.getColor("air2") },
-      sco2: { markerImg: "./assets/sco-img.svg", markerBkg: csModule.getColor("water2") },
-      sag2: { markerImg: "./assets/sag-img.svg", markerBkg: csModule.getColor("fire2") },
-      cap2: { markerImg: "./assets/cap-img.svg", markerBkg: csModule.getColor("earth2") },
-      aqu2: { markerImg: "./assets/aqu-img.svg", markerBkg: csModule.getColor("air2") },
-      pis2: { markerImg: "./assets/pis-img.svg", markerBkg: csModule.getColor("water2") },
+      ari1: {
+        markerImg: "./assets/ari-img.svg",
+        markerBkg: csModule.getColor("fire1"),
+      },
+      tau1: {
+        markerImg: "./assets/tau-img.svg",
+        markerBkg: csModule.getColor("earth1"),
+      },
+      gem1: {
+        markerImg: "./assets/gem-img.svg",
+        markerBkg: csModule.getColor("air1"),
+      },
+      can1: {
+        markerImg: "./assets/can-img.svg",
+        markerBkg: csModule.getColor("water1"),
+      },
+      leo1: {
+        markerImg: "./assets/leo-img.svg",
+        markerBkg: csModule.getColor("fire1"),
+      },
+      vir1: {
+        markerImg: "./assets/vir-img.svg",
+        markerBkg: csModule.getColor("earth1"),
+      },
+      lib1: {
+        markerImg: "./assets/lib-img.svg",
+        markerBkg: csModule.getColor("air1"),
+      },
+      sco1: {
+        markerImg: "./assets/sco-img.svg",
+        markerBkg: csModule.getColor("water1"),
+      },
+      sag1: {
+        markerImg: "./assets/sag-img.svg",
+        markerBkg: csModule.getColor("fire1"),
+      },
+      cap1: {
+        markerImg: "./assets/cap-img.svg",
+        markerBkg: csModule.getColor("earth1"),
+      },
+      aqu1: {
+        markerImg: "./assets/aqu-img.svg",
+        markerBkg: csModule.getColor("air1"),
+      },
+      pis1: {
+        markerImg: "./assets/pis-img.svg",
+        markerBkg: csModule.getColor("water1"),
+      },
+      ari2: {
+        markerImg: "./assets/ari-img.svg",
+        markerBkg: csModule.getColor("fire2"),
+      },
+      tau2: {
+        markerImg: "./assets/tau-img.svg",
+        markerBkg: csModule.getColor("earth2"),
+      },
+      gem2: {
+        markerImg: "./assets/gem-img.svg",
+        markerBkg: csModule.getColor("air2"),
+      },
+      can2: {
+        markerImg: "./assets/can-img.svg",
+        markerBkg: csModule.getColor("water2"),
+      },
+      leo2: {
+        markerImg: "./assets/leo-img.svg",
+        markerBkg: csModule.getColor("fire2"),
+      },
+      vir2: {
+        markerImg: "./assets/vir-img.svg",
+        markerBkg: csModule.getColor("earth2"),
+      },
+      lib2: {
+        markerImg: "./assets/lib-img.svg",
+        markerBkg: csModule.getColor("air2"),
+      },
+      sco2: {
+        markerImg: "./assets/sco-img.svg",
+        markerBkg: csModule.getColor("water2"),
+      },
+      sag2: {
+        markerImg: "./assets/sag-img.svg",
+        markerBkg: csModule.getColor("fire2"),
+      },
+      cap2: {
+        markerImg: "./assets/cap-img.svg",
+        markerBkg: csModule.getColor("earth2"),
+      },
+      aqu2: {
+        markerImg: "./assets/aqu-img.svg",
+        markerBkg: csModule.getColor("air2"),
+      },
+      pis2: {
+        markerImg: "./assets/pis-img.svg",
+        markerBkg: csModule.getColor("water2"),
+      },
     };
 
     if (playerOneSignId) {
@@ -422,9 +530,13 @@ const playerBoardModule = (function () {
 playerBoardModule.setPlayerBoard();
 
 function gamePlayerController(playerOneMarker, playerTwoMarker) {
-  const boardCells = document.querySelectorAll(csModule.getSelector("boardCells"));
+  const boardCells = document.querySelectorAll(
+    csModule.getSelector("boardCells")
+  );
   let currentPlayer = 1;
-  const messageBoard = document.querySelector(csModule.getSelector("messageBoard"));
+  const messageBoard = document.querySelector(
+    csModule.getSelector("messageBoard")
+  );
   const player1Opening = `Player One makes the first move.`;
   const player2Opening = `Player Two makes the first move.`;
   const player1Turn = `Player One pick a square.`;
@@ -435,7 +547,9 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
   messageBoard.textContent = player1Opening;
   let round = 0;
   let winner = 0;
-  const playerTwoType = document.querySelector(csModule.getSelector("playerTwoType"));
+  const playerTwoType = document.querySelector(
+    csModule.getSelector("playerTwoType")
+  );
 
   function updateMessageBoard() {
     if (winner === 1) {
@@ -449,14 +563,16 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
 
   const popSound1 = new Audio("./assets/pop1.mp3");
   popSound1.preload = "auto";
-  
+
   const popSound2 = new Audio("./assets/pop2.mp3");
   popSound2.preload = "auto";
 
   boardCells.forEach((cell, index) => {
     cell.addEventListener("click", function () {
       if (!cell.innerHTML && !checkWinCondition()) {
-        // Check if the cell is empty first...
+
+        // Check if the cell is empty first
+
         if (currentPlayer === 1) {
           cell.innerHTML = `<img src="${playerOneMarker.src}" data-player="1" style="background-color: ${playerOneMarker.style.backgroundColor};" />`;
           popSound1.play();
@@ -470,6 +586,7 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
         }
 
         // Check for win condition after at least 5 rounds (earliest possible win)
+
         if (round >= 5) {
           if (checkWinCondition()) {
             messageBoard.textContent = `Player ${
@@ -490,28 +607,37 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
         }
 
         // Switch player turn
+
         currentPlayer = currentPlayer === 1 ? 2 : 1;
 
-        const newGameBtn = document.querySelector(csModule.getSelector("newGameBtn"));
+        const newGameBtn = document.querySelector(
+          csModule.getSelector("newGameBtn")
+        );
         newGameBtn.addEventListener("click", useNewGameBtn);
 
-        // Check if Player Two is a computer
+        // Check if player two is a computer
+
         const isComputerPlayer = playerTwoType.textContent === "(Computer)";
 
         function computerPlayer() {
           if (isComputerPlayer && currentPlayer === 2) {
             setTimeout(() => {
-              const emptyCells = Array.from(boardCells).filter(
-                (cell) => !cell.innerHTML
-              );
 
-              // Putting currentPlayer 1 check here fixed the problem with computerPlayer hitting all the squares without player 1 input.
-              if (emptyCells.length > 0 && currentPlayer === 2) {
-                const randomCell =
-                  emptyCells[Math.floor(Math.random() * emptyCells.length)];
-                randomCell.click();
-              }
-            }, 500); // Adds a slight delay for the computer's move
+            //Random move AI - I tried using the minimax algorithm, but it slowed game down and introduced too many bugs
+
+            const emptyCells = Array.from(boardCells).filter(
+              (cell) => !cell.innerHTML
+            );
+
+            // Putting currentPlayer === 2 check here fixed the problem with computerPlayer hitting all the squares without player one input
+
+            if (emptyCells.length > 0 && currentPlayer === 2) {
+              const randomCell =
+                emptyCells[Math.floor(Math.random() * emptyCells.length)];
+              randomCell.click();
+            }
+
+            }, 600); // Reminder, adds a slight delay for the computer's move.
           }
         }
 
@@ -530,7 +656,6 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
               currentPlayer = 1;
             }
 
-            // currentPlayer = winner; // Winner starts the new game
             updateMessageBoard();
 
             if (isComputerPlayer && currentPlayer === 2) {
@@ -539,8 +664,9 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
           });
         }
 
-        // Log checks...
-        console.log(`Current round is ${round}...`);
+        // Log checks
+        
+        console.log(`Current round: ${round}...`);
         console.log(`It is player ${currentPlayer}'s turn.`);
         console.log(`Winner condtion is: ${checkWinCondition()}`);
 
@@ -556,7 +682,9 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
   });
 
   function checkWinCondition() {
-    const boardCells = document.querySelectorAll(csModule.getSelector("boardCells"));
+    const boardCells = document.querySelectorAll(
+      csModule.getSelector("boardCells")
+    );
     const winPatterns = [
       [0, 1, 2], // Rows
       [3, 4, 5], // Rows
@@ -586,6 +714,7 @@ function gamePlayerController(playerOneMarker, playerTwoMarker) {
           playerA === playerB &&
           playerB === playerC
         ) {
+
           // console.log(cells[a], cells[b], cells[c]);
 
           boardCells[a].style.backgroundColor = csModule.getColor("dkGray");
@@ -630,7 +759,9 @@ const gameBoardModule = (function () {
   }
 
   function displayCell() {
-    const boardCells = document.querySelectorAll(csModule.getSelector("boardCells"));
+    const boardCells = document.querySelectorAll(
+      csModule.getSelector("boardCells")
+    );
     boardCells.forEach((cell, index) => {
       cell.textContent = board[index].marker;
     });

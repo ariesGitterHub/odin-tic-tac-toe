@@ -52,6 +52,7 @@
 /* RESETS/ALL(*)                           */
 
 /* Stops Apple Safari defaults seen on an older iPhone model*/
+
 button {
     -webkit-appearance: none;
     appearance: none;
@@ -68,8 +69,6 @@ button {
 /* BODY AND MAIN SECTIONS                  */
 
 body {
-  /* height:auto;
-  width: auto; */
   background: var(--dk-gray);
 }
 
@@ -125,7 +124,6 @@ dialog h2 {
   display: flex;
   justify-content: center;
     align-items: center;
-  /* margin: 0 0 0 0; */
 }
 
 .flex-row h2 {
@@ -151,6 +149,7 @@ dialog h2 {
 }
 
 /* Slides down player two options */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -403,8 +402,7 @@ button:active {
 
 /* TOGGLE */
 
-/* Switch - the box around the slider */
-.switch {
+.switch { /* Switch - the box around the slider */
   position: relative;
   width: 38px;
   height: 24px;  
@@ -412,14 +410,12 @@ button:active {
   margin: .5rem .5rem 0 .5rem;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
+.switch input { /* Hide default HTML checkbox */
   width: 0;
   height: 0;
   opacity: 0;
 }
 
-/* Slider */
 .slider {
   position: absolute;
   top: 0;
@@ -489,6 +485,7 @@ input:checked + .slider:before {
 @media (min-width: 425px) {
 
   /* Main values from above are commented out, keep as a reference point for future tweaks */
+
   :root {
     /* --border-width1: .5rem; */
     --border-width1: .5rem;
@@ -539,4 +536,3 @@ input:checked + .slider:before {
     width: var(--master-width1);
   }
 }
-
